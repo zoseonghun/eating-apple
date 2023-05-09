@@ -1,10 +1,10 @@
-package com.trifling.triflings;
+package com.trifling.things;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TriflingsApplicationTests {
+class ThingsApplicationTests {
 
 	@Test
 	void contextLoads() {

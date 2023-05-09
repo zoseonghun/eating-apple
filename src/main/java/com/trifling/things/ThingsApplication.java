@@ -1,13 +1,13 @@
-package com.trifling.triflings;
+package com.trifling.things;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TriflingsApplication {
+public class ThingsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TriflingsApplication.class, args);
+		SpringApplication.run(ThingsApplication.class, args);
 	}
 
 }

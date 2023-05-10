@@ -5,4 +5,35 @@
 
 <mapper namespace="com.trifling.things.repository.UserMapper">
 
+    <insert id="save">
+        INSERT INTO User
+        (userid, password, email, gender, age)
+        Values(#{userId}, #{password}, #{email} ,#{gender}, #{age})
+    </insert>
+
+    <select id="findUser" resultType="user">
+        select
+        (userid, password, email, gender, age)
+        from m_user
+        WHERE userid = #{userid}
+    </select>
+
+    <update id="change">
+        UPDATE User
+        SET password = #{password}, email=#{email}
+        where userid = #{userid}
+    </update>
+
+    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM m_user
+        <if test="type == 'userid'">
+            WHERE userid = #{keyword}
+        </if>
+        <if test="type == 'email'">
+            WHERE email = #{keyword}
+        </if>
+    </select>
+
+
 </mapper>

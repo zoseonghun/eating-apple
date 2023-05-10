@@ -9,6 +9,46 @@
         INSERT INTO m_rate
             (user_num, movie_num, rate_review, rate_score)
         VALUES
-            (#{userNum}, #{}, #{}, #{})
+            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore})
     </insert>
+
+    <update id="rateModify">
+        UPDATE m_rate
+        SET rate_review = #{rateReview}
+            , rate_date = #{rateDate}, rate_score = #{rateScore}
+        WHERE rate_num = #{rateNum}
+    </update>
+
+    <delete id="rateDelete">
+        DELETE FROM m_rate
+        WHERE rate_num = #{rateNum}
+    </delete>
+
+    <select id="rateList" resultType="rate">
+        SELECT rate_num, user_num, movie_num, rate_review
+        , rate_score, rate_date, rate_like
+        FROM m_rate
+        <if test="type == 'user'">
+            WHERE user_num = #{userNum}
+        </if>
+        <if test="type == 'movie'">
+            WHERE movie_num = #{movieNum}
+        </if>
+    </select>
+
+    <select id="rateFindOne" resultType="rate">
+        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review
+            , r.rate_score, r.rate_date, r.rate_like
+        FROM m_rate r
+        JOIN m_user u ON r.user_num = u.user_num
+        JOIN m_movie m ON r.movie_num = m.movie_num
+        WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}
+    </select>
+
+    <!--    이건 rate에 있어야 겠는데? 근데 avg로 하면 괜찮을지도?-->
+    <select id="countScore" resultType="int">
+        SELECT COUNT(*)
+        FROM m_rate
+        WHERE movie_num = #{movieNum}
+    </select>
 </mapper>

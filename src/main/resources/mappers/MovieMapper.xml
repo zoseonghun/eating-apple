@@ -4,5 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.trifling.things.repository.MovieMapper">
+    <select id="movieList" resultType="movie">
+        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
+                , movie_genre, movie_age
+        FROM m_movie
+    </select>
+
+    <select id="movieFindOne" resultType="movie">
+        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
+        , movie_genre, movie_age
+        FROM m_movie
+        WHERE movie_num = #{movieNum}
+    </select>
+
+    <update id="movieScoreRenew">
+        UPDATE m_movie
+        SET movie_score = (
+                SELECT ROUND(AVG(rate_score))
+                FROM m_rate
+                WHERE movie_num = #{movieNum}
+        )
+        WHERE movie_num = #{movieNum}
+    </update>
+
 
 </mapper>

@@ -13,7 +13,7 @@ public class Movie {
     private long movieNum;
     private String movieTitle;
     private String movieInfo;
-    private long movieImgNum;
+    private int movieImgNum;
     private String movieRuntime;
     private String movieGenre;
     private String movieAge;

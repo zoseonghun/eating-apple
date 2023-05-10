@@ -11,12 +11,18 @@
 
     <typeAliases>
     <!--  entity 클래스 별칭 설정      -->
-
+        <typeAlias alias="user" type="com.trifling.things.entity.User"/>
+        <typeAlias alias="rate" type="com.trifling.things.entity.Rate"/>
+        <typeAlias alias="movie" type="com.trifling.things.entity.Movie"/>
+<!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
-
+        <mapper resource="mappers/MovieMapper.xml"/>
+        <mapper resource="mappers/UserMapper.xml"/>
+        <mapper resource="mappers/RateMapper.xml"/>
+<!--        <mapper resource="mappers/appleTest.xml"/>-->
 
     </mappers>
 </configuration>

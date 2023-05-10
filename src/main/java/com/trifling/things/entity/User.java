@@ -10,4 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class User {
+
+    private String name;
 }

@@ -4,15 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.trifling.things.repository.MovieMapper">
+
     <select id="movieList" resultType="movie">
         SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-                , movie_genre, movie_age
+                , movie_genre, movie_age, movie_score
         FROM m_movie
     </select>
 
     <select id="movieFindOne" resultType="movie">
         SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-        , movie_genre, movie_age
+        , movie_genre, movie_age, movie_score
         FROM m_movie
         WHERE movie_num = #{movieNum}
     </select>

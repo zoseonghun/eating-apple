@@ -19,5 +19,5 @@ public interface MovieMapper {
     public Movie movieFindOne(int movieNum);
 
     // 영화 점수 갱신
-    public boolean movieScoreRenew(int movie_num);
+    public boolean movieScoreRenew(int movieNum);
 }

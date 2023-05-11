@@ -6,22 +6,23 @@
 <mapper namespace="com.trifling.things.repository.UserMapper">
 
     <insert id="save">
-        INSERT INTO User
-        (userid, password, email, gender, age)
-        Values(#{userId}, #{password}, #{email} ,#{gender}, #{age})
+        INSERT INTO m_user
+        (user_id, user_password, user_email, user_gender, user_age)
+        Values
+        (#{userId}, #{password}, #{email} ,#{gender}, #{age})
     </insert>
 
     <select id="findUser" resultType="user">
         select
-        (userid, password, email, gender, age)
+        user_id
         from m_user
-        WHERE userid = #{userid}
+        WHERE user_id = #{userId}
     </select>
 
-    <update id="change">
-        UPDATE User
-        SET password = #{password}, email=#{email}
-        where userid = #{userid}
+    <update id="modify">
+        UPDATE m_user
+        SET user_password= #{password}
+        WHERE user_id = #{userId}
     </update>
 
     <select id="isDuplicate" resultType="int">

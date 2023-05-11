@@ -17,16 +17,16 @@ public class UserService {
 
 
     public boolean join(JoinDTO dto) {
-        User member = User.builder()
+        User user = User.builder()
                 .userId(dto.getUserId())
                 .password(dto.getPassword()) //encoder.encode
                 .email(dto.getEmail())
                 .build();
 
-        // 매퍼에게 회원정보 전달해서 저장명령
-      //  UserMapper.save(member);
+//         매퍼에게 회원정보 전달해서 저장명령
+        userMapper.save(user);
         return true;
-
-
     }
+
+
 }

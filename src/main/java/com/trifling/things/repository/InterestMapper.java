@@ -14,7 +14,7 @@ public interface InterestMapper {
     List<Movie> InterestbyUserNum(int userNum);
 
     //찜하기(추가) -확인필요
-    int insertbyUserNum();
+    int insertbyUserNum(int movieNum);
 
 
     // 찜 목록 1개 삭제

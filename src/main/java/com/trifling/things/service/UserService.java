@@ -23,8 +23,8 @@ public class UserService {
     public boolean join(SignUpDTO dto) {
         User user = User.builder()
                 .userId(dto.getUserId())
-                .password(dto.getPassword()) //encoder.encode
-                .email(dto.getEmail())
+                .userPassword(dto.getPassword()) //encoder.encode
+                .userEmail(dto.getEmail())
                 .build();
 
 //         매퍼에게 회원정보 전달해서 저장명령
@@ -32,7 +32,7 @@ public class UserService {
         return true;
     }
 
-
+    //회원정보 조회
     public List<User> userList() {
         return null;
     }
@@ -40,8 +40,8 @@ public class UserService {
 
 
     //영화 찜하기 기능
-    public List<Interest> getInterestList(String type, int movieNum) {
-        List<Interest> interestUser = userMapper.interestList(type, movieNum);
+    public List<Interest> getInterestList(String userId, int movieNum) {
+        List<Interest> interestUser = userMapper.interestList(userId, movieNum);
         return interestUser;
 
 

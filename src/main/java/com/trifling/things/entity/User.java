@@ -13,10 +13,10 @@ public class User {
 
     private int userNum;
     private String userId;
-    private String password;
-    private String email;
-    private Gender gender;
-    private int age;
-    private int point;
-    private Grade grade;
+    private String userPassword;
+    private String userEmail;
+    private Gender userGender;
+    private int userAge;
+    private int userPoint;
+    private Grade userGrade;
 }

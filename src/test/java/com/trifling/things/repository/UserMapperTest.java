@@ -26,10 +26,10 @@ class UserMapperTest {
     void testJoin() {
         User user = User.builder()
                 .userId("def123")
-                .password("def123@")
-                .email("def@abc.com")
-                .gender(Gender.MALE)
-                .age(28)
+                .userPassword("def123@")
+                .userEmail("def@abc.com")
+                .userGender(Gender.MALE)
+                .userAge(28)
                 .build();
 
         boolean flag = userMapper.save(user);
@@ -53,27 +53,30 @@ class UserMapperTest {
 
 //    수정필요
     @Test
-    @DisplayName("유저의 id 값을 확인하면 유저의 이메일을 수정해야한다")
-    @Transactional
-    @Rollback
-    void testModifyInfo(){
+    @DisplayName("유저의 id 값을 확인하면 유저의 비밀번호를 수정해야한다")
+//    @Transactional
+//    @Rollback
+    void testModifyInfo() {
         //given
         String userid = "def123";
         String newpassword = "123@@";
         User modifyUser = User.builder()
                 .userId(userid)
+                .userPassword(newpassword)
                 .build();
         //when
         boolean flag = userMapper.modify(modifyUser);
+
+
         //then
         assertTrue(flag);
-        assertEquals(newpassword, userMapper.findUser(userid).getUserId());
-
+        assertEquals(newpassword, userMapper.findUser(userid).getUserPassword());
     }
 
 
     @Test
-    @DisplayName("id가  def123 경우 결과값이 1이 나와야 한다.")
+//    @DisplayName("id가  def123 경우 결과값이 1이 나와야 한다.")
+    @DisplayName("age가 28인 경우 결과값이 1이 나와야 한다.")
     void accountDuplicateTest() {
         // given
         String userid = "def123";

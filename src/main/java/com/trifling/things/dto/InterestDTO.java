@@ -10,9 +10,9 @@ import lombok.*;
 @EqualsAndHashCode
 public class InterestDTO {
 
-    private int movie_num;
+    private int movieNum;
 
-    private int user_num;
+    private int userNum;
 
 
 }

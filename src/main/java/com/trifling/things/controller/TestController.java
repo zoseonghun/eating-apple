@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 @Slf4j
 public class TestController {
    @GetMapping("/test")
     public String test(){
         System.out.println("getin");
-        return "movies/test";
+        return "movies/list";
     }
 }

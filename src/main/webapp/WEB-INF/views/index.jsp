@@ -22,7 +22,7 @@
         <div id="navigation">
             <ul>
                 <li><a class="active" href="#">HOME</a></li>
-                <li><a href="#">MOVIES</a></li>
+                <li><a href="/movies/test">MOVIES</a></li>
                 <li><a href="#">로그인</a></li>
                 <li><a href="#">회원가입</a></li>
             </ul>

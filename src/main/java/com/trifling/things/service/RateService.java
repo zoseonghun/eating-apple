@@ -38,5 +38,5 @@ public class RateService {
         return rate; //
     }
 
-    public
+
 }

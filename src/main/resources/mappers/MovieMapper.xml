@@ -6,9 +6,20 @@
 <mapper namespace="com.trifling.things.repository.MovieMapper">
 
     <select id="movieList" resultType="movie">
-        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-                , movie_genre, movie_age, movie_score
-        FROM m_movie
+<!--        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director-->
+<!--                , movie_genre, movie_age, movie_score-->
+        SELECT m.movie_num, m.movie_title, m.movie_score, i.img_url
+        FROM m_movie m
+        JOIN m_img I
+        ON m.movie_num = I.movie_num
+        <if test="type == 'title'">
+            WHERE movie_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'director'">
+            WHERE movie_director LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        ORDER BY movie_num DESC
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <select id="movieFindOne" resultType="movie">
@@ -28,5 +39,14 @@
         WHERE movie_num = #{movieNum}
     </update>
 
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM m_movie
+        <if test="type == 'title'">
+            WHERE movie_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'director'">
+            WHERE movie_director LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 
 </mapper>

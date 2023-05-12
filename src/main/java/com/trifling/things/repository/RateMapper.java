@@ -2,6 +2,7 @@ package com.trifling.things.repository;
 
 import com.trifling.things.entity.Rate;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface RateMapper {
 
     // 평가 목록 조회
     // 파라미터 num 은 type 에 따라 userNum 또는 movieNum 이 넘어옴
-    public List<Rate> rateList(String type, int num);
+    public List<Rate> rateList(@Param("type") String type, @Param("target") int target);
 
     // 평가 조회
     public Rate rateFindOne(int rateNum);

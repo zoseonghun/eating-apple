@@ -29,10 +29,10 @@
         , rate_score, rate_date, rate_like
         FROM m_rate
         <if test="type == 'user'">
-            WHERE user_num = #{userNum}
+            WHERE user_num = #{target}
         </if>
         <if test="type == 'movie'">
-            WHERE movie_num = #{movieNum}
+            WHERE movie_num = #{target}
         </if>
     </select>
 

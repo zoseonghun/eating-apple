@@ -5,6 +5,7 @@
 
 <mapper namespace="com.trifling.things.repository.RateMapper">
 
+
     <insert id="rateWrite">
         INSERT INTO m_rate
             (user_num, movie_num, rate_review, rate_score)
@@ -51,4 +52,5 @@
         FROM m_rate
         WHERE movie_num = #{movieNum}
     </select>
+
 </mapper>

@@ -1,0 +1,391 @@
+* {
+    margin:0;
+    padding:0;
+    outline:0;
+
+}
+body {
+    font-size:12px;
+    line-height:1.3;
+    font-family:Arial, Helvetica, Sans-Serif;
+    color:#ccc;
+    background:url('/assets/img/body-bg.gif');
+}
+a {
+    color:#e7b038;
+    text-decoration:underline;
+    cursor:pointer;
+}
+ul, ol, li{
+    list-style: none;
+}
+a:hover {
+    text-decoration:none;
+}
+a img {
+    border:0;
+}
+input, textarea, select {
+    font-size:12px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+textarea {
+    overflow:auto;
+}
+.cl {
+    display:block;
+    height:0;
+    font-size:0;
+    line-height:0;
+    text-indent:-4000px;
+    clear:both;
+}
+.notext {
+    font-size:0;
+    line-height:0;
+    text-indent:-4000px;
+}
+.left, .alignleft {
+    float:left;
+    display:inline;
+}
+.right, .alignright {
+    float:right;
+    display:inline;
+}
+.text-right {
+    text-align:right;
+}
+h2 {
+    font-size:10px;
+    color:#f2a223;
+    font-weight:bold;
+}
+h3 {
+    font-size:14px;
+    color:#fff;
+    font-weight:bold;
+}
+h4 {
+    font-size:13px;
+    color:#000;
+    font-weight:bold;
+    font-weight: 600;
+
+}
+#shell {
+    width:980px;
+    margin:0 auto;
+}
+#header {
+    position:relative;
+}
+h1#logo {
+    position:absolute;
+    top:37px;
+    left:0;
+}
+h1#logo a {
+    float:left;
+    width:239px;
+    height:49px;
+    background:url('/assets/img/logo.gif') no-repeat 0 0;
+    font-size:0;
+    line-height:0;
+    text-indent:-4000px;
+}
+#navigation {
+    float:right;
+    clear:right;
+    padding-top:28px;
+    padding-bottom:47px;
+}
+#navigation ul {
+    list-style:none;
+}
+#navigation ul li {
+    float:left;
+    display:inline;
+    padding-left:29px;
+}
+#navigation ul li a {
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+}
+#navigation ul li a.active, #navigation ul li a:hover {
+    color:#d91d2a;
+}
+#sub-navigation {
+    display:block;
+    clear:right;
+    border-top:1px dashed #666;
+    border-bottom:1px dashed #666;
+    padding:8px 0;
+}
+#sub-navigation ul {
+    list-style:none;
+}
+#sub-navigation ul li {
+    float:left;
+    display:inline;
+    padding-right:23px;
+}
+#sub-navigation ul li a {
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    line-height:24px;
+    text-decoration:none;
+}
+#sub-navigation ul li a:hover {
+    text-decoration:underline;
+}
+#search {
+    width:346px;
+    margin:0 0 0 auto;
+}
+#search label {
+    float:left;
+    display:inline;
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    line-height:24px;
+    padding-right:6px;
+}
+#search .search-field {
+    width:238px;
+    border:1px solid #413e3e;
+    background:#000;
+    color:#787878;
+    padding:2px 0 2px 2px;
+}
+#search .search-button {
+    font-size:14px;
+    font-weight:bold;
+    border:0;
+    background:none;
+    color:#fff;
+    cursor:pointer;
+}
+#main {
+    border-bottom:1px dashed #413e3e;
+}
+#content {
+}
+.box {
+    width:980px;
+    border-bottom:1px dashed #4f4848;
+}
+.box .head {
+    width:980px;
+    padding-top:14px;
+    padding-bottom:11px;
+}
+.box .head h2 {
+    float:left;
+    display:inline;
+    font-size: 16px;
+}
+.box .head h2 span{
+    color:#fff;
+}
+.box .movie {
+    width:152px;
+    float:left;
+    padding-right:12px;
+}
+.movie-image {
+    float:left;
+    width:152px;
+    height:214px;
+    position:relative;
+}
+.movie-image img {
+    width:152px;
+    height:214px;
+}
+.movie-image a {
+    float:left;
+    display:inline;
+    width:152px;
+    height:214px;
+    position:relative;
+    z-index:2;
+}
+.play {
+    position:absolute;
+    top:0;
+    left:0;
+    width:152px;
+    height:214px;
+    background:url('/assets/img/image-hover.png');
+    display:block;
+    z-index:5;
+    cursor:pointer;
+    display:none;
+}
+.movie span.name {
+    font-weight:bold;
+    color:#fff;
+    font-size:14px;
+    text-align:center;
+    padding-top:160px;
+    display:block;
+}
+.box .last {
+    padding:0;
+}
+.rating {
+    float:left;
+    width:152px;
+}
+.rating p {
+    float:left;
+    font-size:18px;
+    color:#fff;
+    font-weight:bold;
+    margin-left: 5px;
+    line-height: 25px;
+}
+.rating .rating-apple {
+    float:left;
+    width:20px;
+    height: 25px;
+    /* background-image: url("images/apple.png"); */
+    background-size: cover;
+    margin-left: 2px;
+}
+.rating .rating-apple img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.comments {
+    background:url('/assets/img/comments.gif') no-repeat 0 center;
+    padding-left:12px;
+    float:right;
+    margin-top: 7px;
+}
+#news {
+    width:460px;
+    float:left;
+}
+#news .head {
+    width:460px;
+    padding-top:11px;
+    padding-bottom:14px;
+}
+#news h3, #coming h3 {
+    float:left;
+    font-size: 16px;
+}
+#coming {
+    width:490px;
+    float:left;
+    padding-left:30px;
+}
+#coming .head {
+    width:490px;
+    padding-top:11px;
+    padding-bottom:14px;
+}
+#coming .head strong {
+    color:#ff361a;
+}
+#coming .content, #news .content {
+    border: 1px solid #fff;
+    background: #fff;
+}
+#coming .content li, #news .content li{
+    height: 40px;
+    display: flex;
+}
+.movie-list-title{
+    flex-basis: 80%;
+    flex-grow: 1;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.movie-list-rating-apple{
+    flex-basis: 10%;
+    flex-grow: 1;
+}
+.movie-list-rating-apple img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.movie-list-rating{
+    flex-basis: 10%;
+    flex-grow: 1;
+}
+#coming .content h4 {
+    padding-bottom:3px;
+}
+.content {
+}
+.content .date {
+    font-size:10px;
+    color:#fff;
+}
+.content img {
+    float:left;
+}
+.content p {
+    font-size:14px;
+    color:#000;
+    line-height:45px;
+}
+.content a {
+    font-size:11px;
+}
+#footer {
+    padding:15px 0 0 0;
+    font-size:10px;
+}
+#footer, #footer a {
+    color:#9c9c9c;
+    text-decoration:none;
+}
+#footer a:hover {
+    text-decoration:none;
+}
+#footer p {
+    margin:0;
+    padding:0 0 11px 0;
+    line-height:normal;
+    white-space:nowrap;
+}
+#footer .lf {
+    float:left;
+}
+#footer .rf {
+    float:right;
+}
+/* 슬라이드 버튼 만들기 css */
+.box-slide-button{
+
+    height: 35px;
+    position: relative;
+    top:  -160px;
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+}
+.box-slide-button button{
+    font-size: 20px;
+    background: #9f9f9f;
+    opacity: 0.4;
+    border-radius: 50%;
+    width: 35px;
+    font-weight: 700;
+}
+.box-slide-button button:hover{
+    opacity: 0.8;
+}
+

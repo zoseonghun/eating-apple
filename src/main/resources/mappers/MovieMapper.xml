@@ -28,9 +28,11 @@
     </select>
 
     <select id="movieFindOne" resultType="movie">
-        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-        , movie_genre, movie_age, movie_score
-        FROM m_movie
+        SELECT m.movie_num, m.movie_title, m.movie_info, m.movie_runtime, m.movie_director
+        , m.movie_genre, m.movie_age, m.movie_score, i.img_url
+        FROM m_movie m
+        JOIN m_img I
+        ON m.movie_num = I.movie_num
         WHERE movie_num = #{movieNum}
     </select>
 

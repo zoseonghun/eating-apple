@@ -21,9 +21,9 @@
       <li>${detail.score}</li>
     </ul>
     <c:forEach var="imgList" items="${detail.movieImgList}" >
-      
+
       <c:if test="${imgList.imgName == 'youtube'}">
-        <h2>${imgList.imgUrl}</h2>  
+        <h2>${imgList.imgUrl}</h2>
       </c:if>
       <c:if test="${imgList.imgName != 'youtube'}">
         <h1>${imgList.imgNum}</h1>
@@ -32,7 +32,7 @@
 
     <div class="test">
 
-      
+
     </div>
     <script>
 
@@ -40,14 +40,14 @@
 
       const url = '/api/v1/rates';
 
-      function rateList() {        
-        
+      function rateList() {
+
 
 
 
       }
 
-      
+
 
     </script>
 </body>

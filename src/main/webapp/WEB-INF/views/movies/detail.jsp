@@ -29,6 +29,27 @@
         <h1>${imgList.imgNum}</h1>
       </c:if>
     </c:forEach>
+
+    <div class="test">
+
+      
+    </div>
+    <script>
+
+      const movieNum = '${detail.movieNum}';
+
+      const url = '/api/v1/rates';
+
+      function rateList() {        
+        
+
+
+
+      }
+
+      
+
+    </script>
 </body>
 
 </html>

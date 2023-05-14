@@ -20,7 +20,7 @@ public class RateController {
 
     private final RateService rateService;
 
-    // 평가 목록 조회 (조건별)
+    // 평가 전체 목록 조회
     @GetMapping("/{type}/movie/{target}")
     public ResponseEntity<?> rateList(@PathVariable String type,
                                       @PathVariable int target) {

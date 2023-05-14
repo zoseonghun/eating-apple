@@ -1,7 +1,9 @@
 package com.trifling.things.repository;
 
+import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.page.Search;
 import com.trifling.things.entity.Movie;
+import com.trifling.things.entity.MovieImg;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,5 +24,7 @@ public interface MovieMapper {
     // 영화 점수 갱신
     public boolean movieScoreRenew(int movieNum);
 
-    int count(Search search);
+    public int count(Search search);
+
+    public List<MovieImg> targetMovieImg(int movieNum);
 }

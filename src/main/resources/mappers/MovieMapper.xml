@@ -10,15 +10,20 @@
 <!--                , movie_genre, movie_age, movie_score-->
         SELECT m.movie_num, m.movie_title, m.movie_score, i.img_url
         FROM m_movie m
-        JOIN m_img I
-        ON m.movie_num = I.movie_num
+        JOIN m_img i
+        ON m.movie_num = i.movie_num
         <if test="type == 'title'">
-            WHERE movie_title LIKE CONCAT('%', #{keyword}, '%')
+            WHERE m.movie_title LIKE CONCAT('%', #{keyword}, '%')
+            AND i.img_name = 'poster'
         </if>
         <if test="type == 'director'">
-            WHERE movie_director LIKE CONCAT('%', #{keyword}, '%')
+            WHERE m.movie_director LIKE CONCAT('%', #{keyword}, '%')
+            AND i.img_name = 'poster'
         </if>
-        ORDER BY movie_num DESC
+        <if test="type != 'title' and type != 'director'">
+            WHERE i.img_name = 'poster'
+        </if>
+        ORDER BY m.movie_num DESC
         LIMIT #{pageStart}, #{amount}
     </select>
 
@@ -49,4 +54,9 @@
         </if>
     </select>
 
+    <select id="targetMovieImg" resultType="img">
+        SELECT img_num, img_name, img_url
+        FROM m_img
+        WHERE movie_num = #{movieNum}
+    </select>
 </mapper>

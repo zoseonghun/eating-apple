@@ -3,6 +3,7 @@ package com.trifling.things.controller;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
@@ -47,9 +48,9 @@ public class MovieController {
     public String movieDetail(Model model, int mno) {
         log.info("/movies/detail : GET");
         movieService.movieScoreRenew(mno);
-        Movie movie = movieService.movieFindOne(mno);
+        MovieDetailResponseDTO dto = movieService.movieDetail(mno);
 
-        model.addAttribute("movieCode", movie);
+        model.addAttribute("detail", dto);
         return "movies/detail";
     }
 

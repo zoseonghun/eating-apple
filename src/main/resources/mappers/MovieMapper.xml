@@ -31,15 +31,15 @@
         SELECT m.movie_num, m.movie_title, m.movie_info, m.movie_runtime, m.movie_director
         , m.movie_genre, m.movie_age, m.movie_score, i.img_url
         FROM m_movie m
-        JOIN m_img I
-        ON m.movie_num = I.movie_num
-        WHERE m.movie_num = #{movieNum}
+        JOIN m_img i
+        ON m.movie_num = i.movie_num
+        WHERE m.movie_num = #{movieNum} AND i.img_name = 'poster'
     </select>
 
     <update id="movieScoreRenew">
         UPDATE m_movie
         SET movie_score = (
-                SELECT ROUND(AVG(rate_score))
+                SELECT SUM(rate_score)
                 FROM m_rate
                 WHERE movie_num = #{movieNum}
         )

@@ -7,6 +7,7 @@ import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.entity.MovieImg;
 import com.trifling.things.repository.MovieMapper;
+import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final MovieMapper movieMapper;
+    private final RateMapper rateMapper;
 
     // 영화 목록 전체 조회 (필터링 붙여야된다)
     public List<MovieListResponseDTO> movieList(Search page) {
@@ -34,7 +36,12 @@ public class MovieService {
     public MovieDetailResponseDTO movieDetail(int movieNum) {
 
         List<MovieImg> movieImgs = movieMapper.targetMovieImg(movieNum);
+        System.out.println("movieImgs = " + movieImgs);
         Movie movie = movieFindOne(movieNum);
+
+        int counted = rateMapper.countScore(movieNum); // 해당 영화의 총 평가 갯수
+
+//        movie.setMovieScore(movie.getMovieScore());
 
         return new MovieDetailResponseDTO(movie, movieImgs);
 

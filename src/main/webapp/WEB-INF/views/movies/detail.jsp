@@ -52,17 +52,26 @@
     <div id="main" class="main-box">
         <div class="video-box">
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/u3V5KDHRQvk" frameborder="0" allowfullscreen></iframe>
+                <c:forEach var="d" items="${detail.movieImgList}">
+                    <c:if test="${d.imgName == 'youtube'}">
+                        <iframe src="${d.imgUrl}" frameborder="0" allowfullscreen></iframe>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
         <div class="detail-post-rank-box">
             <div class="detail-post">
-                <img src="http://t1.daumcdn.net/movie/5f7b32312bf50ffdd7d6ec57523cf0e0d19f60a7" alt="#">
+                <c:forEach var="d" items="${detail.movieImgList}">
+                    <c:if test="${d.imgName == 'poster'}">
+                        <img src="${d.imgUrl}" alt="#">
+                    </c:if>
+                </c:forEach>
+                
             </div>
             <div class="detail-rank">
                 <div class="rank-box-title">
-                    <h2>GUARDIANS OF THE GALAXY VOL. 3</h2>
-                    <p>run time 2h 30m</p>
+                    <h2>${detail.title}</h2>
+                    <!-- <p>run time ${detail.runtime}</p> -->
                 </div>
                 <div class="rank-box-ranks">
                     <div class="rank">
@@ -70,7 +79,7 @@
                         <h3>사소한 평가</h3>
                     </div>
                     <div class="rank-num-box">
-                        <p>86%</p>
+                        <p>${detail.score}</p>
                     </div>
                     <div class="like">
                         <img src="/assets/img/like-httpswww.flaticon.com.png" alt="#">
@@ -86,25 +95,19 @@
             <div class="movie-detail-subname">
                 <p><span>│</span> MOVIE INFO</p>
             </div>
-            <div><span>In Marvel Studios "Guardians of the Galaxy Vol. 3" our beloved band of misfits are looking a
-                        bit
-                        different these days. Peter Quill, still reeling from the loss of Gamora, must rally his team
-                        around
-                        him to defend the universe along with protecting one of their own. A mission that, if not
-                        completed
-                        successfully, could quite possibly lead to the end of the Guardians as we know them.</span>
+            <div><span>${detail.info}</span>
             </div>
             <div>
-                <p>관람가: <span>PG-13 (Intense Sequences of Violence|Action|Strong Language|Suggestive/Drug</span></p>
+                <p>관람가: <span>${detail.age}</span></p>
             </div>
             <div>
-                <p>장르: <span>Sci-fi, Adventure, Action, Fantasy, Comedy</span></p>
+                <p>장르: <span>${detail.genre}</span></p>
             </div>
             <div>
-                <p>감독: <span>James Gunn</span></p>
+                <p>감독: <span>${detail.director}</span></p>
             </div>
             <div>
-                <p>런타임: <span>2h 30m</span></p>
+                <p>런타임: <span>${detail.runtime}</span></p>
             </div>
         </div>
 

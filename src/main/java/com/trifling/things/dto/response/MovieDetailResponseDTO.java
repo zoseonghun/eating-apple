@@ -34,4 +34,6 @@ public class MovieDetailResponseDTO {
         this.score = movie.getMovieScore();
         this.movieImgList = movieImgList;
     }
+
+
 }

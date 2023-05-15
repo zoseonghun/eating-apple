@@ -6,16 +6,34 @@
 <mapper namespace="com.trifling.things.repository.MovieMapper">
 
     <select id="movieList" resultType="movie">
-        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-                , movie_genre, movie_age, movie_score
-        FROM m_movie
+<!--        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director-->
+<!--                , movie_genre, movie_age, movie_score-->
+        SELECT m.movie_num, m.movie_title, m.movie_score, i.img_url
+        FROM m_movie m
+        JOIN m_img i
+        ON m.movie_num = i.movie_num
+        <if test="type == 'title'">
+            WHERE m.movie_title LIKE CONCAT('%', #{keyword}, '%')
+            AND i.img_name = 'poster'
+        </if>
+        <if test="type == 'director'">
+            WHERE m.movie_director LIKE CONCAT('%', #{keyword}, '%')
+            AND i.img_name = 'poster'
+        </if>
+        <if test="type != 'title' and type != 'director'">
+            WHERE i.img_name = 'poster'
+        </if>
+        ORDER BY m.movie_num DESC
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <select id="movieFindOne" resultType="movie">
-        SELECT movie_num, movie_title, movie_info, movie_runtime, movie_director
-        , movie_genre, movie_age, movie_score
-        FROM m_movie
-        WHERE movie_num = #{movieNum}
+        SELECT m.movie_num, m.movie_title, m.movie_info, m.movie_runtime, m.movie_director
+        , m.movie_genre, m.movie_age, m.movie_score, i.img_url
+        FROM m_movie m
+        JOIN m_img I
+        ON m.movie_num = I.movie_num
+        WHERE m.movie_num = #{movieNum}
     </select>
 
     <update id="movieScoreRenew">
@@ -28,5 +46,19 @@
         WHERE movie_num = #{movieNum}
     </update>
 
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM m_movie
+        <if test="type == 'title'">
+            WHERE movie_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'director'">
+            WHERE movie_director LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 
+    <select id="targetMovieImg" resultType="img">
+        SELECT img_num, img_name, img_url
+        FROM m_img
+        WHERE movie_num = #{movieNum}
+    </select>
 </mapper>

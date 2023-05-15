@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <title>MovieHunter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -177,6 +178,7 @@
 
 </div>
 <!-- END PAGE SOURCE -->
+
 </body>
 
 </html>

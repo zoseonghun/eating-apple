@@ -35,6 +35,8 @@
         <if test="type == 'movie'">
             WHERE movie_num = #{target}
         </if>
+        ORDER BY rate_num
+        LIMIT #{page.pageStart}, #{page.amount}
     </select>
 
     <select id="rateFindOne" resultType="rate">
@@ -46,7 +48,6 @@
         WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}
     </select>
 
-    <!--    이건 rate에 있어야 겠는데? 근데 avg로 하면 괜찮을지도?-->
     <select id="countScore" resultType="int">
         SELECT COUNT(*)
         FROM m_rate

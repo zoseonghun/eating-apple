@@ -48,6 +48,7 @@
 
 
     <!-- main -->
+    
     <div id="main" class="main-box">
         <div class="video-box">
             <div class="video-container">
@@ -106,6 +107,8 @@
                 <p>런타임: <span>2h 30m</span></p>
             </div>
         </div>
+
+        
         <div class="movie-detail-ranks-box">
             <div class="movie-detail-subname">
                 <p><span>│</span> CRITIC REVIEWS FOR GUARDIANS OF THE GALAXY VOL. 3</p>
@@ -178,6 +181,32 @@
 
 </div>
 <!-- END PAGE SOURCE -->
+<script>
+    const URL = '/rates';
+
+    const mNum = '${mList.movieNum}';
+
+    function renderRate() {
+        
+        
+
+
+    }
+
+    function getRateList() {
+
+        
+        
+        // @GetMapping("/{type}/contents/{target}/page/{pageNo}")
+
+        fetch(`\${URL}/\${mNum}/`)
+
+    }
+
+    
+
+</script>
+
 
 </body>
 

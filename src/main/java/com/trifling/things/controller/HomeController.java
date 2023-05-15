@@ -1,4 +1,4 @@
-package com.trifling.things;
+package com.trifling.things.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "hello";
+        return "index";
     }
 }

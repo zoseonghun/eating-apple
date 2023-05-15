@@ -33,7 +33,7 @@
         FROM m_movie m
         JOIN m_img I
         ON m.movie_num = I.movie_num
-        WHERE movie_num = #{movieNum}
+        WHERE m.movie_num = #{movieNum}
     </select>
 
     <update id="movieScoreRenew">

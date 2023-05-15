@@ -38,11 +38,15 @@
 
       const movieNum = '${detail.movieNum}';
 
-      const url = '/api/v1/rates';
+      const URL = '/rates';
 
-      function rateList() {
+      function rateList(page = 1) {
 
-
+        fetch(`\${URL}/\${movie}/contents/\${movieNum}/page/\${pageNo}`)
+            .then(res => res.json())
+            .then(responseResult => {
+                renderRateList(responseResult);
+            });
 
 
       }

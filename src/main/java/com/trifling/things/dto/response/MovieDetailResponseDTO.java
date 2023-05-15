@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MovieDetailResponseDTO {
 
+    private int movieNum;
     private String title;
     private String info;
     private String runtime;

@@ -1,12 +1,15 @@
 package com.trifling.things.api;
 
+import com.trifling.things.dto.page.Page;
+import com.trifling.things.dto.request.RateModifyRequestDTO;
 import com.trifling.things.dto.request.RatePostRequestDTO;
-import com.trifling.things.entity.Rate;
+import com.trifling.things.dto.response.RateListResponseDTO;
+import com.trifling.things.dto.response.RateResponseDTO;
 import com.trifling.things.service.RateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,37 +17,54 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/rates")
+@RequestMapping("/rates")
 @Slf4j
 public class RateController {
 
     private final RateService rateService;
 
-    // 평가 전체 목록 조회
-    @GetMapping("/{type}/movie/{target}")
-    public ResponseEntity<?> rateList(@PathVariable String type,
-                                      @PathVariable int target) {
-        log.info("/api/v1/rate/{}/movie/{} : GET", type, target );
+    // 평가 목록 조회 (마이페이지에서 조회용)
+    @GetMapping("/{type}/contents/{target}/page/{pageNo}")
+    public ResponseEntity<?> rateList(
+            @PathVariable String type,
+            @PathVariable int target,
+            @PathVariable int pageNo
+    ) {
+        log.info("/rate/{}/contents/{}/page/{} : GET", type, target, pageNo );
 
-        List<Rate> rateList = rateService.getRateList(type, target);
+        Page page = new Page();
+        page.setPageNo(pageNo);
+        page.setAmount(10);
+        RateListResponseDTO rateList = rateService.getRateList(type, target, page);
 
         return ResponseEntity.ok().body(rateList);
     }
 
+
+
+
+    // 평가 등록 기능
     @PostMapping("/post")
     public ResponseEntity<?> rateWrite(
-            @Validated @RequestBody RatePostRequestDTO dto) {
-        // 파라미터에 BindingResult 객체를 통해 검증 결과 확인 가능
+            @Validated @RequestBody RatePostRequestDTO dto, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
+        }
         log.info("/api/v1/rate/post : POST!");
         log.info("param: {}", dto);
 
-        rateService.rateWrite(dto); // responsedto로 리턴받아
+        RateListResponseDTO rateList = rateService.rateWrite(dto);
 
-        return ResponseEntity.ok().body("asd"); // 보여줄 responsedto를 실어 줘야함
+        return ResponseEntity.ok().body(rateList); // 보여줄 responsedto를 실어 줘야함
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
-    public ResponseEntity<?> rateModify() {
+    public ResponseEntity<?> rateModify(RateModifyRequestDTO dto) {
+
+        rateService.rateModify(dto);
 
         return null;
     }

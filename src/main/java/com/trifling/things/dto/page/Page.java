@@ -18,7 +18,7 @@ public class Page {
     // spring은 기본생성자를 만들기때문에 여기서 초기값을 설정해줄 수도 있음
     public Page() {
         this.pageNo = 1;
-        this.amount = 6;
+        this.amount = 10;
     }
 
     public void setPageNo(int pageNo) {

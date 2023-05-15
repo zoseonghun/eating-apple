@@ -1,5 +1,7 @@
 package com.trifling.things.repository;
 
+import com.trifling.things.dto.page.Page;
+import com.trifling.things.dto.page.Search;
 import com.trifling.things.entity.Movie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,8 @@ class MovieMapperTest {
             "첫번째 영화의 타이틀은 '영화1' 이어야 한다, 사이즈는 5여야 한다 ")
     void allListTest() {
 
-        List<Movie> movies = mapper.movieList();
+        Search search = new Search();
+        List<Movie> movies = mapper.movieList(search);
 
         assertEquals("영화1", movies.get(0).getMovieTitle());
         assertEquals(5, movies.size());

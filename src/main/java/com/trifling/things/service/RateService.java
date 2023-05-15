@@ -80,4 +80,5 @@ public class RateService {
         return getRateList("movie",dto.getRateNum(),new Page(1,10));
     }
 
+
 }

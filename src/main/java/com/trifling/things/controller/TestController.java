@@ -32,4 +32,9 @@ public class TestController {
         System.out.println("GET sign-inup");
         return "movies/sign-inup";
     }
+    @GetMapping("/test5")
+    public String test5(){
+        System.out.println("GET mypage");
+        return "movies/mypage";
+    }
 }

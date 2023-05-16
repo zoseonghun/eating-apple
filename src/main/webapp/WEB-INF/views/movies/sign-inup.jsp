@@ -1,29 +1,33 @@
-<!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<!DOCTYPE html>
+<html>
+
 
 <head>
     <title>MovieHunter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/sign-inup.css" type="text/css" media="all" />
-
     <style>
+        #content {
+            border: 1px solid #fff;
+            height: 700px;
+        }
 
     </style>
-    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 </head>
 
 <body>
 <!-- START PAGE SOURCE -->
 <div id="shell">
-    <!-- header-->
-    <%--헤더 공통 부분--%>
+    <!-- header -->
     <%@ include file="../include/header.jsp" %>
-    <%--헤더 공통 부분--%>
     <div id="sub-navigation">
         <ul>
-            <!-- 검색창 왼쪽끝 공간 -->
+            <!-- 장르 카테고리 -->
             <li><a href="#"></a></li>
         </ul>
         <div id="search">
@@ -36,8 +40,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         </div>
     </div>
 </div>
-<!-- header end-->
+<!-- header end -->
 
+
+<!-- main -->
     <div id="main">
         <!-- 로그인 / 회원가입 -->
         <div id="content">
@@ -56,7 +62,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                 <h4 class="mb-4 pb-3">Log In</h4>
                                                 <div class="form-group">
                                                     <input type="id" name="account" class="form-style"
-                                                           placeholder="Your id" id="logemail" autocomplete="off">
+                                                           placeholder="Your id" id="logid" autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
@@ -65,8 +71,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <a href="#" class="btn mt-4">submit</a>
-                                                <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot
-                                                    your password?</a></p>
+                                                <p class="mb-0 mt-4 text-center"><a href="#0" class="link">
+                                                    Forgot your password?</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -76,33 +82,36 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                 <h4 class="mb-4 pb-3">Sign Up</h4>
                                                 <div class="form-group">
                                                     <input type="id" name="account" class="form-style"
-                                                           placeholder="Your id" id="logname"
-                                                           autocomplete="off">
+                                                           placeholder="Your id" id="signup-id" autocomplete="off">
                                                     <i class="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
                                                     <input type="password" name="password" class="form-style"
-                                                           placeholder="Your Password" id="logemail" autocomplete="off">
+                                                           placeholder="Your Password" id="signup-password"
+                                                           autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
                                                     <input type="password" name="password" class="form-style"
-                                                           placeholder="your password again" id="logpass" autocomplete="off">
+                                                           placeholder="your password again"
+                                                           id="signup-password-confirm" autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
                                                     <input type="email" name="email" class="form-style"
-                                                           placeholder="Your email" id="logpass" autocomplete="off">
+                                                           placeholder="Your email" id="signup-email"
+                                                           autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="gender" name="gender" class="form-style"
-                                                           placeholder="Your Gender" id="logpass" autocomplete="off">
+                                                    <input type="text" name="gender" class="form-style"
+                                                           placeholder="Your Gender" id="signup-gender"
+                                                           autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="age" name="age" class="form-style"
-                                                           placeholder="Your Age" id="logpass" autocomplete="off">
+                                                    <input type="text" name="age" class="form-style"
+                                                           placeholder="Your Age" id="signup-age" autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <a href="#" class="btn mt-4">submit</a>
@@ -116,13 +125,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 </div>
             </div>
         </div>
-        <div class="cl">&nbsp;</div>
+        <div class="cl"> </div>
     </div>
+<!-- main end -->
+
+
 <!-- footer -->
 <%@ include file="../include/footer.jsp" %>
 <!-- footer end-->
 </div>
 <!— END PAGE SOURCE —>
+
 </body>
 
 </html>

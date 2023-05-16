@@ -14,35 +14,29 @@
 
 </head>
 
-<body>
-    <!-- START PAGE SOURCE -->
-    <div id="shell">
-        <!-- header -->
-        <div id="header">
-            <h1 id="logo"><a href="#">MovieHunter</a></h1>
-            <div id="navigation">
-                <ul>
-                    <li><a class="active" href="#">HOME</a></li>
-                    <li><a href="/movies/test">MOVIES</a></li>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">회원가입</a></li>
-                </ul>
-            </div>
-            <div id="sub-navigation">
-                <ul>
-                    <!-- 장르 카테고리 -->
-                    <li><a href="#">GUARDIANS OF THE GALAXY VOL. 3</a></li>
-                </ul>
-                <div id="search">
-                    <form action="#" method="get" accept-charset="utf-8">
-                        <label for="search-field">SEARCH</label>
-                        <input type="text" name="search field" value="Enter search here" id="search-field"
-                            class="blink search-field" />
-                        <input type="submit" value="GO!" class="search-button" />
-                    </form>
-                </div>
+<body>>
+
+<!-- START PAGE SOURCE -->
+<div id="shell">
+    <!-- header -->
+    <%@ include file="../include/header.jsp" %>
+        <div id="sub-navigation">
+            <ul>
+                <!-- 장르 카테고리 -->
+                <li><a href="#">GUARDIANS OF THE GALAXY VOL. 3</a></li>
+            </ul>
+            <div id="search">
+                <form action="#" method="get" accept-charset="utf-8">
+                    <label for="search-field">SEARCH</label>
+                    <input type="text" name="search field" value="Enter search here" id="search-field"
+                           class="blink search-field" />
+                    <input type="submit" value="GO!" class="search-button" />
+                </form>
             </div>
         </div>
+    </div>
+<!-- header end -->
+
 
 
 
@@ -297,6 +291,10 @@
         (function () {
             getRateList();
         })();
+
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
 
 
     </script>

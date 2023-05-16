@@ -13,13 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
    @GetMapping("/test")
     public String test(){
-        System.out.println("GET");
+        System.out.println("GET list");
         return "movies/list";
     }
 
     @GetMapping("/test2")
     public String test2(){
-        System.out.println("GET");
+        System.out.println("GET detail");
         return "movies/detail";
+    }
+    @GetMapping("/test3")
+    public String test3(){
+        System.out.println("GET index");
+        return "index";
+    }
+    @GetMapping("/test4")
+    public String test4(){
+        System.out.println("GET sign-inup");
+        return "movies/sign-inup";
     }
 }

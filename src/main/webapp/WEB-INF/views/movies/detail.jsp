@@ -292,13 +292,13 @@
             getRateList();
         })();
 
-<!-- footer -->
-<%@ include file="../include/footer.jsp" %>
-<!-- footer end-->
+
 
 
     </script>
-
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
 
 </body>
 

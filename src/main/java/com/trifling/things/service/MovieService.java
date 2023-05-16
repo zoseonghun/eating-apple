@@ -2,6 +2,7 @@ package com.trifling.things.service;
 
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.response.MainListResponseDTO;
 import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
@@ -10,6 +11,7 @@ import com.trifling.things.repository.MovieMapper;
 import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,9 +63,10 @@ public class MovieService {
         return movieMapper.count(search);
     }
 
-    public void mainTopTenList(Search search) {
-
-
+    public List<MainListResponseDTO> mainTopTenList(String type) {
+        return movieMapper.mainTopTenList(type).stream()
+                .map(MainListResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
 }

@@ -290,6 +290,8 @@
             }
 
             document.getElementById('rate-box').innerHTML = tag;
+
+            // 페이지 렌더링 해야되나...
         }
 
         (function () {
@@ -297,21 +299,6 @@
         })();
 
 
-
-
-        // tag +=  "<div class='speech-bubble' data-rnum='"+ rateNum + "'>" + 
-        //             "<div class='movie-detail-icon-text-box>" +
-        //                 "<div class='movie-detail-rate-icon'>" +
-        //                     // 점수별로 다른 아이콘을 보여주기 
-        //                     "<img src='/assets/img/apple.png' alt=''>" +
-        //                 "</div>" +
-        //                 "<div class='movie-detail-rate-text'>" +
-        //                     "<span>" +
-        //                         "<b>" + rateReview +"</b>" +
-        //                     "</span>" +
-        //                 "</div>" +
-        //             "</div>" 
-        //     ;
     </script>
 
 

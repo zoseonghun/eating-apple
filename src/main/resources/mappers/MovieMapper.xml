@@ -69,12 +69,11 @@
         ON m.movie_num = i.movie_num
         WHERE i.img_name = 'poster'
         <if test="type == 'score'">
-            ORDER BY #{movie_score} DESC
+            ORDER BY movie_score DESC
         </if>
-        <if test="type == 'num">
-            ORDER BY #{movie_num} DESC
+        <if test="type == 'num'">
+            ORDER BY movie_num DESC
         </if>
         LIMIT 0, 10
-
     </select>
 </mapper>

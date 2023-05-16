@@ -28,6 +28,6 @@ public interface MovieMapper {
 
     public List<MovieImg> targetMovieImg(int movieNum);
 
-    public List<Movie> mainTopTenList(Search page);
+    public List<Movie> mainTopTenList(String type);
 
 }

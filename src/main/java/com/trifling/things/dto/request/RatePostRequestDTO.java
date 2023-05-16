@@ -12,6 +12,7 @@ public class RatePostRequestDTO {
     private int movieNum;
     private String rateReview;
     private int rateScore;
+    private String userId;
 
     public Rate toEntity() {
         return Rate.builder()
@@ -19,6 +20,7 @@ public class RatePostRequestDTO {
                 .movieNum(this.movieNum)
                 .rateReview(this.rateReview)
                 .rateScore(this.rateScore)
+                .userId(this.userId)
                 .build();
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/movies")
+@RequestMapping("/movies/test")
 @Slf4j
 public class TestController {
    @GetMapping("/test")

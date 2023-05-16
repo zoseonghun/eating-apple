@@ -27,4 +27,7 @@ public interface MovieMapper {
     public int count(Search search);
 
     public List<MovieImg> targetMovieImg(int movieNum);
+
+    public List<Movie> mainTopTenList(String type);
+
 }

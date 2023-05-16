@@ -16,10 +16,12 @@
 
 
 
+
     <!-- header-->
 <%--헤더 공통 부분--%>
     <%@ include file="./include/header.jsp" %>
     <%--헤더 공통 부분--%>
+
         <div id="sub-navigation">
             <ul>
                 <!-- 검색창 왼쪽끝 공간 -->

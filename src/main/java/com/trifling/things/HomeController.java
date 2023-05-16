@@ -1,4 +1,4 @@
-package com.trifling.things.controller;
+package com.trifling.things;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

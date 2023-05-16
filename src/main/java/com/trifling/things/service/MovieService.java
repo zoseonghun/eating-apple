@@ -9,6 +9,7 @@ import com.trifling.things.entity.MovieImg;
 import com.trifling.things.repository.MovieMapper;
 import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MovieService {
 
     private final MovieMapper movieMapper;
@@ -38,6 +40,7 @@ public class MovieService {
         List<MovieImg> movieImgs = movieMapper.targetMovieImg(movieNum);
         System.out.println("movieImgs = " + movieImgs);
         Movie movie = movieFindOne(movieNum);
+        log.info("movieNum {}: ", movie.getMovieNum());
 
         int counted = rateMapper.countScore(movieNum); // 해당 영화의 총 평가 갯수
 
@@ -56,6 +59,11 @@ public class MovieService {
 
     public int getCount(Search search) {
         return movieMapper.count(search);
+    }
+
+    public void mainTopTenList(Search search) {
+
+
     }
 
 }

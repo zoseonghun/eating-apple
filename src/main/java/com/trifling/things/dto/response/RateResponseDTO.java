@@ -21,6 +21,7 @@ public class RateResponseDTO {
     private String rateReview;
     private int rateScore;
     private LocalDateTime rateDate;
+    private String userId;
 
     public RateResponseDTO(Rate rate) {
         this.rateNum = rate.getRateNum();

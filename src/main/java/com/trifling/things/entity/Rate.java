@@ -19,5 +19,6 @@ public class Rate {
     private int rateScore;
     private LocalDateTime rateDate;
     private int rateLike;
+    private String userId;
 
 }

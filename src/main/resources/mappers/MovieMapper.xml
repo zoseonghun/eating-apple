@@ -61,4 +61,20 @@
         FROM m_img
         WHERE movie_num = #{movieNum}
     </select>
+
+    <select id="mainTopTenList" resultType="movie">
+        SELECT m.movie_num, m.movie_title, m.movie_score, i.img_url
+        FROM m_movie m
+        JOIN m_img i
+        ON m.movie_num = i.movie_num
+        WHERE i.img_name = 'poster'
+        <if test="type == 'score'">
+            ORDER BY #{movie_score} DESC
+        </if>
+        <if test="type == 'num">
+            ORDER BY #{movie_num} DESC
+        </if>
+        LIMIT 0, 10
+
+    </select>
 </mapper>

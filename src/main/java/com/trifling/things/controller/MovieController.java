@@ -9,6 +9,7 @@ import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +53,15 @@ public class MovieController {
 
         model.addAttribute("detail", dto);
         return "movies/detail";
+    }
+
+    @GetMapping("/main/")
+    @ResponseBody
+    public ResponseEntity<?> mainList() {
+
+
+
+        return null;
     }
 
 

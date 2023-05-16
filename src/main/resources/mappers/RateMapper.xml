@@ -8,9 +8,9 @@
 
     <insert id="rateWrite">
         INSERT INTO m_rate
-            (user_num, movie_num, rate_review, rate_score)
+            (user_num, movie_num, rate_review, rate_score, user_id)
         VALUES
-            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore})
+            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore} #{userId})
     </insert>
 
     <update id="rateModify">
@@ -27,12 +27,12 @@
 
     <select id="rateList" resultType="rate">
         SELECT rate_num, user_num, movie_num, rate_review
-        , rate_score, rate_date, rate_like
+        , rate_score, rate_date, rate_like, user_id
         FROM m_rate
-        <if test="type == 'user'">
+        <if test="type == 'users'">
             WHERE user_num = #{target}
         </if>
-        <if test="type == 'movie'">
+        <if test="type == 'movies'">
             WHERE movie_num = #{target}
         </if>
         ORDER BY rate_num

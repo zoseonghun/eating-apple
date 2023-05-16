@@ -25,6 +25,7 @@ public class MovieDetailResponseDTO {
 
 
     public MovieDetailResponseDTO(Movie movie, List<MovieImg> movieImgList) {
+        this.movieNum = movie.getMovieNum();
         this.title = movie.getMovieTitle();
         this.info = movie.getMovieInfo();
         this.runtime = movie.getMovieRuntime();

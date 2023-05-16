@@ -10,12 +10,14 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Movie {
-    private long movieNum;
+    private int movieNum;
     private String movieTitle;
     private String movieInfo;
-    private long movieImgNum;
     private String movieRuntime;
+    private String movieDirector;
     private String movieGenre;
     private String movieAge;
+    private int movieScore;
+    private String imgUrl;
 
 }

@@ -16,20 +16,13 @@
 
 
 
-    <!-- header -->
-    <div id="header">
-        <h1 id="logo"><a href="#">MovieHunter</a></h1>
-        <div id="navigation">
-            <ul>
-                <li><a class="active" href="#">HOME</a></li>
-                <li><a href="/movies/test">MOVIES</a></li>
-                <li><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
-            </ul>
-        </div>
+    <!-- header-->
+<%--헤더 공통 부분--%>
+    <%@ include file="./include/header.jsp" %>
+    <%--헤더 공통 부분--%>
         <div id="sub-navigation">
             <ul>
-                <!-- 장르 카테고리 -->
+                <!-- 검색창 왼쪽끝 공간 -->
                 <li><a href="#"></a></li>
             </ul>
             <div id="search">
@@ -42,7 +35,7 @@
             </div>
         </div>
     </div>
-
+<!-- header end -->
 
 
     <!-- main -->
@@ -270,14 +263,12 @@
         </div>
         <div class="cl">&nbsp;</div>
     </div>
+<!-- main end-->
 
 
-    <!-- footer -->
-    <div id="footer">
-        <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-        <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
-        <div style="clear:both;"></div>
-    </div>
+<!-- footer -->
+<%@ include file="./include/footer.jsp" %>
+<!-- footer end-->
 </div>
 <!-- END PAGE SOURCE -->
 </body>

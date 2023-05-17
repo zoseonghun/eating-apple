@@ -21,9 +21,9 @@ class UserMapperTest {
     @DisplayName("회원가입에 성공해야한다")
     void testJoin() {
         User user = User.builder()
-                .userId("abc1111")
+                .userId("abc123")
                 .userPassword("abc1111@")
-                .userEmail("abc@abc.com")
+                .userEmail("123@abc.com")
                 .userGender(Gender.FEMALE)
                 .userAge(25)
                 .build();
@@ -54,7 +54,7 @@ class UserMapperTest {
 //    @Rollback
     void testModifyInfo() {
         //given
-        String userid = "def123";
+        String userid = "abc1111";
         String newpassword = "123@@";
         User modifyUser = User.builder()
                 .userId(userid)
@@ -76,11 +76,10 @@ class UserMapperTest {
     void accountDuplicateTest() {
         // given
         String userid = "def123";
-        //아래 이메일도 맞는지 한번 더 확인해보기
-        int userAge = 28;
+        String email = "def@abc.com";
 
         //when
-        int count = userMapper.isDuplicate("age", String.valueOf(userAge));
+        int count = userMapper.isDuplicate("email", email);
 
         //then
         assertEquals(1, count);

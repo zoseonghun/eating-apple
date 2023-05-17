@@ -17,6 +17,7 @@
         <typeAlias alias="img" type="com.trifling.things.entity.MovieImg"/>
         <!--        파일 추가-->
         <typeAlias alias="interest" type="com.trifling.things.entity.user.Interest"/>
+        <typeAlias alias="review" type="com.trifling.things.repository.Review"/>
 <!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
     </typeAliases>
 

@@ -11,6 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/detail.css" type="text/css" media="all" />
+    <script src="/assets/js/create-rate-modal.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
 
 </head>
 
@@ -18,6 +20,10 @@
 
 <!-- START PAGE SOURCE -->
 <div id="shell">
+
+<%--  rate-modal  --%>
+    <%@ include file="../include/create-rate-modal.jsp" %>
+    <%--  rate-modal end  --%>
     <!-- header -->
     <%@ include file="../include/header.jsp" %>
         <div id="sub-navigation">
@@ -85,6 +91,10 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+       
+
             <div class="movie-detail-box">
                 <div class="movie-detail-subname">
                     <p><span>│</span> MOVIE INFO</p>
@@ -103,11 +113,13 @@
                 <div>
                     <p>런타임: <span>${detail.runtime}</span></p>
                 </div>
+
+
             </div>
-            <!-- 임시 등록 버튼용 -->
-            <div>
-                <button id="insert-rate" type="button" name="">평가 남기기</button>
-            </div>
+        <div class="detail-rate-modal-button">
+            <button id="openModal">사소한평가 남기기</button>
+        </div>
+
             <div class="movie-detail-ranks-box">
                 <div class="movie-detail-subname">
                     <p><span>│</span> CRITIC REVIEWS FOR GUARDIANS OF THE GALAXY VOL. 3</p>
@@ -164,10 +176,9 @@
                     </div>-->
 
 
+                <!-- 반복 끝부분-->
 
-                    <!-- 반복 끝부분-->
                 </div>
-
             </div>
 
         </div>

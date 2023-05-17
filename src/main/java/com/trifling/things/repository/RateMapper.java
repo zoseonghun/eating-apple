@@ -31,4 +31,8 @@ public interface RateMapper {
 
     public int countScore(int movieNum);
 
+    // 미사용
+    public int insertBeforeCheck(@Param("movieNum") int movieNum
+            , @Param("userNum") int userNum);
+
 }

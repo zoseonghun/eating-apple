@@ -39,13 +39,20 @@
         LIMIT #{page.pageStart}, #{page.amount}
     </select>
 
+<!--    <select id="rateFindOne" resultType="rate">-->
+<!--        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review-->
+<!--            , r.rate_score, r.rate_date, r.rate_like, r.user_id-->
+<!--        FROM m_rate r-->
+<!--        JOIN m_user u ON r.user_num = u.user_num-->
+<!--        JOIN m_movie m ON r.movie_num = m.movie_num-->
+<!--        WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}-->
+<!--    </select>-->
+
     <select id="rateFindOne" resultType="rate">
-        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review
-            , r.rate_score, r.rate_date, r.rate_like
-        FROM m_rate r
-        JOIN m_user u ON r.user_num = u.user_num
-        JOIN m_movie m ON r.movie_num = m.movie_num
-        WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}
+        SELECT rate_num, user_num, movie_num, rate_review
+        , rate_score, rate_date, rate_like, user_id
+        FROM m_rate
+        WHERE rate_num = #{rateNum}
     </select>
 
     <select id="countScore" resultType="int">
@@ -54,4 +61,9 @@
         WHERE movie_num = #{movieNum}
     </select>
 
+    <select id="insertBeforeCheck" resultType="int">
+        SELECT COUNT(*)
+        FROM m_rate
+        WHERE movie_num = #{movieNum} AND user_num = #{userNum}
+    </select>
 </mapper>

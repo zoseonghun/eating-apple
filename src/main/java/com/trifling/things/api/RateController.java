@@ -30,11 +30,13 @@ public class RateController {
             @PathVariable int target,
             @PathVariable int pageNo
     ) {
+
         log.info("/rate/{}/contents/{}/page/{} : GET", type, target, pageNo );
 
         Page page = new Page();
         page.setPageNo(pageNo);
         page.setAmount(10);
+
         RateListResponseDTO rateList = rateService.getRateList(type, target, page);
 
         return ResponseEntity.ok().body(rateList);

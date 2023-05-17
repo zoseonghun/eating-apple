@@ -3,12 +3,15 @@ package com.trifling.things.controller;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.response.MainListResponseDTO;
+import com.trifling.things.dto.response.MainListTransResponseDTO;
 import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +57,19 @@ public class MovieController {
         return "movies/detail";
     }
 
+    @GetMapping("/main")
+    @ResponseBody
+    public ResponseEntity<?> mainList() {
 
+        List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
 
+        List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
+        // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
 
+        MainListTransResponseDTO dto = new MainListTransResponseDTO();
+        dto.setNumList(listByNum);
+        dto.setScoreList(listByScore);
+
+        return ResponseEntity.ok().body(dto);
+    }
 }

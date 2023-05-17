@@ -11,12 +11,12 @@
 
     <typeAliases>
     <!--  entity 클래스 별칭 설정      -->
-        <typeAlias alias="user" type="com.trifling.things.entity.User"/>
+        <typeAlias alias="user" type="com.trifling.things.entity.user.User"/>
         <typeAlias alias="rate" type="com.trifling.things.entity.Rate"/>
         <typeAlias alias="movie" type="com.trifling.things.entity.Movie"/>
         <typeAlias alias="img" type="com.trifling.things.entity.MovieImg"/>
         <!--        파일 추가-->
-        <typeAlias alias="interest" type="com.trifling.things.entity.Interest"/>
+        <typeAlias alias="interest" type="com.trifling.things.entity.user.Interest"/>
 <!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
     </typeAliases>
 

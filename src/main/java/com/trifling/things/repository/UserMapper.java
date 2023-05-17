@@ -1,7 +1,7 @@
 package com.trifling.things.repository;
 
-import com.trifling.things.entity.Interest;
-import com.trifling.things.entity.User;
+import com.trifling.things.entity.user.Interest;
+import com.trifling.things.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

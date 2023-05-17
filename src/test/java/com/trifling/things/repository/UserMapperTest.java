@@ -1,15 +1,11 @@
 package com.trifling.things.repository;
 
-import com.trifling.things.entity.Gender;
-import com.trifling.things.entity.User;
+import com.trifling.things.entity.user.Gender;
+import com.trifling.things.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.lang.annotation.Documented;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,11 +21,11 @@ class UserMapperTest {
     @DisplayName("회원가입에 성공해야한다")
     void testJoin() {
         User user = User.builder()
-                .userId("def123")
-                .userPassword("def123@")
-                .userEmail("def@abc.com")
-                .userGender(Gender.MALE)
-                .userAge(28)
+                .userId("abc1111")
+                .userPassword("abc1111@")
+                .userEmail("abc@abc.com")
+                .userGender(Gender.FEMALE)
+                .userAge(25)
                 .build();
 
         boolean flag = userMapper.save(user);
@@ -40,14 +36,14 @@ class UserMapperTest {
     @DisplayName("유저의 id 값을 조회하면 관련된 id 값의 정보가 나와야한다")
     void testfinduser() {
         //give
-        String userid = "def123";
+        String userid = "abc1111";
 
         //when
         User findUser = userMapper.findUser(userid);
 
         //then
         System.out.println("findUser : " + findUser);
-        assertEquals("def123", findUser.getUserId());
+        assertEquals("abc1111", findUser.getUserId());
 
     }
 

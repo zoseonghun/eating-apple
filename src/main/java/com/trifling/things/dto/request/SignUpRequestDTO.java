@@ -1,6 +1,6 @@
-package com.trifling.things.dto;
+package com.trifling.things.dto.request;
 
-import com.trifling.things.entity.Gender;
+import com.trifling.things.entity.user.Gender;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class SignUpDTO {
+public class SignUpRequestDTO {
 
     //회원가입에 필요한 dto
 

@@ -1,8 +1,8 @@
 package com.trifling.things.service;
 
-import com.trifling.things.dto.SignUpDTO;
-import com.trifling.things.entity.Interest;
-import com.trifling.things.entity.User;
+import com.trifling.things.dto.SignUpRequestDTO;
+import com.trifling.things.entity.user.Interest;
+import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class UserService {
 //private final Password encoder; 확인필요
 
 
-    public boolean join(SignUpDTO dto) {
+    public boolean join(SignUpRequestDTO dto) {
         User user = User.builder()
                 .userId(dto.getUserId())
                 .userPassword(dto.getPassword()) //encoder.encode

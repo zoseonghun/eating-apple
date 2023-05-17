@@ -104,8 +104,10 @@
                     <p>런타임: <span>${detail.runtime}</span></p>
                 </div>
             </div>
-
-
+            <!-- 임시 등록 버튼용 -->
+            <div>
+                <button id="insert-rate" type="button" name="">평가 남기기</button>
+            </div>
             <div class="movie-detail-ranks-box">
                 <div class="movie-detail-subname">
                     <p><span>│</span> CRITIC REVIEWS FOR GUARDIANS OF THE GALAXY VOL. 3</p>
@@ -170,15 +172,6 @@
 
         </div>
         <!--  MAIN END  -->
-
-        <!-- footer -->
-        <div id="footer">
-            <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-            <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
-            <div style="clear:both;"></div>
-        </div>
-
-
     </div>
     <!-- END PAGE SOURCE -->
     <script>
@@ -288,16 +281,75 @@
             // 페이지 렌더링 해야되나...
         }
 
+        
+        // 모달창을 열때 fetch에 userNum, movieNum 담아서 보낸 후
+        // 평가를 남겼었는지 판단해서 조건으로 처리 해야함
+        // const addURL = "/" + "유저넘(세션)" + "/" + mNum;
+        // fetch(URL + addURL)  사용하면 될듯?
+
+        // 임시: 얘는 모달창이 열린곳에서 포스트가 넘어가는 기능임 
+        function ratePostButton() {
+            const $postBtn = document.getElementById('insert-rate');
+
+            
+            $postBtn.onclick = e => {
+
+                const payload = {
+                    // userNum => 세션 dto에서 가져와야되고                
+                    userNum: 5,
+                    movieNum: mNum, 
+                    // 입력값 받아오고
+                    rateReview: '이 영화 참 재밌어요',
+                    // 입력 점수 받아오고
+                    rateScore: 9,
+                    // 세션에서 받아와야됨
+                    userId: '김씨'
+                };
+
+                const requestInfo = {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                };
+
+                fetch(`\${URL}/movies/post`, requestInfo)
+                    .then(res => {
+                        if (res.status === 200) {
+                            alert('평가가 정상적으로 등록되었습니다.');
+                            // 등록 모달 닫기
+                            window.addEventListener('click', e => {
+                                // 모달 디스플레이 none 처리 등
+
+                                // 평가 리스트 출력
+                                getRateList();
+                            });
+                            // $rw.value = '';
+
+                            
+                            
+                            
+                        } else {
+                            alert('댓글 등록에 실패함!');
+                        }                        
+                    });
+
+            }
+        }
+
+
+
         (function () {
             getRateList();
         })();
 
-<!-- footer -->
-<%@ include file="../include/footer.jsp" %>
-<!-- footer end-->
 
 
     </script>
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
 
 
 </body>

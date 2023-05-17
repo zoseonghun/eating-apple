@@ -30,5 +30,6 @@ public class RateResponseDTO {
         this.rateReview = rate.getRateReview();
         this.rateScore = rate.getRateScore();
         this.rateDate = rate.getRateDate();
+        this.userId = rate.getUserId();
     }
 }

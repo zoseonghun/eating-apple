@@ -14,6 +14,7 @@ public class RatePostRequestDTO {
     private int rateScore;
     private String userId;
 
+
     public Rate toEntity() {
         return Rate.builder()
                 .userNum(this.userNum)

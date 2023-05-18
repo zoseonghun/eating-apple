@@ -54,7 +54,7 @@ public class UserController {
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/login")
+    @PostMapping("/sign-up")
     public void signUp(SignUpRequestDTO dto) {
         log.info("/user/login POST ! - {}", dto);
         boolean flag = userService.join(dto);
@@ -72,7 +72,7 @@ public class UserController {
         }
 
         // 로그인 검증 요청 --로그인?
-        @PostMapping("")
+        @PostMapping("/sign-in")
         public String signIn(LoginRequestDTO dto, RedirectAttributes ra) {
 
             LoginResult result = userService.authenticate(dto);
@@ -86,7 +86,7 @@ public class UserController {
             ra.addAttribute("msg", result);
 
             // 로그인 실패시
-            return "redirect:/user/login";
+            return "redirect:/user/sign-in";
         }
     public void join(SignUpRequestDTO dto, Gender gender) {
         // 회원가입 처리 로직에서 Gender 값을 DB에 저장하는 작업을 수행

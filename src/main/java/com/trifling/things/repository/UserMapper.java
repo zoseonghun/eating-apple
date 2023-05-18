@@ -1,5 +1,6 @@
 package com.trifling.things.repository;
 
+import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.entity.Rate;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
@@ -31,10 +32,16 @@ public interface UserMapper {
 
     // 영화 찜하기 (조인해야 해요... 모르시면 물어봐주세요)
     // 유저 번호PK로 영화 번호 ㅇ
-    List<Interest> interestList(int userNum, int moiveNum);
+    List<Interest> interestList(int userNum, int movieNum);
+// interest int로 dto title. num img_url table2개조인
 
+    int insertbyUserNum(int movieNum);
     //내가 쓴 댓글목록
     List<Review> myReviewList(int userNum);
 
-    User myInfo(String userId);
+    List<MyInfoResponseDTO> myInfo(int userNum);
+
+
+
+
 }

@@ -8,6 +8,6 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 public class Review {
-    private String userId;
+    private String userNum;
     private int rateNum;
 }

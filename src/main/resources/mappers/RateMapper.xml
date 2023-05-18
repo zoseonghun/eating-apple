@@ -10,7 +10,7 @@
         INSERT INTO m_rate
             (user_num, movie_num, rate_review, rate_score, user_id)
         VALUES
-            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore} #{userId})
+            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore}, #{userId})
     </insert>
 
     <update id="rateModify">

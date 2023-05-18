@@ -2,6 +2,7 @@ package com.trifling.things.repository;
 
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.entity.user.Gender;
+import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class UserMapperTest {
                 .userId("유저4")
                 .userPassword("1234")
                 .userEmail("user@a.com")
-                .userGender(Gender.M)
+                .userGender(Gender.MALE)
                 .userAge(55)
                 .build();
 
@@ -95,21 +96,28 @@ class UserMapperTest {
         List<Review> reviews = userMapper.myReviewList(userNum);
 
         System.out.println("reviews" + reviews);
-        assertEquals(1, Integer.parseInt(reviews.get(0).getUserNum()));
+        assertEquals(1, reviews.get(0).getUserNum());
     }
 
 
     @Test
     @DisplayName("userID를 조회하면 관련된 정보를 가져온다")
     void myInfoTest() {
-        int userNum = 1;
-        List<MyInfoResponseDTO> infoDTOList = userMapper.myInfo(userNum);
+        String userId = "유저1";
+        List<MyInfoResponseDTO> infoDTOList = userMapper.myInfo(userId);
 
         // 리스트 크기 확인
         System.out.println("infoDTO : " + infoDTOList);
         assertEquals(4, infoDTOList.size());
     }
 
-
+    @Test
+    @DisplayName("movieNum을 조회하면 관련된 정보를 가져온다")
+    void interestTest() {
+        int movieNum = 119;
+        List<Interest> interests = userMapper.interestList(movieNum);
+        System.out.println("interests = " + interests);
+        assertEquals(1, interests.size());
+    }
 
 }

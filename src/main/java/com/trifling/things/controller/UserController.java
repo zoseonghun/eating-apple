@@ -1,10 +1,9 @@
 package com.trifling.things.controller;
 
 import com.trifling.things.dto.response.MyInfoResponseDTO;
-import com.trifling.things.dto.response.UserModifyResponseDTO;
+import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
-import com.trifling.things.entity.user.Gender;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
@@ -13,6 +12,7 @@ import com.trifling.things.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,12 +54,16 @@ public class UserController {
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/sign-up")
-    public void signUp(SignUpRequestDTO dto) {
-        log.info("/user/login POST ! - {}", dto);
+       @PostMapping("/signup")
+    public String signUpUser(@ModelAttribute SignUpRequestDTO dto) {
         boolean flag = userService.join(dto);
-
+        if (flag) {
+            return "movies/list"; // 메인페이지 이동, 수정확인필요
+        } else {
+            return "user/login"; // 회원 가입 실패 페이지로 이동
+        }
     }
+
 
     // 아이디, 이메일 중복검사
     // 비동기 요청 처리
@@ -88,50 +92,81 @@ public class UserController {
         // 로그인 실패시
         return "redirect:/user/sign-in";
     }
-
+// find user 정보 찾기 -- 필요한가?
+//    @GetMapping("/find/{userId}")
+//    public String findUser(@PathVariable String userId, Model model) {
+//        User user = userService.findUser(userId);
+//        if (user != null) {
+//            model.addAttribute("user", user);
+//            return ""; // 사용자 정보 페이지로 이동
+//        } else {
+//            return ""; // 사용자를 찾지 못한 경우의 페이지로 이동
+//        }
+//    }
 
     //정보수정 -modify
-    @PostMapping("/modify")
-    public String modify(UserModifyResponseDTO dto) {
-        System.out.println("/user/modify : POST");
-        userService.modify(dto);
-        return "redirect:/modify"; //확인필요
+      @PutMapping("/modify/{userId}")
+    public ResponseEntity<String> modifyUser(@PathVariable String userId,
+                                             @RequestBody UserModifyRequestDTO requestDTO) {
+        requestDTO.setUserId(userId);
+        boolean modifySuccess = userService.modify(requestDTO);
+
+        if (modifySuccess) {
+            return ResponseEntity.ok("정보수정이 완료되었습니다");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("다시 입력해주세요");
+        }
     }
+
 
     //영화찜하기
-    @GetMapping("/interest")
-    public String myInterestList(
-            @PathVariable int userNum,
-            @PathVariable int movieNum,
-            Model model) {
-        List<Interest> interestList = userService.myInterestList(userNum, movieNum);
-        model.addAttribute("interestList", interestList);
-        return "redirect:/interest";
+    @GetMapping("/interest/{movieNum}")
+    public ResponseEntity<?> getInterestList(@PathVariable int movieNum) {
+        List<Interest> interestList = userService.myInterestList(movieNum);
+
+        // 관심 영화 목록이 비어 있지 않고 null이 아닌 경우
+        if (interestList != null && !interestList.isEmpty()) {
+            // 좋아요 누른 영화 리스트 목록을 보여줌
+            return ResponseEntity.ok(interestList);
+        } else {
+            // 관심 영화 목록이 비어 있거나 null인 경우
+            // 기본 페이지를 보여줌
+            return ResponseEntity.ok().body("user/interest");
+
+        }
+
     }
 
-    //내가 쓴 리뷰 보기
-    @GetMapping("/review")
-    public String myReviewList(
-            int userNum, Model model) {
-        List<Review> myReviewList = userService.myReviewList(userNum);
-        model.addAttribute("myReviewList", myReviewList);
+    //리뷰보기
+    @GetMapping("/review/{userNum}")
+    public String getMyReviewList(@PathVariable int userNum,
+                                  Model model) {
+        List<Review> reviewList = userService.myReviewList(userNum);
+
+        if (reviewList != null && !reviewList.isEmpty()) {
+            model.addAttribute("reviews", reviewList);
+        }
+
         return ""; //영화세부페이지
     }
 
-    //마이페이지
+
+    //마이페이지 --로그인 연동시
+//    @GetMapping("/mypage")
+//    public String getMyPage(@PathVariable int userNum, Model model) {
+//        List<MyInfoResponseDTO> mypage = userService.getMypage(userNum);
+//        model.addAttribute("mypage", mypage);
+//        return "user/mypage";
+//    }
+
+//마이페이지 -- 테스트
     @GetMapping("/mypage")
-    public String getMyPage(@PathVariable int userNum, Model model) {
-        List<MyInfoResponseDTO> mypage = userService.getMypage(userNum);
+    public String getMypage(Model model) {
+        String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값
+        List<MyInfoResponseDTO> mypage = userService.getMypage(userId);
         model.addAttribute("mypage", mypage);
-        return "redirect:/interest";
+        log.info("lll: {} ",mypage);
+        return "user/mypage";
     }
 
-
-    @GetMapping("/userlist")
-    public ModelAndView userlist() {
-        ModelAndView mv = new ModelAndView("user/userlist");
-        List<User> list = userService.userList();
-        mv.addObject("list", list);
-        return mv;
-    }
 }

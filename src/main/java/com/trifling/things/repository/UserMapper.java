@@ -32,14 +32,13 @@ public interface UserMapper {
 
     // 영화 찜하기 (조인해야 해요... 모르시면 물어봐주세요)
     // 유저 번호PK로 영화 번호 ㅇ
-    List<Interest> interestList(int userNum, int movieNum);
+    List<Interest> interestList(int movieNum);
 // interest int로 dto title. num img_url table2개조인
 
-    int insertbyUserNum(int movieNum);
     //내가 쓴 댓글목록
     List<Review> myReviewList(int userNum);
 
-    List<MyInfoResponseDTO> myInfo(int userNum);
+    List<MyInfoResponseDTO> myInfo(String userId);
 
 
 

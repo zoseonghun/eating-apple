@@ -124,12 +124,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                     <div class="form-group mt-2">
                                                         <p><strong>성별을 입력해주세요.</strong><span id="genderChk"></span></p>
                                                         <label>
-                                                            <input type="radio" name="gender" value="male"
+                                                            <input type="radio" name="userGender" value="MALE"
                                                                    id="genderMale">
                                                             남성
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name="gender" value="female"
+                                                            <input type="radio" name="userGender" value="FEMALE"
                                                                    id="genderFemale">
                                                             여성
                                                         </label>

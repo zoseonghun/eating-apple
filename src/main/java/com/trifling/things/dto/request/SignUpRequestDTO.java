@@ -21,16 +21,16 @@ public class SignUpRequestDTO {
     private String userId;
 
     @NotBlank
-    private String password;
+    private String userPassword;
 
     @NotBlank
     @Email
-    private String email;
+    private String userEmail;
 
     @NotBlank
-    private Gender gender;
+    private Gender userGender;
 
     @NotBlank
-    private int age;
+    private int userAge;
 
 }

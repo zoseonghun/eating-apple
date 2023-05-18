@@ -36,16 +36,6 @@
         </if>
     </select>
 
-
-
-    <select id="interestList" resultType="interest">
-        SELECT i.user_num, i.movie_num, i.movie_img_num, i.movie_title
-        FROM m_interest i
-        JOIN m_movie m ON i.movie_img_num = m.movie_img_num
-        AND i.movie_title = m.movie_title
-        WHERE i.user_num = #{userNum} AND m.movie_num = #{movieNum}
-    </select>
-
     <select id="myReviewList" resultType="review">
         SELECT  user_num, rate_num, movie_num, rate_review
         , rate_score, rate_date, rate_like
@@ -53,11 +43,19 @@
         WHERE user_num = #{userNum}
     </select>
 
-    <select id="myInfo" resultType="user">
-        SELECT m_user.user_num, m_user.user_id, m_user.user_point, m_user.user_grade,
-                m_movie.movie_num, m_movie.movie_title, m_rate.rate_review
-        FROM m_user
-        JOIN m_rate ON m_user.user_num = m_rate.user_num
-        AND m_movie ON m_rate.movie_num = m_movie.movie_num
+
+    <select id="myInfo" resultType="MyInfoResponseDTO">
+        SELECT mu.user_num, mu.user_id, mu.user_point, mu.user_grade,
+        mm.movie_num, mm.movie_title, mr.rate_review
+        FROM m_user mu
+        JOIN m_rate mr ON mu.user_num = mr.user_num
+        JOIN m_movie mm ON mr.movie_num = mm.movie_num
+        where mu.user_num = #{userNum};
+    </select>
+
+    <select id="interestList" resultType="interest">
+        SELECT i.movie_img_num, i.movie_title, m.movie_num
+        FROM m_interest i
+        JOIN m_movie m ON i.movie_title = m.movie_title;
     </select>
 </mapper>

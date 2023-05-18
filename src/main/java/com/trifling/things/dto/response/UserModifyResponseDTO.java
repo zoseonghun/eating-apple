@@ -15,10 +15,10 @@ public class UserModifyResponseDTO {
     //내 정보 수정가능한 dto
 
     @NotBlank
-    private String password;
+    private String userPassword;
 
     @NotBlank
     @Email
-    private String email;
+    private String userEmail;
 
 }

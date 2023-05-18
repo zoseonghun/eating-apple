@@ -1,11 +1,14 @@
 package com.trifling.things.repository;
 
+import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.entity.user.Gender;
 import com.trifling.things.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,11 +24,11 @@ class UserMapperTest {
     @DisplayName("회원가입에 성공해야한다")
     void testJoin() {
         User user = User.builder()
-                .userId("abc123")
-                .userPassword("abc1111@")
-                .userEmail("123@abc.com")
-                .userGender(Gender.FEMALE)
-                .userAge(25)
+                .userId("유저4")
+                .userPassword("1234")
+                .userEmail("user@a.com")
+                .userGender(Gender.M)
+                .userAge(55)
                 .build();
 
         boolean flag = userMapper.save(user);
@@ -36,14 +39,14 @@ class UserMapperTest {
     @DisplayName("유저의 id 값을 조회하면 관련된 id 값의 정보가 나와야한다")
     void testfinduser() {
         //give
-        String userid = "abc1111";
+        String userid = "유저1";
 
         //when
         User findUser = userMapper.findUser(userid);
 
         //then
         System.out.println("findUser : " + findUser);
-        assertEquals("abc1111", findUser.getUserId());
+        assertEquals("유저1", findUser.getUserId());
 
     }
 
@@ -72,11 +75,11 @@ class UserMapperTest {
 
     @Test
 //    @DisplayName("id가  def123 경우 결과값이 1이 나와야 한다.")
-    @DisplayName("age가 28인 경우 결과값이 1이 나와야 한다.")
+    @DisplayName("email이 user@a.com경우 1이 나와야한다 ")
     void accountDuplicateTest() {
         // given
-        String userid = "def123";
-        String email = "def@abc.com";
+        String userid = "유저4";
+        String email = "user@a.com";
 
         //when
         int count = userMapper.isDuplicate("email", email);
@@ -84,6 +87,29 @@ class UserMapperTest {
         //then
         assertEquals(1, count);
     }
+
+    @Test
+    @DisplayName("userNum을 조회하면 관련된 정보를 가져온다")
+    void myReviewListTest(){
+        int userNum =1;
+        List<Review> reviews = userMapper.myReviewList(userNum);
+
+        System.out.println("reviews" + reviews);
+        assertEquals(1, Integer.parseInt(reviews.get(0).getUserNum()));
+    }
+
+
+    @Test
+    @DisplayName("userID를 조회하면 관련된 정보를 가져온다")
+    void myInfoTest() {
+        int userNum = 1;
+        List<MyInfoResponseDTO> infoDTOList = userMapper.myInfo(userNum);
+
+        // 리스트 크기 확인
+        System.out.println("infoDTO : " + infoDTOList);
+        assertEquals(4, infoDTOList.size());
+    }
+
 
 
 }

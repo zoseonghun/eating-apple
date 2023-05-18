@@ -9,7 +9,7 @@
         INSERT INTO m_user
         (user_id, user_password, user_email, user_gender, user_age)
         Values
-        (#{userId}, #{password}, #{email} ,#{gender}, #{age})
+        (#{userId}, #{userPassword}, #{userEmail} ,#{userGender}, #{userAge})
     </insert>
 
     <select id="findUser" resultType="user">
@@ -29,12 +29,33 @@
         SELECT COUNT(*)
         FROM m_user
         <if test="type == 'userid'">
-            WHERE userId = #{keyword}
+            WHERE user_id = #{keyword}
         </if>
         <if test="type == 'email'">
-            WHERE userEmail = #{keyword}
+            WHERE user_email = #{keyword}
         </if>
     </select>
 
+    <select id="myReviewList" resultType="review">
+        SELECT  user_num, rate_num, movie_num, rate_review
+        , rate_score, rate_date, rate_like
+        FROM m_rate
+        WHERE user_num = #{userNum}
+    </select>
 
+
+    <select id="myInfo" resultType="MyInfoResponseDTO">
+        SELECT mu.user_num, mu.user_id, mu.user_point, mu.user_grade,
+        mm.movie_num, mm.movie_title, mr.rate_review
+        FROM m_user mu
+        JOIN m_rate mr ON mu.user_num = mr.user_num
+        JOIN m_movie mm ON mr.movie_num = mm.movie_num
+        where mu.user_num = #{userNum};
+    </select>
+
+    <select id="interestList" resultType="interest">
+        SELECT i.movie_img_num, i.movie_title, m.movie_num
+        FROM m_interest i
+        JOIN m_movie m ON i.movie_title = m.movie_title;
+    </select>
 </mapper>

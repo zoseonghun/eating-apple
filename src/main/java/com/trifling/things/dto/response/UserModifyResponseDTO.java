@@ -1,11 +1,9 @@
-package com.trifling.things.dto;
+package com.trifling.things.dto.response;
 
-import com.trifling.things.entity.Gender;
 import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 
 @Setter
@@ -13,14 +11,14 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class MyPageModifyDTO {
+public class UserModifyResponseDTO {
     //내 정보 수정가능한 dto
 
     @NotBlank
-    private String password;
+    private String userPassword;
 
     @NotBlank
     @Email
-    private String email;
+    private String userEmail;
 
 }

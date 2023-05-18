@@ -1,4 +1,4 @@
-package com.trifling.things.entity;
+package com.trifling.things.entity.user;
 
 public enum Grade {
 

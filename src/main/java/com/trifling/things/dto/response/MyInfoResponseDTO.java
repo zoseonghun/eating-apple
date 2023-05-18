@@ -1,5 +1,6 @@
-package com.trifling.things.entity;
+package com.trifling.things.dto.response;
 
+import com.trifling.things.entity.user.Grade;
 import lombok.*;
 
 @Setter
@@ -9,14 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class MyInfoResponseDTO {
 
     private int userNum;
     private String userId;
-    private String userPassword;
-    private String userEmail;
-    private Gender userGender;
-    private int userAge;
     private int userPoint;
     private Grade userGrade;
+    private int movieNum;
+    private String movieTitle;
+    private String rateReview;
+
+
 }

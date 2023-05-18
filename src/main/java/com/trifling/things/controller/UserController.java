@@ -54,51 +54,41 @@ public class UserController {
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/login")
+    @PostMapping("/sign-up")
     public void signUp(SignUpRequestDTO dto) {
         log.info("/user/login POST ! - {}", dto);
         boolean flag = userService.join(dto);
 
     }
 
-        // 아이디, 이메일 중복검사
-        // 비동기 요청 처리
-        @GetMapping("/check")
-        @ResponseBody
-        public ResponseEntity<?> check(String type, String keyword) {
+    // 아이디, 이메일 중복검사
+    // 비동기 요청 처리
+    @GetMapping("/check")
+    @ResponseBody
+    public ResponseEntity<?> check(String type, String keyword) {
 
-            boolean flag = userService.checkSignUpValue(type, keyword);
-            return ResponseEntity.ok().body(flag);
-        }
-
-        // 로그인 검증 요청 --로그인?
-        @PostMapping("")
-        public String signIn(LoginRequestDTO dto, RedirectAttributes ra) {
-
-            LoginResult result = userService.authenticate(dto);
-
-            // 로그인 성공시
-            if (result == SUCCESS) {
-                return "redirect:/movies/list";
-            }
-
-            // 1회용
-            ra.addAttribute("msg", result);
-
-            // 로그인 실패시
-            return "redirect:/user/login";
-        }
-    public void join(SignUpRequestDTO dto, Gender gender) {
-        // 회원가입 처리 로직에서 Gender 값을 DB에 저장하는 작업을 수행
-        // userRepository를 사용하여 사용자를 생성하고, 생성된 사용자에 대한 Gender 값을 설정
-
-        User user = new User();
-        user.setUserId(dto.getUserId());
-        user.setUserPassword(dto.getUserPassword());
-//        user.setGender(gender);
-
-//        userRepository.save(user);
+        boolean flag = userService.checkSignUpValue(type, keyword);
+        return ResponseEntity.ok().body(flag);
     }
+
+    // 로그인 검증 요청 --로그인?
+    @PostMapping("/sign-in")
+    public String signIn(LoginRequestDTO dto, RedirectAttributes ra) {
+
+        LoginResult result = userService.authenticate(dto);
+
+        // 로그인 성공시
+        if (result == SUCCESS) {
+            return "redirect:/movies/list";
+        }
+
+        // 1회용
+        ra.addAttribute("msg", result);
+
+        // 로그인 실패시
+        return "redirect:/user/sign-in";
+    }
+
 
     //정보수정 -modify
     @PostMapping("/modify")
@@ -144,6 +134,4 @@ public class UserController {
         mv.addObject("list", list);
         return mv;
     }
-
-
 }

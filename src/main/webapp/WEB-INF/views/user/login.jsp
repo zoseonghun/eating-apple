@@ -13,7 +13,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     <style>
 
     </style>
-    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+<%--    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->--%>
 </head>
 
 <body>
@@ -56,6 +56,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                            placeholder="4~14글자의 영문, 숫자로 입력하세요." id="logid"
                                                            autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
+                                                    </form>
                                                 </div>
                                                 <div class="form-group mt-2">
                                                     <input type="password" name="userPassword" class="form-style"
@@ -135,8 +136,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                                                     </div>
                                                     <div class="back-button">
                                                         <input type="button" value="회원가입" class="btn mt-4"
-                                                               id="login-btn">
+                                                               id="loginBtn">
                                                     </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -164,195 +166,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 <script>
 
 
-    // // 회원가입 입력값 검증 처리
-    //
-    // // 입력값 검증 통과 여부 배열
-    // const checkResultList = [false, false, false, false, false, false];
-    //
-    // // 아이디 검사 정규표현식
-    // const accountPattern = /^[a-zA-Z0-9]{4,14}$/;
-    //
-    // // 아이디 입력값 검증
-    // const $idInput = document.getElementById('logid');
-    //
-    // $idInput.onkeyup = e => {
-    //
-    //     const idValue = $idInput.value;
-    //     // console.log(idValue);
-    //
-    //     if (idValue.trim() === '') {
-    //         $idInput.style.borderColor = 'red';
-    //         document.getElementById('idChk').innerHTML = '<b style="color: red;">[아이디는 필수값입니다]</b>';
-    //         checkResultList[0] = false;
-    //     } else if (!accountPattern.test(idValue)) {
-    //         $idInput.style.borderColor = 'red';
-    //         document.getElementById('idChk').innerHTML =
-    //             '<b style="color: red;">[아이디는 4~14글자의 영문, 숫자로 입력하세요.]</b>';
-    //         checkResultList[0] = false;
-    //     } else {
-    //
-    //         fetch('/user/check?type=userId&keyword=' + idValue)
-    //             .then(res => res.json())
-    //             .then(flag => {
-    //                 if (flag) { // 중복
-    //                     $idInput.style.borderColor = 'red';
-    //                     document.getElementById('idChk').innerHTML =
-    //                         '<b style="color: red;">[이미 사용중인 아이디입니다.]</b>';
-    //                     checkResultList[0] = false;
-    //                 } else {
-    //                     $idInput.style.borderColor = 'limegreen';
-    //                     document.getElementById('idChk').innerHTML =
-    //                         '<b style="color: limegreen;">[사용 가능한 아이디입니다.]</b>';
-    //                     checkResultList[0] = true;
-    //                 }
-    //             });
-    //     }
-    //
-    // };
-    //
-    // // 패스워드 검사 정규표현식
-    // const passwordPattern = /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/;
-    //
-    // // 패스워드 입력값 검증
-    // const $pwInput = document.getElementById('password');
-    //
-    // $pwInput.onkeyup = e => {
-    //
-    //     const pwValue = $pwInput.value;
-    //     // console.log(idValue);
-    //
-    //     if (pwValue.trim() === '') {
-    //         $pwInput.style.borderColor = 'red';
-    //         document.getElementById('pwChk').innerHTML = '<b style="color: red;">[비밀번호는 필수값입니다!]</b>';
-    //         checkResultList[1] = false;
-    //     } else if (!passwordPattern.test(pwValue)) {
-    //         $pwInput.style.borderColor = 'red';
-    //         document.getElementById('pwChk').innerHTML = '<b style="color: red;">[특수문자 포함 8자 이상!]</b>';
-    //         checkResultList[1] = false;
-    //     } else {
-    //
-    //         $pwInput.style.borderColor = 'skyblue';
-    //         document.getElementById('pwChk').innerHTML = '<b style="color: skyblue;">[사용가능한 비밀번호입니다.]</b>';
-    //         checkResultList[1] = true;
-    //
-    //     }
-    // };
-    //
-    //
-    // // 패스워드 확인란 입력값 검증
-    // const $pwCheckInput = document.getElementById('password_check');
-    //
-    // $pwCheckInput.onkeyup = e => {
-    //
-    //     const pwCheckValue = $pwCheckInput.value;
-    //     // console.log(idValue);
-    //
-    //     if (pwCheckValue.trim() === '') {
-    //         $pwCheckInput.style.borderColor = 'red';
-    //         document.getElementById('pwChk2').innerHTML = '<b style="color: red;">[비밀번호 확인란은 필수값입니다!]</b>';
-    //         checkResultList[2] = false;
-    //     } else if ($pwCheckInput.value !== $pwInput.value) {
-    //         $pwCheckInput.style.borderColor = 'red';
-    //         document.getElementById('pwChk2').innerHTML = '<b style="color: red;">[위에랑 똑같이 쓰세요!]</b>';
-    //         checkResultList[2] = false;
-    //     } else {
-    //
-    //         $pwCheckInput.style.borderColor = 'skyblue';
-    //         document.getElementById('pwChk2').innerHTML = '<b style="color: skyblue;">[참 잘했어요~]</b>';
-    //         checkResultList[2] = true;
-    //
-    //     }
-    // };
-    //
-    // // 이메일 검사 정규표현식
-    // const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-    //
-    // // 이메일 입력값 검증
-    // const $emailInput = document.getElementById('user_email');
-    //
-    // $emailInput.onkeyup = e => {
-    //
-    //     const emailValue = $emailInput.value;
-    //     // console.log(idValue);
-    //
-    //     if (emailValue.trim() === '') {
-    //         $emailInput.style.borderColor = 'red';
-    //         document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일 필수값입니다!]</b>';
-    //         checkResultList[3] = false;
-    //     } else if (!emailPattern.test(emailValue)) {
-    //         $emailInput.style.borderColor = 'red';
-    //         document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일 형식을 지켜주세요~]</b>';
-    //         checkResultList[3] = false;
-    //     } else {
-    //
-    //         fetch('/user/check?type=email&keyword=' + emailValue)
-    //             .then(res => res.json())
-    //             .then(flag => {
-    //                 if (flag) { // 중복
-    //                     $emailInput.style.borderColor = 'red';
-    //                     document.getElementById('emailChk').innerHTML =
-    //                         '<b style="color: red;">[이메일이 중복되었습니다.]</b>';
-    //                     checkResultList[3] = false;
-    //                 } else {
-    //                     $emailInput.style.borderColor = 'skyblue';
-    //                     document.getElementById('emailChk').innerHTML =
-    //                         '<b style="color: skyblue;">[사용가능한 이메일입니다.]</b>';
-    //                     checkResultList[3] = true;
-    //                 }
-    //             });
-    //
-    //     }
-    // };
-    //
-    // // 나이 검사 정규표현식
-    // const agePattern = /^(1[0-9]|[2-7][0-9]|80)$/;
-    //
-    // // 나이 입력값 검증
-    // const $ageInput = document.getElementById('signup-age');
-    //
-    // $ageInput.onkeyup = e => {
-    //     const ageValue = $ageInput.value.trim();
-    //
-    //     if (ageValue === '') {
-    //         $ageInput.style.borderColor = 'red';
-    //         document.getElementById('ageChk').innerHTML = '<b style="color: red;">[나이는 필수 정보입니다.]</b>';
-    //         checkResultList[4] = false;
-    //     } else if (!agePattern.test(ageValue)) {
-    //         $ageInput.style.borderColor = 'red';
-    //         document.getElementById('ageChk').innerHTML = '<b style="color: red;">[10세부터 80세까지 입력해주세요.]</b>';
-    //         checkResultList[4] = false;
-    //     } else {
-    //         $ageInput.style.borderColor = 'skyblue';
-    //         document.getElementById('ageChk').innerHTML = '<b style="color: skyblue;">[사용 가능한 나이입니다.]</b>';
-    //         checkResultList[4] = true;
-    //     }
-    // };
-    //
-    // // 성별 검사 정규표현식
-    // const genderPattern = /^(male|female)$/i;
-    //
-    // // 성별 입력값 검증
-    // const genderMaleInput = document.getElementById('genderMale');
-    // const genderFemaleInput = document.getElementById('genderFemale');
-    //
-    // function validateGender() {
-    //     if (genderMaleInput.checked || genderFemaleInput.checked) {
-    //         document.getElementById('genderChk').innerHTML = '';
-    //         checkResultList[5] = true;
-    //     } else {
-    //         document.getElementById('genderChk').innerHTML = '<b style="color: red;">[성별을 선택해주세요.]</b>';
-    //         checkResultList[5] = false;
-    //     }
-    // }
-    //
-    // genderMaleInput.addEventListener('change', validateGender);
-    // genderFemaleInput.addEventListener('change', validateGender);
-
-
-
     // db저장됐는지 확인
 
-    document.getElementById('login-btn').addEventListener('click', function() {
+    document.getElementById('loginBtn').addEventListener('click', function() {
 
 
         // 입력값 가져오기
@@ -439,7 +255,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     //     };
     // };
 </script>
--
+
 
 
 

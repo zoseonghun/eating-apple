@@ -1,0 +1,216 @@
+ div#menu a {
+    letter-spacing: -0.05em;
+    text-decoration: none !important;
+    display: inline-block;
+    width: 100%;
+
+  }
+  .popup_menu .m_acco {
+    margin-top: 100px;
+    /* background-color: #d7d8da; */
+
+  }
+
+  .popup_menu a {
+    padding: 50px 0px 10px 16px;
+  }
+
+  .popup_menu .m_acco .menuList {
+    font-size: 20px;
+    color: #e7b038;
+    font-weight: bold;
+    position: relative;
+    border: 1px solid #d7d8da;
+    /* background: yellow; */
+    text-align: center;
+    padding-bottom: 25px;
+    width: 30%;
+  }
+
+  .popup_menu .mypage{
+    /* border: 1px solid wheat; */
+    display: flex;
+  }
+
+#content{
+  display: flex;
+  justify-content: space-between;
+
+}
+.mypage{
+  /* background: wheat; */
+  width: 80%;
+  position: relative;
+}
+
+.mypage .mypage-info{
+  /* border: 1px solid red; */
+  /* margin-top: 50px; */
+  /* margin-left: 30px; */
+
+}
+.mypage .frame{
+  /* border: 1px solid yellow; */
+  margin-top: 100px;
+width: 90%;
+margin-left: 50px;
+position: relative;
+height: auto;
+
+}
+.mypage .top-section{
+  /* background: gainsboro; */
+  display: flex;
+  position: relative;
+
+}
+
+.mypage .top-section .profile-image{
+  background: teal;
+  width: 30%;
+  height: 200px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.mypage .top-section .profile-image p{
+  text-align: center;
+  margin-top: 40%;
+
+}
+
+.mypage .user-info{
+  /* background: rebeccapurple; */
+  position: relative;
+}
+
+.mypage .user-info .user-Id{
+/* background: goldenrod; */
+font-size: 20px;
+font-weight: bold;
+position: absolute;
+width: 500px;
+height: 100px;
+text-align: left;
+}
+
+.mypage .user-info .user-Id p{
+margin-top: 40px;
+margin-left: 40px;
+  }
+
+
+.mypage .user-info .user-grade{
+  /* background: salmon; */
+  margin-top: 100px;
+  width: 500px;
+  height: 100px;
+  text-align: left;
+
+  }
+  .mypage .user-info .user-grade p{
+    /* padding-top: 40px; */
+    margin-left: 40px;
+}
+
+.mypage .bottom-section{
+  /* background: orangered; */
+  display: flex;
+  height: auto;
+  position: relative;
+}
+
+.mypage .bottom-section .user-point{
+  /* background: blue; */
+  width: 33%;
+
+}
+
+.mypage .bottom-section .user-point h1{
+  /* background: yellow; */
+  width: 250px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+
+
+}
+
+.mypage .bottom-section .user-point .how-to-get-point{
+  /* background: yellow;   */
+  margin-top: 25px;
+  width: 150px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+
+}
+
+.mypage .bottom-section .user-point .how-to-get-point .list{
+  /* background: yellow;   */
+  width: 200px;
+  /* text-align: center; */
+}
+
+.mypage .bottom-section .user-point .how-to-get-point .list :first-child{
+  /* margin-top: 20px;  */
+}
+
+.mypage .bottom-section .user-point .user-point{
+  /* background: yellow; */
+  width: 200px;
+  text-align: center;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 25px;
+  text-align: center;
+
+}
+
+
+
+.mypage .bottom-section .my-review{
+  /* background: olivedrab; */
+  width: 33%;
+
+}
+
+.mypage .bottom-section .my-review h1{
+  /* background: olivedrab; */
+  width: 250px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+
+}
+
+.mypage .bottom-section .my-review .review-list{
+  /* background: olivedrab; */
+  margin-top: 25px;
+  /* width: 150px; */
+margin-left: 20px;
+
+}
+
+.mypage .bottom-section .my-movie-list{
+  /* background: violet; */
+  width: 34%;
+}
+
+.mypage .bottom-section .my-movie-list h1{
+  /* background: violet; */
+  width: 250px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.mypage .bottom-section .my-movie-list .movie-list{
+  /* background: violet; */
+  margin-top: 25px;
+  width: 150px;
+margin-left: 20px;
+
+}

@@ -2,6 +2,7 @@ package com.trifling.things.repository;
 
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.entity.user.Gender;
+import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class UserMapperTest {
                 .userId("유저4")
                 .userPassword("1234")
                 .userEmail("user@a.com")
-                .userGender(Gender.M)
+                .userGender(Gender.MALE)
                 .userAge(55)
                 .build();
 
@@ -110,6 +111,13 @@ class UserMapperTest {
         assertEquals(4, infoDTOList.size());
     }
 
-
+    @Test
+    @DisplayName("movieNum을 조회하면 관련된 정보를 가져온다")
+    void interestTest() {
+        int movieNum = 119;
+        List<Interest> interests = userMapper.interestList(movieNum);
+        System.out.println("interests = " + interests);
+        assertEquals(1, interests.size());
+    }
 
 }

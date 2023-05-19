@@ -94,8 +94,8 @@ public List<Review> myReviewList(int userNum){
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList( int movieNum) {
-        List<Interest> interestUser = userMapper.interestList(movieNum);
+    public List<Interest> myInterestList( int userNum) {
+        List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
 
@@ -119,6 +119,7 @@ public List<Review> myReviewList(int userNum){
                 .sUserEmail(user.getUserEmail())
                 .sUserPoint(user.getUserPoint())
                 .sUserGrade(user.getUserGrade().toString())
+                .profileImage(user.getProfileImage())
                 .build();
 
         // 세션에 유저 정보 저장

@@ -2,17 +2,20 @@ package com.trifling.things.service;
 
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
 import com.trifling.things.repository.UserMapper;
+import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.trifling.things.service.LoginResult.*;
@@ -104,4 +107,21 @@ public List<Review> myReviewList(int userNum){
     }
 
 
+    public void maintainLoginState(HttpSession session, String userId) {
+
+        // 로그인 성공하면 세션에 로그인한 회원의 정보들을 저장
+        User user = findUser(userId);
+
+        LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
+                .sUserId(user.getUserId())
+                .sUserAge(user.getUserAge())
+                .sUserGender(user.getUserGender().toString())
+                .sUserEmail(user.getUserEmail())
+                .sUserPoint(user.getUserPoint())
+                .sUserGrade(user.getUserGrade().toString())
+                .build();
+
+        // 세션에 유저 정보 저장
+        session.setAttribute(LoginUtil.LOGIN_KEY, dto);
+    }
 }

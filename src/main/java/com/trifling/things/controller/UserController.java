@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static com.trifling.things.service.LoginResult.SUCCESS;
@@ -77,12 +78,18 @@ public class UserController {
 
     // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
-    public String signIn(LoginRequestDTO dto, RedirectAttributes ra) {
+    public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
+        log.info("/user/sign-in POST");
 
         LoginResult result = userService.authenticate(dto);
 
+
         // 로그인 성공시
         if (result == SUCCESS) {
+
+            // 서버에서 세션에 로그인 정보를 저장
+            userService.maintainLoginState(request.getSession(), dto.getUserId());
+
             return "redirect:/movies/list";
         }
 
@@ -90,7 +97,7 @@ public class UserController {
         ra.addAttribute("msg", result);
 
         // 로그인 실패시
-        return "redirect:/user/sign-in";
+        return "redirect:/user/login";
     }
 // find user 정보 찾기 -- 필요한가?
 //    @GetMapping("/find/{userId}")

@@ -147,7 +147,7 @@ public class UserController {
             model.addAttribute("reviews", reviewList);
         }
 
-        return ""; //영화세부페이지
+        return "user/review"; //영화세부페이지
     }
 
 

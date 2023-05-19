@@ -1,0 +1,206 @@
+div#menu a {
+    letter-spacing: -0.05em;
+    text-decoration: none !important;
+    display: inline-block;
+    width: 100%;
+  
+  }
+  /* 
+  .popup_menu .m_acco {
+    margin-top: 100px;
+    background-color: #d7d8da;
+  
+  }
+  
+  .popup_menu a {
+    padding: 50px 0px 10px 16px;
+  }
+  
+  .popup_menu .m_acco .menuList {
+    font-size: 20px;
+    color: #e7b038;
+    font-weight: bold;
+    position: relative;
+    border: 1px solid #d7d8da;
+    background: yellow;
+    text-align: center;
+    padding-bottom: 25px;
+    width: 30%;
+  }
+  
+  .popup_menu .mypage {
+    border: 1px solid wheat;
+    display: flex;
+  } */
+  
+  #content {
+    /* 틀 삭제 */
+    border: 1px solid #fff;
+    height: 700px;
+    display: flex;
+    width: 100%;
+  
+  }
+  
+  .mypage {
+    /* background: wheat; */
+    width: 100%;
+    /* position: relative; */
+  }
+  
+  .mypage .frame {
+    /* border: 1px solid yellow; */
+    width: 90%; 
+    position: relative;
+    height: 80%;
+    margin: auto;
+    margin-top: 80px;
+  
+  }
+  
+  .mypage .mypage-info {
+    /* border: 1px solid red; */
+  /* position: absolute; */
+  
+  }
+  
+  .mypage .mypage-info .mypage-id {
+  /* background: orange; */
+  /* padding: 10px; */
+  font-size: 20px;
+  font-weight: 700px;
+  margin: 30px;
+  color: white;
+  width: 50%;
+  }
+  
+  .mypage .mypage-info .mybasic-info{
+    /* background: orange; */
+    position: relative;
+    height: 150px;
+  }
+  
+  .mypage .mypage-info .mybasic-info .profile-image{
+  background: lavender;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  /* place-content: center; */
+  }
+  
+  .mypage .mypage-info .mybasic-info .profile-image p{
+  text-align:center;
+  
+  }
+  
+  .mypage .mypage-info .mybasic-info .usergrade{
+    /* background: red; */
+    display: flex;
+    position: absolute;
+    left: 200px;
+    top: 40px;
+    font-size: 15px;
+    
+  }
+  
+  .mypage .mypage-info .mybasic-info .mypoint{
+    display: flex;
+    /* background: orchid; */
+    /* border: 1px solid blue; */
+    width: 50%;
+    /* float: right; */
+    margin-top: 40px;
+    /* position: relative; */
+   float: right;
+  }
+  
+  .mypage .mypage-info .mybasic-info .mypoint .mycoupon{
+  /* background: teal; */
+  /* position: absolute; */
+  /* float: right; */
+  
+  }
+  .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:first-child{
+    font-size: 15px;
+  
+  }
+  
+  .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:last-child{
+    text-align: center;
+    padding: 17px;
+  }
+  
+  
+  .mypage .mypage-info .mybasic-info .mypoint .myrealpoint{
+  /* background: tomato; */
+  padding: 0 60px;
+  
+  
+  
+  }
+  
+  .mypage .mypage-info .mybasic-info .mypoint .myrealpoint p{
+  font-size: 15px;
+  margin-bottom: 10px;
+  
+  }
+  .mypage .mypage-info .mybasic-info .mypoint .myrealpoint .how-to-get-point{
+  
+  }
+  
+  
+  .mypage .frame .bottom-info {
+    /* border: 1px solid olivedrab; */
+  
+  }
+  
+  .mypage .frame .bottom-info .bottom-info-detail{
+    /* border: 1px solid brown; */
+    height: auto;
+  
+  
+  }
+  
+  .mypage .frame .bottom-info .bottom-info-detail .myactive{
+  font-size: 18px;
+  margin: 30px;
+  }
+  
+  .mypage .frame .bottom-info .bottom-info-detail .review-interest{
+  /* font-size: 18px; */
+  /* background: tan; */
+  height: auto;
+  }
+  
+  .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag{
+  font-size: 18px;
+  display: flex;
+  /* background: yellowgreen; */
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  }
+  
+  .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p{
+    width: 50%;
+    border: 1px solid wheat;
+    padding: 10px 0;
+  }
+
+   .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p:hover{
+    background: whitesmoke;
+    color: black;
+  }
+  
+  
+  .mypage .frame .bottom-info .bottom-info-detail .review-interest .mydetail-contents{
+    width: 80%;
+    /* border: 1px solid wheat; */
+    margin: auto;
+    text-align: center; 
+    margin-top: 20px;
+  
+  }

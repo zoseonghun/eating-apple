@@ -3,7 +3,7 @@ package com.trifling.things.service;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
-import com.trifling.things.dto.response.UserModifyResponseDTO;
+import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
@@ -30,8 +30,9 @@ public class UserService {
     public boolean join(SignUpRequestDTO dto) {
         User user = User.builder()
                 .userId(dto.getUserId())
-                .userPassword(dto.getUserPassword()) //encoder.encode
+                .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
+                .userGender(dto.getUserGender())
                 .build();
 
 //         매퍼에게 회원정보 전달해서 저장명령
@@ -39,16 +40,22 @@ public class UserService {
         return true;
     }
 
-    public boolean modify(UserModifyResponseDTO dto) {
+    public User findUser(String userId) {
+        return userMapper.findUser(userId);
+    }
+
+
+    public boolean modify(UserModifyRequestDTO dto) {
         User user = User.builder().
-                userPassword(dto.getUserPassword())
+                userId(dto.getUserId())
+                .userPassword(dto.getUserPassword())
                 .userEmail(dto.getUserEmail())
                 .build();
 
         boolean flag = userMapper.modify(user);
-
-        return true;
+        return flag;
     }
+
 
 
     // 중복검사 서비스 처리
@@ -84,20 +91,17 @@ public List<Review> myReviewList(int userNum){
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList(int userNum, int moiveNum) {
-        List<Interest> interestUser = userMapper.interestList(userNum, moiveNum);
+    public List<Interest> myInterestList( int moiveNum) {
+        List<Interest> interestUser = userMapper.interestList(moiveNum);
         return interestUser;
     }
 
 
+
     //마이페이지
-    public   List<MyInfoResponseDTO> getMypage(int userNum){
-        return userMapper.myInfo(userNum);
+    public   List<MyInfoResponseDTO> getMypage(String userId){
+        return userMapper.myInfo(userId);
     }
 
-    //회원정보 조회
-    public List<User> userList() {
-        return userMapper.userList();
-    }
 
 }

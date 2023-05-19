@@ -19,4 +19,7 @@ public class User {
     private int userAge;
     private int userPoint;
     private Grade userGrade;
+    private String profileImage;
+
+
 }

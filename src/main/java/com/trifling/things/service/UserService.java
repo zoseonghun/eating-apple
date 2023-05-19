@@ -119,6 +119,7 @@ public List<Review> myReviewList(int userNum){
                 .sUserEmail(user.getUserEmail())
                 .sUserPoint(user.getUserPoint())
                 .sUserGrade(user.getUserGrade().toString())
+                .profileImage(user.getProfileImage())
                 .build();
 
         // 세션에 유저 정보 저장

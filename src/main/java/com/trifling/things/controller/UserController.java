@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static com.trifling.things.service.LoginResult.SUCCESS;
@@ -48,17 +50,15 @@ public class UserController {
     // 회원가입 양식 요청
     @GetMapping("/login")
     public String login() {
-        log.info("/user/login GET - forwarding to jsp");
+        log.info("/user/sign-up GET - forwarding to jsp");
         return "user/login"; // 회원가입 폼이 있는 jsp 연결
-
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/sign-up")
+    @PostMapping("/login")
     public void signUp(SignUpRequestDTO dto) {
         log.info("/user/login POST ! - {}", dto);
         boolean flag = userService.join(dto);
-
     }
 
         // 아이디, 이메일 중복검사
@@ -71,8 +71,18 @@ public class UserController {
             return ResponseEntity.ok().body(flag);
         }
 
+        // 로그인 양식 요청
+/*        @GetMapping("/login")
+        public String signIn(HttpServletRequest request) {
+            log.info("/user/sign-in GET - forwarding to jsp");
+            String referer = request.getHeader("Referer");
+            log.info("referer : {}", referer);
+
+            return "user/login";
+        }
+
         // 로그인 검증 요청 --로그인?
-        @PostMapping("/sign-in")
+        @PostMapping("/login")
         public String signIn(LoginRequestDTO dto, RedirectAttributes ra) {
 
             LoginResult result = userService.authenticate(dto);
@@ -86,19 +96,10 @@ public class UserController {
             ra.addAttribute("msg", result);
 
             // 로그인 실패시
-            return "redirect:/user/sign-in";
-        }
-    public void join(SignUpRequestDTO dto, Gender gender) {
-        // 회원가입 처리 로직에서 Gender 값을 DB에 저장하는 작업을 수행
-        // userRepository를 사용하여 사용자를 생성하고, 생성된 사용자에 대한 Gender 값을 설정
+            return "";
+        }*/
 
-        User user = new User();
-        user.setUserId(dto.getUserId());
-        user.setUserPassword(dto.getUserPassword());
-//        user.setGender(gender);
 
-//        userRepository.save(user);
-    }
 
     //정보수정 -modify
     @PostMapping("/modify")

@@ -7,9 +7,9 @@
 
     <insert id="save">
         INSERT INTO m_user
-        (user_id, user_password, user_email, user_gender, user_age)
-        Values
-        (#{userId}, #{userPassword}, #{userEmail} ,#{userGender}, #{userAge})
+            (user_id, user_password, user_email, user_gender, user_age)
+        VALUES
+            (#{userId}, #{userPassword}, #{userEmail}, #{userGender}, #{userAge})
     </insert>
 
     <select id="findUser" resultType="user">

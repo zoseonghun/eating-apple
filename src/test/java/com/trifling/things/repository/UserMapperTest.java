@@ -27,7 +27,7 @@ class UserMapperTest {
                 .userId("유저4")
                 .userPassword("1234")
                 .userEmail("user@a.com")
-                .userGender(Gender.M)
+                .userGender(Gender.MALE)
                 .userAge(55)
                 .build();
 

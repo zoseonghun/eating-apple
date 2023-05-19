@@ -8,7 +8,17 @@
         <ul>
             <li><a class="active" href="/">HOME</a></li>
             <li><a href="/movies/list">MOVIES</a></li>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">회원가입</a></li>
+
+
+
+            <c:if test="${login == null}">
+                <li><a href="/user/login">로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+            </c:if>
+
+            <c:if test="${login != null}">
+                <li><a href="#">마이페이지</a></li>
+            </c:if>
+
         </ul>
     </div>

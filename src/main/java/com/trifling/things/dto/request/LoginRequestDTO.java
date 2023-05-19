@@ -9,5 +9,5 @@ public class LoginRequestDTO {
 
     private String userId;
     private String userPassword;
-    private boolean autoLogin;
+   // private boolean autoLogin;
 }

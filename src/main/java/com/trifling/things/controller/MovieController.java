@@ -41,7 +41,10 @@ public class MovieController {
         PageMaker maker = new PageMaker(page, movieService.getCount(page));
 
         List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
+        for (MainListResponseDTO mainListResponseDTO : listByNum) {
+            log.info("{}:",mainListResponseDTO);
 
+        }
         List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
         // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
 
@@ -50,7 +53,8 @@ public class MovieController {
 //        transResponseDTO.setScoreList(listByScore);
 
 
-        model.addAttribute("topTenList", listByNum);
+        model.addAttribute("topTenListByNum", listByNum);
+        model.addAttribute("topTenListByScore", listByScore);
         model.addAttribute("mList", dto);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);

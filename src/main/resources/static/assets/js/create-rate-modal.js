@@ -1,16 +1,5 @@
 // 사소한평가남기기 버튼 눌렀을때 모달창 띄워주는 js
-var $modal = document.getElementById("myModal");
-var $btn = document.getElementById("openModal");
-var $span = document.getElementsByClassName("close")[0];
 
-$btn.onclick = e => {
-    alert('읽힘?')
-    $modal.style.display = "block";
-}
-
-$span.onclick = e => {
-    $modal.style.display = "none";
-}
 // 모달창 제외한 밖을 눌렀을때 모달창 꺼지게
 // window.onclick = function (event) {
 //     if (event.target == modal) {

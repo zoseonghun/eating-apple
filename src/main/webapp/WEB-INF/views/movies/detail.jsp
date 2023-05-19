@@ -9,13 +9,34 @@
 <head>
     <title>MovieHunter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" /> -->
-    <script src="/assets/js/create-rate-modal.js" defer></script>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/detail.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        .rating {
+            display: inline-block;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            float: right;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .rating label:before {
+            content: '\2605';
+        }
+
+        .rating input:checked~label {
+            color: orange;
+        }
+    </style>
 </head>
 
 <body>>
@@ -33,16 +54,19 @@
                             <img src="/assets/img/xapple.png" alt="#" id="modal-rate-icon">
                         </div>
                         <div class="modal-top-rate-input-box">
-                            <!-- <input type="checkbox" id="checkbox1" class="star-checkbox" value="1">
-                            <label for="checkbox1" class="star"></label>
-                            <input type="checkbox" id="checkbox2" class="star-checkbox" value="1">
-                            <label for="checkbox2" class="star"></label>
-                            <input type="checkbox" id="checkbox3" class="star-checkbox" value="1">
-                            <label for="checkbox3" class="star"></label>
-                            <input type="checkbox" id="checkbox4" class="star-checkbox" value="1">
-                            <label for="checkbox4" class="star"></label>
-                            <input type="checkbox" id="checkbox5" class="star-checkbox" value="1">
-                            <label for="checkbox5" class="star"></label> -->                        
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5"></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4"></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3"></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2"></label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1"></label>
+                            </div>
+
                         </div>
                         <div class="modal-top-md-box">
                             <div class="modal-top-modify-box">
@@ -201,58 +225,7 @@
                 <p><span>│</span> CRITIC REVIEWS FOR GUARDIANS OF THE GALAXY VOL. 3</p>
             </div>
             <div class="movie-detail-main-rank" id="rate-box">
-                <!-- 반복 시작 부분 -->
-                <!-- 이부분 평가 반복 하면됨 -->
-
-                <!--<div class="movie-detail-rate-containier" >
-                         <div class="speech-bubble">
-                            <div class="movie-detail-icon-text-box">
-                                <div class="movie-detail-rate-icon">
-                                    <img src="/assets/img/apple.png" alt=""> 
-
-                                </div>
-                                <div class="movie-detail-rate-text">
-                                    <span>
-                                       
-                                        Guardians 3 is a real warm and fuzzy movie that sometimes makes you forget that
-                                        you’re a bit bored with the onslaught of superhero movies.
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="movie-detail-rate-time-like-box">
-                                <div class="movie-detail-rate-time-box">
-                                    <p>
-                                        <span> May 14, 2023</span> |<span> Rating: 3.5/5</span> 
-                                    </p>
-                                </div>
-                                <div class="movie-detail-rate-like-box">
-                                    <img src="/assets/img/star.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="movie-detail-rate-writer">
-                            <div class="writer-name-score-box">
-                                <div class="writer-name">
-                                    <span>
-                                        kimhorang2001
-                                        
-                                    </span>
-                                </div>
-                                <div class="writer-score">
-                                    <span>
-                                        324
-                                        
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="writer-score-icon">
-                                <img src="/assets/img/crown.png" alt="">
-                            </div>
-                        </div> 
-                    </div>-->
-
-
-                <!-- 반복 끝부분-->
+                <!-- 평가 목록 생성 -->
 
             </div>
         </div>
@@ -262,11 +235,37 @@
     <!--  MAIN END  -->
     </div>
     <!-- END PAGE SOURCE -->
+
+
     <script>
+        var $modal = document.getElementById("myModal");
+        var $btn = document.getElementById("openModal");
+        var $span = document.getElementsByClassName("close")[0];
+
+        $btn.onclick = e => {
+            $modal.style.display = "block";
+
+        }
+
+        $span.onclick = e => {
+            $modal.style.display = "none";
+        }
+
         const URL = '/rates';
 
         const mNum = '${detail.movieNum}';
         console.log(mNum);
+
+
+        const ratingInputs = document.querySelectorAll('.rating input');
+        let selectedRating = null;
+
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                selectedRating = this.value;
+                console.log(selectedRating);
+            });
+        });
 
 
         // 평가 목록 가져오기
@@ -423,7 +422,26 @@
             }
         }
 
+        const stars = document.querySelectorAll('.rating input[type="radio"]');
+        stars.forEach((star) => {
+            star.addEventListener('click', (event) => {
+                const selectedRating = event.target.value;
+                fillStars(selectedRating);
+            });
+        });
 
+        // 선택된 별점 이하의 별을 채웁니다.
+        function fillStars(selectedRating) {
+            const starsContainer = document.querySelector('.rating');
+            const starElements = starsContainer.querySelectorAll('.star');
+            starElements.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.remove('filled');
+                }
+            });
+        }
 
         (function () {
             getRateList();
@@ -431,6 +449,8 @@
             ratePostButton();
         })();
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- footer -->
     <%@ include file="../include/footer.jsp" %>
     <!-- footer end-->

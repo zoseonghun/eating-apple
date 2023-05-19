@@ -10,7 +10,7 @@
     </settings>
 
     <typeAliases>
-    <!--  entity 클래스 별칭 설정      -->
+        <!--  entity 클래스 별칭 설정      -->
         <typeAlias alias="user" type="com.trifling.things.entity.user.User"/>
         <typeAlias alias="rate" type="com.trifling.things.entity.Rate"/>
         <typeAlias alias="movie" type="com.trifling.things.entity.Movie"/>
@@ -19,8 +19,8 @@
         <typeAlias alias="Interest" type="com.trifling.things.entity.user.Interest"/>
         <typeAlias alias="Review" type="com.trifling.things.repository.Review"/>
         <typeAlias alias="MyInfoResponseDTO" type="com.trifling.things.dto.response.MyInfoResponseDTO"/>
-
-<!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
+       <typeAlias alias="pagingReview" type="com.trifling.things.dto.page.Page"/>
+        <!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
     </typeAliases>
 
     <mappers>
@@ -30,8 +30,8 @@
         <mapper resource="mappers/RateMapper.xml"/>
         <!--    파일 추가-->
         <mapper resource="mappers/InterestMapper.xml"/>
-<!--        <mapper resource="mappers/appleTest.xml"/>-->
+        <mapper resource="mappers/PagingMapper.xml"/>
+        <!--        <mapper resource="mappers/appleTest.xml"/>-->
 
     </mappers>
 </configuration>
-

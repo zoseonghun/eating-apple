@@ -1,5 +1,9 @@
 package com.trifling.things.controller;
 
+import com.trifling.things.dto.page.PageMaker;
+import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.response.MainListResponseDTO;
+import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
@@ -163,5 +167,7 @@ public class UserController {
         log.info("lll: {} ",mypage);
         return "user/mypage";
     }
+
+
 
 }

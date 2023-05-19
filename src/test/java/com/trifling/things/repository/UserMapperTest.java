@@ -96,7 +96,7 @@ class UserMapperTest {
         List<Review> reviews = userMapper.myReviewList(userNum);
 
         System.out.println("reviews" + reviews);
-        assertEquals(1, reviews.get(0).getUserNum());
+        assertEquals(4, reviews.size());
     }
 
 

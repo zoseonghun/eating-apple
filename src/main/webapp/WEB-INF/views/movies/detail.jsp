@@ -39,7 +39,7 @@
     </style>
 </head>
 
-<body>>
+<body>
 
     <!-- START PAGE SOURCE -->
     <div id="shell">

@@ -80,20 +80,23 @@ h4 {
 #header {
     position:relative;
 }
+/* 로고 추가 수정 css */
 h1#logo {
     position:absolute;
-    top:37px;
-    left:0;
+    left:-23px;
+    top: 10px;
 }
 h1#logo a {
     float:left;
-    width:239px;
-    height:49px;
-    background:url('/assets/img/logo.gif') no-repeat 0 0;
-    font-size:0;
-    line-height:0;
-    text-indent:-4000px;
+    width:390px;
+    height:90px;
 }
+h1#logo a img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* 로고 추가 수정 css */
 #navigation {
     float:right;
     clear:right;
@@ -106,7 +109,7 @@ h1#logo a {
 #navigation ul li {
     float:left;
     display:inline;
-    padding-left:29px;
+    margin-left: 15px;
 }
 #navigation ul li a {
     font-size:14px;
@@ -406,4 +409,38 @@ h1#logo a {
     border: 1px solid #ffffff;
     width: 980px;
     display: flex;
+}
+
+
+/*헤더 추가 css*/
+.header-user-profile-image{
+
+    height: 60px;
+    width:60px;
+    margin-top: 17px;
+    border-radius: 30px;
+    overflow: hidden;
+
+}
+.header-user-profile-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+
+}
+#navigation{
+    padding-top: 0;
+}
+.header-li {
+    margin-top: 33px;
+}
+
+#navigation ul .header-li-home a{
+    color: red;
+}
+
+#navigation ul .header-li-user a{
+    text-decoration: none;
+    color: yellow;
 }

@@ -113,13 +113,10 @@ public List<Review> myReviewList(int userNum){
         User user = findUser(userId);
 
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
-                .sUserId(user.getUserId())
-                .sUserAge(user.getUserAge())
-                .sUserGender(user.getUserGender().toString())
-                .sUserEmail(user.getUserEmail())
-                .sUserPoint(user.getUserPoint())
-                .sUserGrade(user.getUserGrade().toString())
-                .profileImage(user.getProfileImage())
+                .suserid(user.getUserId())
+                .suserage(user.getUserAge())
+                .susergender(user.getUserGender().toString())
+                .sprofileimage(user.getProfileImage())
                 .build();
 
         // 세션에 유저 정보 저장

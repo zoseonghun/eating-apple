@@ -3,21 +3,23 @@
 
 
 <div id="header">
-    <h1 id="logo"><a href="/movies/list">MovieHunter</a></h1>
+    <!-- 로고 추가 수정 -->
+    <h1 id="logo"><a href="#"><img src="/assets/img/logo4.png" alt=""></a></h1>
+    <!-- 로고 추가 수정 -->
     <div id="navigation">
         <ul>
-            <!-- <li><a class="active" href="/">HOME</a></li> -->
-            <li><a href="/movies/list">MOVIES</a></li>
-
-
-
             <c:if test="${login == null}">
-                <li><a href="/user/login">로그인</a></li>
-                <li><a href="/user/sign-up">회원가입</a></li>
+
+                <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                <li class="header-li"><a href="/user/login">로그인</a></li>
+                <li class="header-li"><a href="/user/sign-up">회원가입</a></li>
             </c:if>
 
             <c:if test="${login != null}">
-                <li><a href="#">마이페이지</a></li>
+                <li class="header-user-profile-image"><img src="${login.sprofileimage}" alt=""></li>
+                <li class="header-li header-li-user"><a href="#">${login.suserid}님 환영 합니다!!</a></li>
+                <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                <li class="header-li"><a href="#">마이페이지</a></li>
             </c:if>
 
         </ul>

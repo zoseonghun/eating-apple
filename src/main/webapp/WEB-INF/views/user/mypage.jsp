@@ -44,7 +44,7 @@
             <div id="content">
 
                 <!-- 마이페이지 -->
-              <!-- //blue -->
+                <!-- //blue -->
                 <div class="mypage">
                     <div class="frame">
 
@@ -88,8 +88,8 @@
 
                                 <div class="review-interest">
                                     <div class="top-button-tag">
-                                        <p>내가 쓴 리뷰</p>
-                                        <p>관심 영화 목록</p>
+                                        <p id="myreview">내가 쓴 리뷰</p>
+                                        <p id="interestmoview">관심 영화 목록</p>
                                     </div>
 
                                     <div class="mydetail-contents">
@@ -112,43 +112,35 @@
         </div>
     </div>
 
+    <script>
+        // 아래 hover 박스 클릭시 발생되는 이벤트 작성
 
+  
+document.querySelector('.top-button-tag').onclick = e => {
+
+console.log('클릭: ', e.target);
+
+if (e.target.matches('#my-review')) {
+    console.log('리뷰 부르기~');
+    fetch('/user/review')
+    .then
+} else if (e.target.matches('#favorite-movie')) {
+    console.log('.관심영화부르기');
+    fetch('/user/interest')
+}
+};
+
+
+
+          
+
+    </script>
 
 
 
 
 </body>
 
-<script>
 
-
-
-
-// 아래 hover 박스 클릭시 발생되는 이벤트 작성
-
-document.addEventListener("DOMContentLoaded", function() {
-  var pTags = document.querySelectorAll(".top-button-tag p");
-
-  pTags.forEach(function(pTag) {
-    pTag.addEventListener("click", function() {
-      var detailContents = document.querySelectorAll(".mydetail-contents");
-
-      detailContents.forEach(function(detailContent) {
-        detailContent.style.display = "none";
-      });
-
-      var targetContent = this.textContent === "내가 쓴 리뷰" ?
-        document.querySelector(".mydetail-myreview") :
-        document.querySelector(".mydetail-myinterest");
-
-      targetContent.style.display = "block";
-    });
-  });
-});
-
-  
-
-
-</script>
 
 </html>

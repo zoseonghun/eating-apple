@@ -270,8 +270,9 @@ h1#logo a {
     margin-top: 7px;
 }
 #news {
-    width:460px;
+    width:50%;
     float:left;
+    border: 1px solid #ffffff;
 }
 #news .head {
     width:460px;
@@ -283,12 +284,13 @@ h1#logo a {
     font-size: 16px;
 }
 #coming {
-    width:490px;
+    width:50%;
     float:left;
-    padding-left:30px;
+ 
+    border: 1px solid #ffffff;
 }
 #coming .head {
-    width:490px;
+    width:460px;
     padding-top:11px;
     padding-bottom:14px;
 }
@@ -389,3 +391,19 @@ h1#logo a {
     opacity: 0.8;
 }
 
+
+/* 리스트 메인 합치기 메인 태그 바로 자식 상자 */
+
+.main-movie-list-container {
+    border: 1px solid #ffffff;
+  }
+
+  .main-movie-slide-container {
+    border: 1px solid #ffffff;
+  }
+
+  .main-movie-rate-list-container {
+    border: 1px solid #ffffff;
+    width: 980px;
+    display: flex;
+}

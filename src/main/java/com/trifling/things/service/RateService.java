@@ -43,7 +43,7 @@ public class RateService {
         // dto를 entity로 변환해줘야댐
         Rate rate = dto.toEntity();
 
-        Rate checkRate = rateMapper.rateFindOne(rate.getRateNum());
+//        Rate checkRate = rateMapper.rateFindOne(rate.getRateNum());
         // 얘로는 못찾아 유저번호랑 무비넘으로 있는지 조회해야 되는거아님?
 
         // 이미 평가를 했는지를 확인하려면

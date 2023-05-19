@@ -69,8 +69,6 @@ public class RateController {
     public ResponseEntity<?> isBeforeRate(
            @PathVariable int userNum
            , @PathVariable int movieNum) {
-//        @RequestParam(defaultValue = "0") int userNum
-//            , @RequestParam(defaultValue = "0")  int movieNum
         log.info("userNum:{}, movieNum:{}",userNum,movieNum);
         int check = rateService.insertBeforeCheck(movieNum, userNum);
         return ResponseEntity.ok().body(check);

@@ -21,4 +21,5 @@ public class LoginUserResponseDTO {
     private int sUserAge;
     private int sUserPoint;
     private String sUserGrade;
+    private String profileImage;
 }

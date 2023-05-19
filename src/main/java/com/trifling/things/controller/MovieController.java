@@ -29,6 +29,11 @@ public class MovieController {
     private final MovieService movieService;
 
 
+    @GetMapping
+    public String mainGo() {
+        return "redirect:/movies/list";
+    }
+
     // 영화 전체 목록 조회
     // 영화 포스터, 이름, 페이지
     @GetMapping("/list")

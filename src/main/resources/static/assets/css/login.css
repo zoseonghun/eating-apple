@@ -344,4 +344,11 @@ h6 span{
 }
 
 .autologin:checked + label:after {
-  display: block; /* 체크된 상태일 때의 체크 표시 보이기
+ /*체크된 상태일 때의 체크 표시 보이기*/
+display: block;
+}
+
+#sub-navigation {
+  border-bottom: none;
+
+}

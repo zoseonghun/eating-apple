@@ -18,15 +18,9 @@
 <body>
 <!-- START PAGE SOURCE -->
 <div id="shell">
-    <div id="header">
-        <h1 id="logo"><a href="#">MovieHunter</a></h1>
-        <div id="navigation">
-            <ul>
-                <li><a class="active" href="#">HOME</a></li>
-                <li><a href="#">MOVIE</a></li>
-                <li><a href="#">로그인</a></li>
-            </ul>
-        </div>
+<%--  헤더--%>
+    <%@ include file="../include/header.jsp" %>
+    <%--  헤더 end--%>
         <div id="sub-navigation">
 
         </div>
@@ -158,14 +152,9 @@
         <div class="cl"></div>
     </div>
 
-    <div id="footer">
-        <p class="lf">Copyright © 2010
-            <a href="#">SiteName</a> - All Rights Reserved</p>
-        <p class="rf">Design by
-            <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
-        </p>
-        <div style="clear:both;"></div>
-    </div>
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
 </div>
 <!-- END PAGE SOURCE -->
 <%--

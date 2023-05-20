@@ -54,10 +54,11 @@
     </select>
 
     <select id="interestList" resultType="Interest">
-        SELECT m_movie.movie_num, m_movie.movie_title, m_movie.movie_info, m_img.img_url
+        SELECT m_movie.movie_num, m_movie.movie_title, m_img.img_url, m_user.user_num
         FROM m_movie
         INNER JOIN m_img ON m_movie.movie_num = m_img.movie_num
         INNER JOIN m_interest ON m_movie.movie_num = m_interest.movie_num
-        where m_movie.movie_num  = #{movieNum}
+        INNER JOIN m_user ON m_user.user_num = m_interest.user_num
+        where m_user.user_num = #{userNum}
     </select>
 </mapper>

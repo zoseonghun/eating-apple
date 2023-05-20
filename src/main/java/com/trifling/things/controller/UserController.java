@@ -5,7 +5,6 @@ import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.entity.user.Interest;
-import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
 import com.trifling.things.service.LoginResult;
 import com.trifling.things.service.UserService;
@@ -17,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -127,34 +125,24 @@ public class UserController {
 
 
     //영화찜하기
-    @GetMapping("/interest/{movieNum}")
-    public ResponseEntity<?> getInterestList(@PathVariable int movieNum) {
-        List<Interest> interestList = userService.myInterestList(movieNum);
-
-        // 관심 영화 목록이 비어 있지 않고 null이 아닌 경우
-        if (interestList != null && !interestList.isEmpty()) {
-            // 좋아요 누른 영화 리스트 목록을 보여줌
-            return ResponseEntity.ok(interestList);
-        } else {
-            // 관심 영화 목록이 비어 있거나 null인 경우
-            // 기본 페이지를 보여줌
-            return ResponseEntity.ok().body("user/interest");
-
+    @GetMapping("/interest/{userNum}")
+    public String getInterestList(@PathVariable int userNum, Model model) {
+        List<Interest> interestList = userService.myInterestList(userNum);
+        log.info("interest {}{}{}" , interestList);
+        model.addAttribute("interestList", interestList);
+        return "user/mypage";
         }
 
-    }
+
 
     //리뷰보기
     @GetMapping("/review/{userNum}")
-    public String getMyReviewList(@PathVariable int userNum,
-                                  Model model) {
+    public String getMyReviewList(@PathVariable int userNum, Model model) {
         List<Review> reviewList = userService.myReviewList(userNum);
+        log.info("reviewList: {}", reviewList);
+        model.addAttribute("reviews", reviewList);
 
-        if (reviewList != null && !reviewList.isEmpty()) {
-            model.addAttribute("reviews", reviewList);
-        }
-
-        return "user/review"; //영화세부페이지
+        return "user/mypage";
     }
 
 
@@ -166,7 +154,7 @@ public class UserController {
 //        return "user/mypage";
 //    }
 
-//마이페이지 -- 테스트
+//마이페이지 -- 테스트 --userid, userNum 맞춰야함
     @GetMapping("/mypage")
     public String getMypage(Model model) {
         String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값

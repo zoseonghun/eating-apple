@@ -50,7 +50,7 @@
 
                         <div class="mypage-info">
                             <div class="mypage-id">
-                                ${(login == null) ? '' :login.user-Id}님 반갑습니다
+                                ${data.user_id}님 반갑습니다
                             </div>
                             <div class="mybasic-info">
                                 <div class="profile-image">
@@ -58,14 +58,13 @@
                                 </div>
 
                                 <div class="usergrade">
-                                    ${(login == null) ? '' :login.user-Id}님의 등급은 ${(login == null) ? ''
-                                    :login.user-grade} 입니다
+                                    ${data.user_id}님의 등급은 ${data.user_grade} 입니다
                                 </div>
 
                                 <div class="mypoint">
                                     <div class="mycoupon">
                                         <p>나의 포인트</p>
-                                        <p>${(login == null) ? '' :login.user-point}점</p>
+                                        <p>${data.user_point}점</p>
                                     </div>
 
                                     <div class="myrealpoint">
@@ -79,6 +78,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="bottom-info">
                             <div class="bottom-info-detail">
@@ -95,16 +95,40 @@
                                     <div class="mydetail-contents">
                                         <div class="mydetail-myreview">
                                             <p>내용</p>
-                                        </div>
 
-                                        <div class="mydetail-myinterest">
-                                            <p>내용내용</p>
+                                            <%-- 리뷰 데이터를 표시할 위치 --%>
+                                            <div id="review-container">
+                                                <c:if test="${not empty reviews}">
+                                                    <c:forEach items="${reviews}" var="review">
+                                                        <p>${review.userNum}</p>
+                                                        <p>${review.rateNum}</p>
+                                                        <p>${review.movieNum}</p>
+                                                        <p>${review.rateReview}</p>
+                                                        <p>${review.rateScore}</p>
+                                                        <p>${review.rateDate}</p>
+                                                        <p>${review.rateLike}</p>
+                                                        
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
+
+                                            <%-- 관련영화목록 데이터를 표시할 위치 --%>
+                                            <div id="interest-container">
+                                                <c:if test="${not empty interests}">
+                                                    <c:forEach items="${interests}" var="interest">
+                                                        <p>${interest.userNum}</p>
+                                                        <p>${interest.movieNum}</p>
+                                                        <p>${interest.movieTitle}</p>
+                                                        <p>${interest.imgUrl}</p>                                                    
+                                                    </c:forEach>
+                                                </c:if>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -113,34 +137,147 @@
     </div>
 
     <script>
+
+// //유저정보 가져오기
+// function fetchUserInfo() {
+//     const userId = "유저1"; 
+//     const reviewContainer = document.querySelector('#review-container');
+
+//     fetch(`/mypage/${userId}`) // 실제 경로에 맞게 수정
+//         .then(response => response.json())
+//         .then(data => {
+//             // 유저1의 정보를 화면에 표시
+//             document.querySelector('.mypage-id').textContent = `${data.user_id}님 반갑습니다`;
+//             document.querySelector('.usergrade').textContent = `${data.user_id}님의 등급은 ${data.user_grade}입니다`;
+//             document.querySelector('.mycoupon p:last-child').textContent = `${data.user_point}점`;
+
+//             // 리뷰 데이터 표시
+//             if (Array.isArray(data.reviews)) {
+//                 data.reviews.forEach(review => {
+//                     const reviewElement = document.createElement('p');
+//                     reviewElement.textContent = review.rate_review;
+//                     reviewContainer.appendChild(reviewElement);
+//                 });
+//             }
+//         })
+//         .catch(error => {
+//             console.log('유저 정보를 가져오는 중 오류가 발생했습니다.', error);
+//         });
+// }
+
+// // 페이지 로드 시 유저 정보를 가져와 실행되는 함수
+// window.onload = function() {
+//     fetchUserInfo(); // 유저 정보를 가져와 화면에 표시
+// }
+
+
+
+
+
+
         // 아래 hover 박스 클릭시 발생되는 이벤트 작성
 
-  
-document.querySelector('.top-button-tag').onclick = e => {
+        document.querySelector('.top-button-tag').onclick = e => {
+    console.log('클릭: ', e.target);
 
-console.log('클릭: ', e.target);
+    if (e.target.matches('#myreview')) {
+        console.log('리뷰 부르기~');
+        const userNum = 1; // 사용자 번호
 
-if (e.target.matches('#my-review')) {
-    console.log('리뷰 부르기~');
-    fetch('/user/review')
-    .then
-} else if (e.target.matches('#favorite-movie')) {
-    console.log('.관심영화부르기');
-    fetch('/user/interest')
-}
+        fetch(`/review/${userNum}`) // URL 경로를 "/review/{userNum}"로 수정
+            .then(response => response.json())
+            .then(data => {
+                // 데이터를 표시할 HTML 요소 선택
+                const reviewContainer = document.querySelector('#review-container'); // 선택자 수정
+
+                // 데이터를 HTML에 추가
+                if (Array.isArray(data)) {
+                    data.forEach(review => {
+                        const reviewElement = document.createElement('p');  
+                        reviewContainer.appendChild(reviewElement);
+                    });
+                } else {
+                    // 데이터가 배열이 아닌 경우 처리
+                    console.log('데이터가 유효하지 않습니다.');
+                }
+            })
+            .catch(error => {
+                console.log('데이터를 가져오는 중 오류가 발생했습니다.', error);
+            });
+    }
+ 
 };
 
 
+// 관심 영화 목록 가져오기
+document.querySelector('.top-button-tag').onclick = e => {
+    console.log('클릭: ', e.target);
 
-          
+    if (e.target.matches('#interestmoview')) {
+        console.log('관련영화목록~');
+        const userNum = 1; // 사용자 번호
+
+        fetch(`/interest/${userNum}`) 
+            .then(response => response.json())
+            .then(data => {
+                const interestContainer = document.querySelector('#interest-container');
+
+                // 데이터를 HTML에 추가
+                if (Array.isArray(data)) {
+                    data.forEach(interest => {
+                        const interestElement = document.createElement('p');
+                        // interestElement.textContent = interest.movieTitle;
+                        interestContainer.appendChild(interestElement);
+                    });
+                } else {
+                    console.log('데이터가 유효하지 않습니다.');
+                }
+            })
+            .catch(error => {
+                console.log('데이터를 가져오는 중 오류가 발생했습니다.', error);
+            });
+    }
+};
+
+// // 관심 영화 목록 가져오기
+// document.querySelector('.top-button-tag').onclick = e => {
+//     console.log('클릭: ', e.target);
+
+//     if (e.target.matches('#interestmoview')) {
+//         console.log('관련영화목록~');
+//         const userNum = 1; // 사용자 번호
+
+//         fetch(`/interest/${userNum}`) // URL 경로를 "/review/{userNum}"로 수정
+//             .then(response => response.json())
+//             .then(data => {
+//                 // 데이터를 표시할 HTML 요소 선택
+//                 const reviewContainer = document.querySelector('#interest-container'); // 선택자 수정
+
+//                 // 데이터를 HTML에 추가
+//                 if (Array.isArray(data)) {
+//                     data.forEach(review => {
+//                         const reviewElement = document.createElement('p');
+//                         reviewElement.textContent = review.rateReview; // rate_review 대신 rateReview로 수정
+//                         reviewContainer.appendChild(reviewElement);
+//                     });
+//                 } else {
+//                     // 데이터가 배열이 아닌 경우 처리
+//                     console.log('데이터가 유효하지 않습니다.');
+//                 }
+//             })
+//             .catch(error => {
+//                 console.log('데이터를 가져오는 중 오류가 발생했습니다.', error);
+//             });
+//     }
+ 
+// };
+
+
+</script>
+
+
 
     </script>
-
-
-
-
 </body>
-
-
 
 </html>

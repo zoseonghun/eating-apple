@@ -30,12 +30,13 @@ public class UserService {
 
 
 
-    public boolean join(SignUpRequestDTO dto) {
+    public boolean join(SignUpRequestDTO dto, String savePath) {
         User user = User.builder()
                 .userId(dto.getUserId())
                 .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
+                .profileImage(savePath)
                 .build();
 
 //         매퍼에게 회원정보 전달해서 저장명령

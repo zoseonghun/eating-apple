@@ -7,6 +7,7 @@ import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.entity.MovieImg;
+import com.trifling.things.repository.InterestMapper;
 import com.trifling.things.repository.MovieMapper;
 import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,10 @@ public class MovieService {
 
     private final MovieMapper movieMapper;
     private final RateMapper rateMapper;
+    private final InterestMapper interestMapper;
+
+    // 영화 평가점수 만점 수치 (테스트중 만점 10점)
+    private static final int MAX_SCORE_COUNT = 10;
 
     // 영화 목록 전체 조회 (필터링 붙여야된다)
     public List<MovieListResponseDTO> movieList(Search page) {
@@ -44,11 +49,13 @@ public class MovieService {
         Movie movie = movieFindOne(movieNum);
         log.info("movieNum {}: ", movie.getMovieNum());
 
-        int counted = rateMapper.countScore(movieNum); // 해당 영화의 총 평가 갯수
+        double counted = rateMapper.countScore(movieNum) * MAX_SCORE_COUNT; // 해당 영화의 총 평가 갯수
 
-//        movie.setMovieScore(movie.getMovieScore());
+        movie.setMovieScore( (int)(movie.getMovieScore() / counted  * 100));
 
-        return new MovieDetailResponseDTO(movie, movieImgs);
+        int likeCount = interestMapper.movieLikeCount(movieNum);
+
+        return new MovieDetailResponseDTO(movie, movieImgs, likeCount);
 
     }
 

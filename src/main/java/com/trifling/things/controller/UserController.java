@@ -63,26 +63,27 @@ public class UserController {
     }
 
     // 회원가입 처리 요청
-       @PostMapping("/signup")
+    @PostMapping("/signup")
     public String signUpUser(@ModelAttribute SignUpRequestDTO dto) {
         //boolean flag = userService.join(dto);
 
+        log.info("dto : {}", dto);
 
-            // 프로필 사진 처리 추가 해야함
-            // 리퀘스트 dto에서 사진정보 변수화(리퀘스트 dto 추가 해줘야함)
-            MultipartFile profileImage = dto.getProfileImage();
-            // 프로필사진 최종 이름겸주소
-           String savePath = null;
-           // 회원가입떄 프로필 사진을 첨부한경우
-           if (!profileImage.isEmpty()) {
-               // 실제 로컬 스토리지에 파일을 업로드하는 로직
-               savePath = FileUtil.uploadFile(profileImage, rootPath);
-           }
-           // 추가 flag라 위에 flag 삭제해야함
-           boolean flag = userService.join(dto, savePath);
+        // 프로필 사진 처리 추가 해야함
+        // 리퀘스트 dto에서 사진정보 변수화(리퀘스트 dto 추가 해줘야함)
+        MultipartFile profileImage = dto.getProfileImage();
+        // 프로필사진 최종 이름겸주소
+        String savePath = null;
+        // 회원가입떄 프로필 사진을 첨부한경우
+        if (!profileImage.isEmpty()) {
+            // 실제 로컬 스토리지에 파일을 업로드하는 로직
+            savePath = FileUtil.uploadFile(profileImage, rootPath);
+        }
+        // 추가 flag라 위에 flag 삭제해야함
+        boolean flag = userService.join(dto, savePath);
 
 
-           if (flag) {
+        if (flag) {
 
 
             return "movies/list"; // 메인페이지 이동, 수정확인필요
@@ -104,17 +105,17 @@ public class UserController {
     }
 
 
-        // 로그인 양식 요청
-/*        @GetMapping("/login")
-        public String signIn(HttpServletRequest request) {
-            log.info("/user/sign-in GET - forwarding to jsp");
-            String referer = request.getHeader("Referer");
-            log.info("referer : {}", referer);
+    // 로그인 양식 요청
+//    @GetMapping("/login")
+//    public String signIn(HttpServletRequest request) {
+//        log.info("/user/sign-in GET - forwarding to jsp");
+//        String referer = request.getHeader("Referer");
+//        log.info("referer : {}", referer);
+//
+//        return "user/login";
+//    }
 
-            return "user/login";
-        }
-
-        // 로그인 검증 요청 --로그인?
+    // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST");
@@ -151,7 +152,7 @@ public class UserController {
 
 
     //정보수정 -modify
-      @PutMapping("/modify/{userId}")
+    @PutMapping("/modify/{userId}")
     public ResponseEntity<String> modifyUser(@PathVariable String userId,
                                              @RequestBody UserModifyRequestDTO requestDTO) {
         requestDTO.setUserId(userId);
@@ -169,11 +170,10 @@ public class UserController {
     @GetMapping("/interest/{userNum}")
     public String getInterestList(@PathVariable int userNum, Model model) {
         List<Interest> interestList = userService.myInterestList(userNum);
-        log.info("interest {}{}{}" , interestList);
+        log.info("interest {}{}{}", interestList);
         model.addAttribute("interestList", interestList);
         return "user/mypage";
-        }
-
+    }
 
 
     //리뷰보기
@@ -195,18 +195,15 @@ public class UserController {
 //        return "user/mypage";
 //    }
 
-//마이페이지 -- 테스트 --userid, userNum 맞춰야함
+    //마이페이지 -- 테스트 --userid, userNum 맞춰야함
     @GetMapping("/mypage")
     public String getMypage(Model model) {
         String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값
         List<MyInfoResponseDTO> mypage = userService.getMypage(userId);
         model.addAttribute("mypage", mypage);
-        log.info("lll: {} ",mypage);
+        log.info("lll: {} ", mypage);
         return "user/mypage";
     }
-
-
-
 
 
     // 로그아웃 요청 처리
@@ -231,4 +228,6 @@ public class UserController {
 
         return "redirect:/user/sign-in";
     }
+
+
 }

@@ -26,11 +26,12 @@
         .rating label {
             float: right;
             cursor: pointer;
-            color: gray;
+            color: gray;            
         }
 
         .rating label:before {
             content: '\2605';
+            font-size: 30px;
         }
 
         .rating input:checked~label {
@@ -89,18 +90,29 @@
                     <div class="modal-bottom-box">
                         <div class="modal-bottom-left-box">
                             <div class="modal-bottom-movie-title-box">
-                                <span class="modal-movie-title">GUARDIANS OF GALAXY VOL. 3</span>
+                                <span class="modal-movie-title">${detail.movieTitle}</span>
                             </div>
                             <div class="modal-bottom-writer-info-box">
                                 <div class="modal-bottom-writer-profile-box">
-                                    <img src="/assets/img/people-httpswww.flaticon.com.png" alt="">
+                                    <c:if test="${login.sprofileimage != null}">
+                                        <img src="/assets/img/people-httpswww.flaticon.com.png" alt="">
+                                    </c:if>
+                                                                        
                                 </div>
                                 <div class="modal-bottom-writer-id-score-box">
-                                    <div class="modal-bottom-writer-id-box"><span>coticablue2</span></div>
-                                    <div class="modal-bottom-writer-score-box"><span>324점</span></div>
+                                    <div class="modal-bottom-writer-id-box"><span>${login.suserid}</span></div>
+                                    <div class="modal-bottom-writer-score-box"><span>${login.suserpoint}점</span></div>
                                 </div>
                                 <div class="modal-bottom-writer-score-icon-box">
-                                    <img src="/assets/img/crown.png" alt="#">
+                                    <c:if test="${login.susergrade == 'BASIC'}">
+                                        <img src="/assets/img/basicmedal.png" alt="#">
+                                    </c:if>
+                                    <c:if test="${login.susergrade == 'GOLD'}">
+                                        <img src="/assets/img/goldmedal.png" alt="#">
+                                    </c:if>
+                                    <c:if test="${login.susergrade == 'VIP'}">
+                                        <img src="/assets/img/quality.png" alt="#">
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +122,7 @@
                                     <img src="/assets/img/love-httpswww.flaticon.com.png" alt="">
                                 </div>
                                 <div class="modal-bottom-like-num-box">
-                                    <span>123 ♥</span>
+                                    <span>${detail.likeCount}</span>
                                 </div>
                             </div>
                             <div class="modal-bottom-save-button-box">
@@ -153,7 +165,7 @@
             <div class="video-container">
                 <c:forEach var="d" items="${detail.movieImgList}">
                     <c:if test="${d.imgName == 'youtube'}">
-                        <iframe src="${d.imgUrl}" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/${d.imgUrl}" frameborder="0" allowfullscreen></iframe>
                     </c:if>
                 </c:forEach>
             </div>
@@ -178,14 +190,14 @@
                         <h3>사소한 평가</h3>
                     </div>
                     <div class="rank-num-box">
-                        <p>${detail.score}</p>
+                        <p>${detail.score}%</p>
                     </div>
                     <div class="like">
                         <img src="/assets/img/like-httpswww.flaticon.com.png" alt="#">
                         <h3>LIKE</h3>
                     </div>
                     <div class="like-num-box">
-                        <p>158♥</p>
+                        <p>${detail.likeCount}♥</p>
                     </div>
                 </div>
             </div>
@@ -200,9 +212,22 @@
             </div>
             <div><span>${detail.info}</span>
             </div>
-            <div>
-                <p>관람가: <span>${detail.age}</span></p>
-            </div>
+            <c:if test="${detail.age} == 1">
+                <div>
+                    <p>관람가: <span>전체 관람가</span></p>
+                </div>
+            </c:if>
+            <c:if test="${detail.age gt 1 && detail.age lt 19}">
+                <div>
+                    <p>관람가: <span>${detail.age}세 이상</span></p>
+                </div>
+            </c:if>
+            <c:if test="${detail.age == 19}">
+                <div>
+                    <p>관람가: <span>청소년 관람불가</span></p>
+                </div>
+            </c:if>
+            
             <div>
                 <p>장르: <span>${detail.genre}</span></p>
             </div>
@@ -218,6 +243,9 @@
 
         <div class="detail-rate-modal-button">
             <button id="openModal">사소한평가 남기기</button>
+        </div>
+        <div>
+            <button id="movie-like">이 영화 찜하기</button>
         </div>
 
         <div class="movie-detail-ranks-box">
@@ -255,6 +283,14 @@
 
         const mNum = '${detail.movieNum}';
         console.log(mNum);
+
+
+        const $likeBtn = document.getElementById('movie-like');
+
+        $likeBtn.onclick = e => {
+
+
+        }
 
 
         const ratingInputs = document.querySelectorAll('.rating input');

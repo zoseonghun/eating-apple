@@ -4,7 +4,7 @@
 
 <div id="header">
     <!-- 로고 추가 수정 -->
-    <h1 id="logo"><a href="#"><img src="/assets/img/logo4.png" alt=""></a></h1>
+    <h1 id="logo"><a href="/movies/list"><img src="/assets/img/logo4.png" alt=""></a></h1>
     <!-- 로고 추가 수정 -->
     <div id="navigation">
         <ul>

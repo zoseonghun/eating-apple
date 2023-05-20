@@ -47,20 +47,21 @@ public class UserController {
     // 회원가입 양식 요청
     @GetMapping("/login")
     public String login() {
-        log.info("/user/login GET - forwarding to jsp");
+        log.info("/user/sign-up GET - forwarding to jsp");
         return "user/login"; // 회원가입 폼이 있는 jsp 연결
-
     }
 
     // 회원가입 처리 요청
        @PostMapping("/signup")
     public String signUpUser(@ModelAttribute SignUpRequestDTO dto) {
         boolean flag = userService.join(dto);
+
         if (flag) {
             return "movies/list"; // 메인페이지 이동, 수정확인필요
         } else {
             return "user/login"; // 회원 가입 실패 페이지로 이동
         }
+
     }
 
 
@@ -74,17 +75,28 @@ public class UserController {
         return ResponseEntity.ok().body(flag);
     }
 
-    // 로그인 검증 요청 --로그인?
+
+        // 로그인 양식 요청
+/*        @GetMapping("/login")
+        public String signIn(HttpServletRequest request) {
+            log.info("/user/sign-in GET - forwarding to jsp");
+            String referer = request.getHeader("Referer");
+            log.info("referer : {}", referer);
+
+            return "user/login";
+        }
+
+        // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST");
+
 
         LoginResult result = userService.authenticate(dto);
 
 
         // 로그인 성공시
         if (result == SUCCESS) {
-
             // 서버에서 세션에 로그인 정보를 저장
             userService.maintainLoginState(request.getSession(), dto.getUserId());
 
@@ -108,6 +120,7 @@ public class UserController {
 //            return ""; // 사용자를 찾지 못한 경우의 페이지로 이동
 //        }
 //    }
+
 
     //정보수정 -modify
       @PutMapping("/modify/{userId}")

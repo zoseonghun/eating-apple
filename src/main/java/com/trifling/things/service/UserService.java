@@ -4,7 +4,10 @@ import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
+import com.trifling.things.dto.response.UserModifyResponseDTO;
+import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
+
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
@@ -37,18 +40,18 @@ public class UserService {
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
                 .build();
-
-//         매퍼에게 회원정보 전달해서 저장명령
+//        매퍼에게 회원정보 전달해서 저장명령
         userMapper.save(user);
         return true;
     }
+
 
     public User findUser(String userId) {
         return userMapper.findUser(userId);
     }
 
-
     public boolean modify(UserModifyRequestDTO dto) {
+
         User user = User.builder().
                 userId(dto.getUserId())
                 .userPassword(dto.getUserPassword())

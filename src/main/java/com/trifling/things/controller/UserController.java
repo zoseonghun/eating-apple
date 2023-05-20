@@ -9,6 +9,7 @@ import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
 import com.trifling.things.service.LoginResult;
 import com.trifling.things.service.UserService;
+import com.trifling.things.util.LoginUtil;
 import com.trifling.things.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.trifling.things.service.LoginResult.SUCCESS;
@@ -199,4 +202,30 @@ public class UserController {
         return "user/mypage";
     }
 
+
+
+
+
+    // 로그아웃 요청 처리
+    @GetMapping("/sign-out")
+    public String signOut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
+
+        HttpSession session = request.getSession();
+
+        // 로그인 중인지 확인
+        if (LoginUtil.isLogin(session)) {
+
+            // 세션에서 login정보를 제거
+            session.removeAttribute("login");
+
+            // 세션을 아예 초기화 (세션만료 시간 초기화)
+            session.invalidate();
+            return "redirect:/movies/list";
+        }
+
+        return "redirect:/user/sign-in";
+    }
 }

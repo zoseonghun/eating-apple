@@ -418,3 +418,17 @@ color: red;
 overflow: hidden;
 pointer-events: none;
 }
+
+
+/*추가 css*/
+.header-li {
+    margin-top: 40px;
+}
+
+#search{
+    display: none;
+}
+#sub-navigation {
+    border-bottom: none;
+
+}

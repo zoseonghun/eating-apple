@@ -2,6 +2,8 @@ package com.trifling.things.repository;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -10,4 +12,10 @@ import lombok.*;
 public class Review {
     private String userNum;
     private int rateNum;
+    private int movieNum;
+    private String rateReview;
+    private int rateScore;
+    private LocalDateTime rateDate;
+    private int rateLike;
+
 }

@@ -4,7 +4,10 @@ import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
+import com.trifling.things.dto.response.UserModifyResponseDTO;
+import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
+
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
@@ -38,18 +41,18 @@ public class UserService {
                 .userGender(dto.getUserGender())
                 .profileImage(savePath)
                 .build();
-
-//         매퍼에게 회원정보 전달해서 저장명령
+//        매퍼에게 회원정보 전달해서 저장명령
         userMapper.save(user);
         return true;
     }
+
 
     public User findUser(String userId) {
         return userMapper.findUser(userId);
     }
 
-
     public boolean modify(UserModifyRequestDTO dto) {
+
         User user = User.builder().
                 userId(dto.getUserId())
                 .userPassword(dto.getUserPassword())
@@ -95,8 +98,8 @@ public List<Review> myReviewList(int userNum){
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList( int movieNum) {
-        List<Interest> interestUser = userMapper.interestList(movieNum);
+    public List<Interest> myInterestList( int userNum) {
+        List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
 

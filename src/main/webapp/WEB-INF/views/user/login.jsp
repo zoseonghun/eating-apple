@@ -16,13 +16,20 @@
 </head>
 
 <body>
-<!-- START PAGE SOURCE -->
-<div id="shell">
-<%--  헤더--%>
-    <%@ include file="../include/header.jsp" %>
-    <%--  헤더 end--%>
-        <div id="sub-navigation">
 
+    <!-- START PAGE SOURCE -->
+    <div id="shell">
+        <div id="header">
+            <h1 id="logo"><a href="#">MovieHunter</a></h1>
+            <div id="navigation">
+                <ul>
+                    <li><a class="active" href="#">HOME</a></li>
+                    <li><a href="#">MOVIE</a></li>
+                    <li><a href="#">로그인</a></li>
+                </ul>
+            </div>
+            <div id="sub-navigation">
+            </div>
         </div>
     </div>
     <div id="main">
@@ -148,8 +155,8 @@
                     </div>
                 </div>
             </div>
+            <div class="cl"></div>
         </div>
-        <div class="cl"></div>
     </div>
 
 <!-- footer -->
@@ -371,5 +378,6 @@
         alert('비밀번호가 틀렸어~~');
     }
 </script>
+
 </body>
 </html>

@@ -5,7 +5,6 @@ import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.entity.user.Interest;
-import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
 import com.trifling.things.service.LoginResult;
 import com.trifling.things.service.UserService;
@@ -59,9 +58,8 @@ public class UserController {
     // 회원가입 양식 요청
     @GetMapping("/login")
     public String login() {
-        log.info("/user/login GET - forwarding to jsp");
+        log.info("/user/sign-up GET - forwarding to jsp");
         return "user/login"; // 회원가입 폼이 있는 jsp 연결
-
     }
 
     // 회원가입 처리 요청
@@ -85,10 +83,13 @@ public class UserController {
 
 
            if (flag) {
+
+
             return "movies/list"; // 메인페이지 이동, 수정확인필요
         } else {
             return "user/login"; // 회원 가입 실패 페이지로 이동
         }
+
     }
 
 
@@ -102,17 +103,28 @@ public class UserController {
         return ResponseEntity.ok().body(flag);
     }
 
-    // 로그인 검증 요청 --로그인?
+
+        // 로그인 양식 요청
+/*        @GetMapping("/login")
+        public String signIn(HttpServletRequest request) {
+            log.info("/user/sign-in GET - forwarding to jsp");
+            String referer = request.getHeader("Referer");
+            log.info("referer : {}", referer);
+
+            return "user/login";
+        }
+
+        // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST");
+
 
         LoginResult result = userService.authenticate(dto);
 
 
         // 로그인 성공시
         if (result == SUCCESS) {
-
             // 서버에서 세션에 로그인 정보를 저장
             userService.maintainLoginState(request.getSession(), dto.getUserId());
 
@@ -137,6 +149,7 @@ public class UserController {
 //        }
 //    }
 
+
     //정보수정 -modify
       @PutMapping("/modify/{userId}")
     public ResponseEntity<String> modifyUser(@PathVariable String userId,
@@ -153,34 +166,24 @@ public class UserController {
 
 
     //영화찜하기
-    @GetMapping("/interest/{movieNum}")
-    public ResponseEntity<?> getInterestList(@PathVariable int movieNum) {
-        List<Interest> interestList = userService.myInterestList(movieNum);
-
-        // 관심 영화 목록이 비어 있지 않고 null이 아닌 경우
-        if (interestList != null && !interestList.isEmpty()) {
-            // 좋아요 누른 영화 리스트 목록을 보여줌
-            return ResponseEntity.ok(interestList);
-        } else {
-            // 관심 영화 목록이 비어 있거나 null인 경우
-            // 기본 페이지를 보여줌
-            return ResponseEntity.ok().body("user/interest");
-
+    @GetMapping("/interest/{userNum}")
+    public String getInterestList(@PathVariable int userNum, Model model) {
+        List<Interest> interestList = userService.myInterestList(userNum);
+        log.info("interest {}{}{}" , interestList);
+        model.addAttribute("interestList", interestList);
+        return "user/mypage";
         }
 
-    }
+
 
     //리뷰보기
     @GetMapping("/review/{userNum}")
-    public String getMyReviewList(@PathVariable int userNum,
-                                  Model model) {
+    public String getMyReviewList(@PathVariable int userNum, Model model) {
         List<Review> reviewList = userService.myReviewList(userNum);
+        log.info("reviewList: {}", reviewList);
+        model.addAttribute("reviews", reviewList);
 
-        if (reviewList != null && !reviewList.isEmpty()) {
-            model.addAttribute("reviews", reviewList);
-        }
-
-        return "user/review"; //영화세부페이지
+        return "user/mypage";
     }
 
 
@@ -192,7 +195,7 @@ public class UserController {
 //        return "user/mypage";
 //    }
 
-//마이페이지 -- 테스트
+//마이페이지 -- 테스트 --userid, userNum 맞춰야함
     @GetMapping("/mypage")
     public String getMypage(Model model) {
         String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값

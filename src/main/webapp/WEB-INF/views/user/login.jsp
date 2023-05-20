@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <!-- START PAGE SOURCE -->
     <div id="shell">
         <div id="header">
@@ -28,7 +29,6 @@
                 </ul>
             </div>
             <div id="sub-navigation">
-
             </div>
         </div>
     </div>
@@ -159,14 +159,9 @@
         </div>
     </div>
 
-    <div id="footer">
-        <p class="lf">Copyright © 2010
-            <a href="#">SiteName</a> - All Rights Reserved</p>
-        <p class="rf">Design by
-            <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
-        </p>
-        <div style="clear:both;"></div>
-    </div>
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
 </div>
 <!-- END PAGE SOURCE -->
 <%--

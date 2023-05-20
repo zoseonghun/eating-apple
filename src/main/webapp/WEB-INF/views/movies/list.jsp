@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/owlcarousel/owl.carousel.min.css">
   <link rel="stylesheet" href="/owlcarousel/owl.theme.default.min.css">
 
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="/owlcarousel/owl.carousel.min.js"></script>
 

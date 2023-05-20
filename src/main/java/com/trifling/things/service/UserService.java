@@ -33,12 +33,13 @@ public class UserService {
 
 
 
-    public boolean join(SignUpRequestDTO dto) {
+    public boolean join(SignUpRequestDTO dto, String savePath) {
         User user = User.builder()
                 .userId(dto.getUserId())
                 .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
+                .profileImage(savePath)
                 .build();
 //        매퍼에게 회원정보 전달해서 저장명령
         userMapper.save(user);
@@ -116,13 +117,10 @@ public List<Review> myReviewList(int userNum){
         User user = findUser(userId);
 
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
-                .sUserId(user.getUserId())
-                .sUserAge(user.getUserAge())
-                .sUserGender(user.getUserGender().toString())
-                .sUserEmail(user.getUserEmail())
-                .sUserPoint(user.getUserPoint())
-                .sUserGrade(user.getUserGrade().toString())
-                .profileImage(user.getProfileImage())
+                .suserid(user.getUserId())
+                .suserage(user.getUserAge())
+                .susergender(user.getUserGender().toString())
+                .sprofileimage(user.getProfileImage())
                 .build();
 
         // 세션에 유저 정보 저장

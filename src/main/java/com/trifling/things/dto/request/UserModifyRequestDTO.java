@@ -1,4 +1,4 @@
-package com.trifling.things.dto.response;
+package com.trifling.things.dto.request;
 
 import lombok.*;
 
@@ -11,9 +11,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class UserModifyResponseDTO {
+public class UserModifyRequestDTO {
     //내 정보 수정가능한 dto
 
+    private String userId;
     @NotBlank
     private String userPassword;
 

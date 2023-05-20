@@ -8,6 +8,7 @@ import com.trifling.things.dto.response.RateResponseDTO;
 import com.trifling.things.service.RateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -43,8 +44,6 @@ public class RateController {
     }
 
 
-
-
     // 평가 등록 기능
     @PostMapping("/post")
     public ResponseEntity<?> rateWrite(
@@ -58,9 +57,21 @@ public class RateController {
         log.info("/api/v1/rate/post : POST!");
         log.info("param: {}", dto);
 
+
         RateListResponseDTO rateList = rateService.rateWrite(dto);
 
+
         return ResponseEntity.ok().body(rateList); // 보여줄 responsedto를 실어 줘야함
+    }
+
+    // 평가 등록 모달 진입 전 평가 남겼는지 확인하는 기능
+    @GetMapping("/{userNum}/num/{movieNum}")
+    public ResponseEntity<?> isBeforeRate(
+           @PathVariable int userNum
+           , @PathVariable int movieNum) {
+        log.info("userNum:{}, movieNum:{}",userNum,movieNum);
+        int check = rateService.insertBeforeCheck(movieNum, userNum);
+        return ResponseEntity.ok().body(check);
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})

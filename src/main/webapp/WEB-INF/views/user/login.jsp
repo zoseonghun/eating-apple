@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -32,113 +31,121 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
             </div>
         </div>
-        <div id="main">
-            <div id="content">
-                <div class="container">
-                    <div class="row full-height justify-content-center">
-                        <div class="col-12 text-center align-self-center py-5">
-                            <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                                <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-                                <label for="reg-log"></label>
-                                <div class="card-3d-wrap mx-auto">
-                                    <div class="card-3d-wrapper">
-                                        <div class="card-front">
-                                            <div class="center-wrap">
-                                                <div class="section text-center">
-                                                    <h4 class="mb-4 pb-3">Log In</h4>
-                                                    <div class="form-group">
+    </div>
+    <div id="main">
+        <div id="content">
+            <div class="container">
+                <div class="row full-height justify-content-center">
+                    <div class="col-12 text-center align-self-center py-5">
+                        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                            <label for="reg-log"></label>
+                            <div class="card-3d-wrap mx-auto">
+                                <div class="card-3d-wrapper">
+                                    <div class="card-front">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-4 pb-3">Log In</h4>
+                                                <div class="form-group">
 
-                                                        <form action="/user/login" name="login" method="post"
-                                                              id="signInForm">
-                                                            <div class="form-group">
-                                                                <input type="id" name="userId" class="form-style"
-                                                                       placeholder="4~14글자의 영문, 숫자로 입력하세요." id="logid"
-                                                                       autocomplete="off">
-                                                                <i class="input-icon uil uil-at"></i>
-                                                            </div>
-                                                            <div class="form-group mt-2">
-                                                                <input type="password" name="userPassword"
-                                                                       class="form-style" placeholder="비밀번호를 입력해주세요."
-                                                                       id="logpass" autocomplete="off">
-                                                                <i class="input-icon uil uil-lock-alt"></i>
-                                                            </div>
-                                                            <input class="autologin" type="checkbox" id="auto-login"
-                                                                   name="auto-login"/>
-                                                            <label for="auto-login">자동 로그인</label>
-                                                            <div class="front-button">
-                                                                <input type="button" value="login" class="btn mt-4"
-                                                                       id="login-btn">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-back">
-                                            <div class="center-wrap">
-                                                <div class="section text-center">
-                                                    <h4 class="mb-4 pb-3">Sign Up</h4>
 
-                                                    <form action="/user/login" name="login" id="signUpForm"
-                                                          method="post" enctype="multipart/form-data">
+
+
+                                                    <form action="/user/sign-in" name="sign-in" method="post"
+                                                          id="signInForm">
                                                         <div class="form-group">
-                                                            <p><strong>아이디를 입력해주세요.</strong><span id="idChk"></span></p>
                                                             <input type="id" name="userId" class="form-style"
-                                                                   placeholder="아이디를 입력해주세요." id="signupId"
+                                                                   placeholder="4~14글자의 영문, 숫자로 입력하세요." id="logid"
                                                                    autocomplete="off">
-                                                            <i class="input-icon uil uil-user"></i>
-                                                        </div>
-                                                        <div class="form-group mt-2">
-                                                            <p><strong>비밀번호를 입력해주세요.</strong><span id="pwChk"></span>
-                                                            </p>
-                                                            <input type="password" name="userPassword"
-                                                                   class="form-style" placeholder="비밀번호를 입력해주세요."
-                                                                   id="signupPassword" autocomplete="off">
                                                             <i class="input-icon uil uil-at"></i>
                                                         </div>
                                                         <div class="form-group mt-2">
-                                                            <p><strong>비밀번호를 한번 더 입력해주세요.</strong><span
-                                                                    id="pwChk2"></span></p>
-                                                            <input type="password" class="form-style"
-                                                                   placeholder="비밀번호를 한번 더 입력해주세요."
-                                                                   id="signUpPasswordCheck" autocomplete="off">
+                                                            <input type="password" name="userPassword"
+                                                                   class="form-style" placeholder="비밀번호를 입력해주세요."
+                                                                   id="logpass" autocomplete="off">
                                                             <i class="input-icon uil uil-lock-alt"></i>
                                                         </div>
-                                                        <div class="form-group mt-2">
-                                                            <p><strong>이메일을 입력해주세요.</strong><span id="emailChk"></span>
-                                                            </p>
-                                                            <input type="email" name="userEmail" class="form-style"
-                                                                   placeholder="이메일을 입력해주세요." id="signupEmail"
-                                                                   autocomplete="off">
-                                                            <i class="input-icon uil uil-lock-alt"></i>
-                                                        </div>
-                                                        <div class="form-group mt-2">
-                                                            <p><strong>나이를 입력해주세요.</strong><span id="ageChk"></span></p>
-                                                            <input type="text" name="userAge" class="form-style"
-                                                                   placeholder="나이를 입력해주세요" id="signupAge"
-                                                                   autocomplete="off">
-                                                            <i class="input-icon uil uil-lock-alt"></i>
-                                                        </div>
-                                                        <div class="form-group mt-2">
-                                                            <p><strong>성별을 입력해주세요.</strong><span id="genderChk"></span>
-                                                            </p>
-                                                            <label>
-                                                                <input type="radio" name="userGender" value="MALE"
-                                                                       id="genderMale">
-                                                                남성
-                                                            </label>
-                                                            <label>
-                                                                <input type="radio" name="userGender" value="FEMALE"
-                                                                       id="genderFemale">
-                                                                여성
-                                                            </label>
-                                                        </div>
-                                                        <div class="back-button">
-                                                            <input type="button" value="회원가입" class="btn mt-4"
-                                                                   id="loginBtn">
+<%--                                                        <input class="autologin" type="checkbox" id="auto-login"--%>
+<%--                                                               name="auto-login"/>--%>
+<%--                                                        <label for="auto-login">자동 로그인</label>--%>
+                                                        <div class="front-button">
+                                                            <input type="submit" value="login" class="btn mt-4"
+                                                                   id="login-btn">
                                                         </div>
                                                     </form>
+
+
+
+
+
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-4 pb-3">Sign Up</h4>
+
+                                                <form action="/user/login" name="login" id="signUpForm"
+                                                      method="post" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <p><strong>아이디를 입력해주세요.</strong><span id="idChk"></span></p>
+                                                        <input type="id" name="userId" class="form-style"
+                                                               placeholder="아이디를 입력해주세요." id="signupId"
+                                                               autocomplete="off">
+                                                        <i class="input-icon uil uil-user"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <p><strong>비밀번호를 입력해주세요.</strong><span id="pwChk"></span>
+                                                        </p>
+                                                        <input type="password" name="userPassword"
+                                                               class="form-style" placeholder="비밀번호를 입력해주세요."
+                                                               id="signupPassword" autocomplete="off">
+                                                        <i class="input-icon uil uil-at"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <p><strong>비밀번호를 한번 더 입력해주세요.</strong><span
+                                                                id="pwChk2"></span></p>
+                                                        <input type="password" class="form-style"
+                                                               placeholder="비밀번호를 한번 더 입력해주세요."
+                                                               id="signUpPasswordCheck" autocomplete="off">
+                                                        <i class="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <p><strong>이메일을 입력해주세요.</strong><span id="emailChk"></span>
+                                                        </p>
+                                                        <input type="email" name="userEmail" class="form-style"
+                                                               placeholder="이메일을 입력해주세요." id="signupEmail"
+                                                               autocomplete="off">
+                                                        <i class="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <p><strong>나이를 입력해주세요.</strong><span id="ageChk"></span></p>
+                                                        <input type="text" name="userAge" class="form-style"
+                                                               placeholder="나이를 입력해주세요" id="signupAge"
+                                                               autocomplete="off">
+                                                        <i class="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <p><strong>성별을 입력해주세요.</strong><span id="genderChk"></span>
+                                                        </p>
+                                                        <label>
+                                                            <input type="radio" name="userGender" value="MALE"
+                                                                   id="genderMale">
+                                                            남성
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="userGender" value="FEMALE"
+                                                                   id="genderFemale">
+                                                            여성
+                                                        </label>
+                                                    </div>
+                                                    <div class="back-button">
+                                                        <input type="button" value="회원가입" class="btn mt-4"
+                                                               id="loginBtn">
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -150,17 +157,18 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             </div>
             <div class="cl"></div>
         </div>
-
-        <div id="footer">
-            <p class="lf">Copyright © 2010
-                <a href="#">SiteName</a> - All Rights Reserved</p>
-            <p class="rf">Design by
-                <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
-            </p>
-            <div style="clear:both;"></div>
-        </div>
     </div>
-    <!-- END PAGE SOURCE -->
+
+    <div id="footer">
+        <p class="lf">Copyright © 2010
+            <a href="#">SiteName</a> - All Rights Reserved</p>
+        <p class="rf">Design by
+            <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
+        </p>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<!-- END PAGE SOURCE -->
 <%--
 
     <script>
@@ -365,6 +373,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     </script>
 
 --%>
+<script>
+    const serverMessage = '${msg}';
+     console.log('msg: ' + serverMessage);
+
+    if (serverMessage === 'NO_ACC') {
+        alert('회원가입부터 하세요~~ 제발~~');
+    } else if (serverMessage === 'NO_PW') {
+        alert('비밀번호가 틀렸어~~');
+    }
+</script>
 
 </body>
 </html>

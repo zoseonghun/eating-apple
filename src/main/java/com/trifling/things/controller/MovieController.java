@@ -29,6 +29,11 @@ public class MovieController {
     private final MovieService movieService;
 
 
+    @GetMapping
+    public String mainGo() {
+        return "redirect:/movies/list";
+    }
+
     // 영화 전체 목록 조회
     // 영화 포스터, 이름, 페이지
     @GetMapping("/list")
@@ -40,6 +45,21 @@ public class MovieController {
 
         PageMaker maker = new PageMaker(page, movieService.getCount(page));
 
+        List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
+        for (MainListResponseDTO mainListResponseDTO : listByNum) {
+            log.info("{}:",mainListResponseDTO);
+
+        }
+        List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
+        // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
+
+//        MainListTransResponseDTO transResponseDTO = new MainListTransResponseDTO();
+//        transResponseDTO.setNumList(listByNum);
+//        transResponseDTO.setScoreList(listByScore);
+
+
+        model.addAttribute("topTenListByNum", listByNum);
+        model.addAttribute("topTenListByScore", listByScore);
         model.addAttribute("mList", dto);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);
@@ -61,15 +81,16 @@ public class MovieController {
     @ResponseBody
     public ResponseEntity<?> mainList() {
 
-        List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
+//        List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
+//
+//        List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
+//        // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
+//
+//        MainListTransResponseDTO dto = new MainListTransResponseDTO();
+//        dto.setNumList(listByNum);
+//        dto.setScoreList(listByScore);
 
-        List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
-        // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
-
-        MainListTransResponseDTO dto = new MainListTransResponseDTO();
-        dto.setNumList(listByNum);
-        dto.setScoreList(listByScore);
-
-        return ResponseEntity.ok().body(dto);
+//        return ResponseEntity.ok().body(dto);
+        return null;
     }
 }

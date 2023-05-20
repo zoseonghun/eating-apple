@@ -2,18 +2,23 @@ package com.trifling.things.service;
 
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.response.UserModifyResponseDTO;
 import com.trifling.things.entity.user.Gender;
+import com.trifling.things.dto.request.UserModifyRequestDTO;
+
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
 import com.trifling.things.repository.UserMapper;
+import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.trifling.things.service.LoginResult.*;
@@ -31,7 +36,7 @@ public class UserService {
     public boolean join(SignUpRequestDTO dto) {
         User user = User.builder()
                 .userId(dto.getUserId())
-                .userPassword(dto.getUserPassword())
+                .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
                 .build();
@@ -41,16 +46,22 @@ public class UserService {
     }
 
 
-    public boolean modify(UserModifyResponseDTO dto) {
+    public User findUser(String userId) {
+        return userMapper.findUser(userId);
+    }
+
+    public boolean modify(UserModifyRequestDTO dto) {
+
         User user = User.builder().
-                userPassword(dto.getUserPassword())
+                userId(dto.getUserId())
+                .userPassword(dto.getUserPassword())
                 .userEmail(dto.getUserEmail())
                 .build();
 
         boolean flag = userMapper.modify(user);
-
-        return true;
+        return flag;
     }
+
 
 
     // 중복검사 서비스 처리
@@ -86,20 +97,35 @@ public List<Review> myReviewList(int userNum){
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList(int userNum, int moiveNum) {
-        List<Interest> interestUser = userMapper.interestList(userNum, moiveNum);
+    public List<Interest> myInterestList( int userNum) {
+        List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
 
 
+
     //마이페이지
-    public   List<MyInfoResponseDTO> getMypage(int userNum){
-        return userMapper.myInfo(userNum);
+    public   List<MyInfoResponseDTO> getMypage(String userId){
+        return userMapper.myInfo(userId);
     }
 
-    //회원정보 조회
-    public List<User> userList() {
-        return userMapper.userList();
-    }
 
+    public void maintainLoginState(HttpSession session, String userId) {
+
+        // 로그인 성공하면 세션에 로그인한 회원의 정보들을 저장
+        User user = findUser(userId);
+
+        LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
+                .sUserId(user.getUserId())
+                .sUserAge(user.getUserAge())
+                .sUserGender(user.getUserGender().toString())
+                .sUserEmail(user.getUserEmail())
+                .sUserPoint(user.getUserPoint())
+                .sUserGrade(user.getUserGrade().toString())
+                .profileImage(user.getProfileImage())
+                .build();
+
+        // 세션에 유저 정보 저장
+        session.setAttribute(LoginUtil.LOGIN_KEY, dto);
+    }
 }

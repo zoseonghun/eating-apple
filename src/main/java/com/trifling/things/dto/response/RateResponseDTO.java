@@ -1,5 +1,6 @@
 package com.trifling.things.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trifling.things.entity.Rate;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class RateResponseDTO {
     private int movieNum;
     private String rateReview;
     private int rateScore;
+    @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime rateDate;
     private String userId;
 
@@ -30,5 +32,6 @@ public class RateResponseDTO {
         this.rateReview = rate.getRateReview();
         this.rateScore = rate.getRateScore();
         this.rateDate = rate.getRateDate();
+        this.userId = rate.getUserId();
     }
 }

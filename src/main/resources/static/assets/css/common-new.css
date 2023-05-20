@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+
 * {
     margin:0;
     padding:0;
@@ -254,7 +256,7 @@ h1#logo a {
     float:left;
     width:20px;
     height: 25px;
-    /* background-image: url("images/apple.png"); */
+    background-image: url("images/apple.png");
     background-size: cover;
     margin-left: 2px;
 }
@@ -270,9 +272,8 @@ h1#logo a {
     margin-top: 7px;
 }
 #news {
-    width:50%;
+    width:460px;
     float:left;
-    border: 1px solid #ffffff;
 }
 #news .head {
     width:460px;
@@ -284,13 +285,12 @@ h1#logo a {
     font-size: 16px;
 }
 #coming {
-    width:50%;
+    width:490px;
     float:left;
- 
-    border: 1px solid #ffffff;
+    padding-left:30px;
 }
 #coming .head {
-    width:460px;
+    width:490px;
     padding-top:11px;
     padding-bottom:14px;
 }
@@ -391,19 +391,3 @@ h1#logo a {
     opacity: 0.8;
 }
 
-
-/* 리스트 메인 합치기 메인 태그 바로 자식 상자 */
-
-.main-movie-list-container {
-    border: 1px solid #ffffff;
-  }
-
-  .main-movie-slide-container {
-    border: 1px solid #ffffff;
-  }
-
-  .main-movie-rate-list-container {
-    border: 1px solid #ffffff;
-    width: 980px;
-    display: flex;
-}

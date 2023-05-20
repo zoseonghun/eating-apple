@@ -16,8 +16,8 @@
         <typeAlias alias="movie" type="com.trifling.things.entity.Movie"/>
         <typeAlias alias="img" type="com.trifling.things.entity.MovieImg"/>
         <!--        파일 추가-->
-        <typeAlias alias="interest" type="com.trifling.things.entity.user.Interest"/>
-        <typeAlias alias="review" type="com.trifling.things.repository.Review"/>
+        <typeAlias alias="Interest" type="com.trifling.things.entity.user.Interest"/>
+        <typeAlias alias="Review" type="com.trifling.things.repository.Review"/>
         <typeAlias alias="MyInfoResponseDTO" type="com.trifling.things.dto.response.MyInfoResponseDTO"/>
 
 <!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->

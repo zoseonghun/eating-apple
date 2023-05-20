@@ -5,7 +5,7 @@
 
 <mapper namespace="com.trifling.things.repository.UserMapper">
 
-    <insert id="save">
+    <insert id="save" parameterType="User">
         INSERT INTO m_user
             (user_id, user_password, user_email, user_gender, user_age)
         VALUES
@@ -14,7 +14,7 @@
 
     <select id="findUser" resultType="user">
         select
-        user_id, user_password, user_email, user_gender, user_age
+        user_id, user_password, user_email, user_gender, user_age, profile_image
         from m_user
         WHERE user_id = #{userId}
     </select>
@@ -50,12 +50,15 @@
         FROM m_user mu
         JOIN m_rate mr ON mu.user_num = mr.user_num
         JOIN m_movie mm ON mr.movie_num = mm.movie_num
-        where mu.user_num = #{userNum};
+        where mu.user_id = #{userId}
     </select>
 
-    <select id="interestList" resultType="interest">
-        SELECT i.movie_img_num, i.movie_title, m.movie_num
-        FROM m_interest i
-        JOIN m_movie m ON i.movie_title = m.movie_title;
+    <select id="interestList" resultType="Interest">
+        SELECT m_movie.movie_num, m_movie.movie_title, m_img.img_url, m_user.user_num
+        FROM m_movie
+        INNER JOIN m_img ON m_movie.movie_num = m_img.movie_num
+        INNER JOIN m_interest ON m_movie.movie_num = m_interest.movie_num
+        INNER JOIN m_user ON m_user.user_num = m_interest.user_num
+        where m_user.user_num = #{userNum}
     </select>
 </mapper>

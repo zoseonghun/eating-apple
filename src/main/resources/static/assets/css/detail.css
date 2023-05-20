@@ -369,4 +369,52 @@
     object-fit: cover;
 }
 
+.detail-rate-modal-button {
+    height: 40px;
+    margin-top: 20px;
 
+}
+
+.detail-rate-modal-button button {
+    background-color: #51ff00;
+    height: 40px;
+    width: 130px;
+    font-weight: 900;
+
+
+    color: rgb(56, 112, 109);
+
+    margin-left: 731px;
+    border-radius: 10px;
+}
+
+.movie-detail-ranks-box {
+    margin-top: 10px;
+}
+.movie-detail-rate-containier{
+    margin-bottom: 10px;
+}
+
+.star {
+position: relative;
+font-size: 2rem;
+color: #ddd;
+}
+
+.star input {
+width: 100%;
+height: 100%;
+position: absolute;
+left: 0;
+opacity: 0;
+cursor: pointer;
+}
+
+.star span {
+width: 0;
+position: absolute; 
+left: 0;
+color: red;
+overflow: hidden;
+pointer-events: none;
+}

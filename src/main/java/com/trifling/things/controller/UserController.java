@@ -53,13 +53,19 @@ public class UserController {
     @Value("${file.upload.root-path}")
     private String rootPath;
 
+    //로그인 양식 요청
+    @GetMapping("/login")
+    public String login() {
+        log.info("/user/login GET - forwarding to jsp");
+        return "user/login"; // 로그인 페이지로 이동
+    }
     //회원가입
     // 회원 가입 요청
     // 회원가입 양식 요청
-    @GetMapping("/login")
-    public String login() {
+    @GetMapping("/sign-up")
+    public String signUp() {
         log.info("/user/sign-up GET - forwarding to jsp");
-        return "user/login"; // 회원가입 폼이 있는 jsp 연결
+        return "user/sign-up"; // 회원가입 페이지로 이동
     }
 
     // 회원가입 처리 요청

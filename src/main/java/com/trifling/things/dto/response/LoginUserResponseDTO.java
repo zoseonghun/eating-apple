@@ -19,5 +19,6 @@ public class LoginUserResponseDTO {
     private String susergender;
     private int suserage;
     private String sprofileimage;
+    private String susergrade;
 
 }

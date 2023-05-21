@@ -146,9 +146,23 @@ h1#logo a img{
     text-decoration:underline;
 }
 #search {
-    width:346px;
+    width:440px;
     margin:0 0 0 auto;
 }
+
+.form-selected {
+    width: 200px;
+    padding: .8em .5em;
+    font-family: inherit;
+    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #999;
+    border-radius: 0px;
+  }
+
+
 #search label {
     float:left;
     display:inline;
@@ -431,6 +445,7 @@ h1#logo a img{
 }
 #navigation{
     padding-top: 0;
+    
 }
 .header-li {
     margin-top: 33px;

@@ -9,6 +9,7 @@ import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
+import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,10 +49,7 @@ public class MovieController {
         PageMaker maker = new PageMaker(page, movieService.getCount(page));
 
         List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
-        for (MainListResponseDTO mainListResponseDTO : listByNum) {
-            log.info("{}:",mainListResponseDTO);
 
-        }
         List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
         // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
 
@@ -68,29 +68,25 @@ public class MovieController {
     }
 
     @GetMapping("/detail")
-    public String movieDetail(Model model, int mno) {
+    public String movieDetail(Model model, int mno, HttpServletRequest request) {
         log.info("/movies/detail : GET");
+
+        boolean flag = false;
+
+        // 세션 확인
+        Object login = request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
+
+        if (login != null) flag = true;
+
+        if (!flag) return "redirect:/movies/list";
+
         movieService.movieScoreRenew(mno);
         MovieDetailResponseDTO dto = movieService.movieDetail(mno);
-
+        log.info("age: {}", dto.getScore());
         model.addAttribute("detail", dto);
+
+
         return "movies/detail";
     }
 
-    @GetMapping("/main")
-    @ResponseBody
-    public ResponseEntity<?> mainList() {
-
-//        List<MainListResponseDTO> listByNum = movieService.mainTopTenList("num");
-//
-//        List<MainListResponseDTO> listByScore = movieService.mainTopTenList("score");
-//        // mainTopTenList를 부를 수 있는 조건을 추가하면 다른 내용을 가져올수 있음
-//
-//        MainListTransResponseDTO dto = new MainListTransResponseDTO();
-//        dto.setNumList(listByNum);
-//        dto.setScoreList(listByScore);
-
-//        return ResponseEntity.ok().body(dto);
-        return null;
-    }
 }

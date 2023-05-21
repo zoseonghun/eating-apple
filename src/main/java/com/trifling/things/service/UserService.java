@@ -4,7 +4,7 @@ import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
-import com.trifling.things.dto.response.UserModifyResponseDTO;
+//import com.trifling.things.dto.response.UserModifyResponseDTO;
 import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 
@@ -121,6 +121,7 @@ public List<Review> myReviewList(int userNum){
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
                 .sprofileimage(user.getProfileImage())
+                .susergrade(user.getUserGrade().name())
                 .build();
 
         // 세션에 유저 정보 저장

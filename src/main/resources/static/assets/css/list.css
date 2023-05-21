@@ -39,6 +39,15 @@
 
 /* ------------------------------------ */
 
+.form-select{
+    width: 90px;
+    font-size: inherit;
+    line-height: 1.2;
+    padding: 0.3rem 2rem 0.3rem 0.5rem;
+    display: inline;
+
+}
+
 /* 영화 상세 목록 장르 아래 문구 */
 
 #main{

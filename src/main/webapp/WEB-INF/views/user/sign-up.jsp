@@ -30,26 +30,27 @@
 
         <div id="container">
             <div class="container sign-up">
-                <form action="/user/sign-up" name="signup" method="POST" enctype="multipart/form-data">
+
+                    <form action="/user/sign-up" name="signup" method="POST" enctype="multipart/form-data">
                     <div class="profile">
                         <div class="thumbnail-box">
                             <img src="/assets/img/image-add.png" alt="프로필 썸네일">
                         </div>
                         <label for="profile-img">프로필 사진</label>
-                        <input type="file" id="profile-img" name="profileimg" accept="image/*">
+                        <input type="file" id="profile-img" name="profileImage" accept="image/*">
                     </div>
                     <div class="form-group">
                         <label for="id">아이디</label>
                         <input type="text" id="id" name="userId" placeholder="아이디를 입력하세요">
                     </div>
                     <div class="form-group">
-                        <label for="password">비밀번호</label>
-                        <input type="password" id="userPassword" name="password" placeholder="비밀번호를 입력하세요">
+                        <label for="userPassword">비밀번호</label>
+                        <input type="password" id="userPassword" name="userPassword" placeholder="비밀번호를 입력하세요">
                     </div>
-                    <div class="form-group">
-                        <label for="password">비밀번호 확인</label>
-                        <input type="password" id="userPasswordChk" name="password" placeholder="비밀번호를 한번 더 입력하세요">
-                    </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="password">비밀번호 확인</label>--%>
+<%--                        <input type="password" id="userPasswordChk" name="password" placeholder="비밀번호를 한번 더 입력하세요">--%>
+<%--                    </div>--%>
                     <div class="form-group">
                         <label for="email">이메일</label>
                         <input type="email" id="email" name="userEmail" placeholder="이메일을 입력하세요">
@@ -61,8 +62,8 @@
                     <div class="form-group">
                         <label for="gender">성별</label>
                         <select id="gender" name="userGender">
-                            <option value="male">MALE</option>
-                            <option value="female">FEMALE</option>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
                         </select>
                     </div>
                     <button type="submit">회원가입</button>
@@ -90,6 +91,39 @@
 
 
 
+<script>
 
+
+
+
+    // 프로필 사진 관련 스크립트
+    const $profile = document.querySelector('.profile');
+    const $fileInput = document.getElementById('profile-img');
+
+    // 프로필 추가 영역 클릭 이벤트
+    $profile.onclick = e => {
+        $fileInput.click();
+    };
+
+    // 프로필 사진 선택시 썸네일 이벤트
+    $fileInput.onchange = e => {
+        // 첨부한 파일의 데이터를 읽어오기
+        const fileData = $fileInput.files[0];
+        // console.log(fileData);
+
+        // 첨부파일의 바이트데이터를 읽어들이는 객체 생성
+        const reader = new FileReader();
+
+        // 파일의 바이트데이터를 읽어서 img태그의 src속성이나
+        // a태그의 href속성에 넣기 위한 형태로 읽음
+        reader.readAsDataURL(fileData);
+
+        // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+        reader.onloadend = e => {
+            const $imgTag = document.querySelector('.thumbnail-box img');
+            $imgTag.setAttribute('src', reader.result);
+        };
+    };
+</script>
 </body>
 </html>

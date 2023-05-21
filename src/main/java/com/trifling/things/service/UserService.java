@@ -78,13 +78,16 @@ log.info(String.valueOf(flagNum));
     public LoginResult authenticate(LoginRequestDTO dto) {
 
         User foundUser = userMapper.findUser(dto.getUserId());
+        log.info("dto:{}",foundUser.getUserPassword());
 
         // 회원가입 여부 확인
         if (foundUser == null) {
+            log.info("account unmatch");
             return NO_ACC;
         }
         // 비밀번호 일치 확인
-        if (encoder.matches(dto.getUserPassword(), foundUser.getUserPassword())) {
+        if (!encoder.matches(dto.getUserPassword(), foundUser.getUserPassword())) {
+           log.info("password unmatch");
             return NO_PW;
         }
 

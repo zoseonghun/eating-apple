@@ -69,10 +69,10 @@ public class UserController {
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public String signUpUser(@ModelAttribute SignUpRequestDTO dto) {
         //boolean flag = userService.join(dto);
-
+        log.info("/user/sign-up POST - !!");
         log.info("dto : {}", dto);
 
         // 프로필 사진 처리 추가 해야함
@@ -92,9 +92,9 @@ public class UserController {
         if (flag) {
 
 
-            return "redirec:/movies/list"; // 메인페이지 이동, 수정확인필요
+            return "user/login"; // 메인페이지 이동, 수정확인필요
         } else {
-            return "user/login"; // 회원 가입 실패 페이지로 이동
+            return "user/sign-up"; // 회원 가입 실패 페이지로 이동
         }
 
     }

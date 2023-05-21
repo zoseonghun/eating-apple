@@ -69,39 +69,39 @@
                             </div>
 
                         </div>
-                        <div class="modal-top-md-box">
+                        <!-- <div class="modal-top-md-box">
                             <div class="modal-top-modify-box">
                                 <a id="modal-modify" href="#">수 정</a>
                             </div>
                             <div class="modal-top-delete-box">
                                 <a href="#">삭 제</a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="modal-tot-close-button-box">
                             <span class="close">&times;</span>
                         </div>
                     </div>
                     <div class="modal-middle-box">
                         <div class="modal-middle-rate-content-box">
-                            <textarea name="modal-content" id="modal-content" cols="30" rows="10"></textarea>
-                            <!-- <input type="text" id="rate-content" class="rate-content"> -->
+                            <textarea name="modal-content" id="modal-content" class="rate-content" cols="30" rows="10"></textarea>
+                            
                         </div>
                     </div>
                     <div class="modal-bottom-box">
                         <div class="modal-bottom-left-box">
                             <div class="modal-bottom-movie-title-box">
-                                <span class="modal-movie-title">${detail.movieTitle}</span>
+                                <span class="modal-movie-title">${detail.title}</span>
                             </div>
                             <div class="modal-bottom-writer-info-box">
-                                <div class="modal-bottom-writer-profile-box">
+                                <div id="user-num" class="modal-bottom-writer-profile-box" data-un="${login.susernum}">
                                     <c:if test="${login.sprofileimage != null}">
                                         <img src="/assets/img/people-httpswww.flaticon.com.png" alt="">
                                     </c:if>
                                                                         
                                 </div>
                                 <div class="modal-bottom-writer-id-score-box">
-                                    <div class="modal-bottom-writer-id-box"><span>${login.suserid}</span></div>
-                                    <div class="modal-bottom-writer-score-box"><span>${login.suserpoint}점</span></div>
+                                    <div class="modal-bottom-writer-id-box"><span id="rate-writer">${login.suserid}</span></div>
+                                    
                                 </div>
                                 <div class="modal-bottom-writer-score-icon-box">
                                     <c:if test="${login.susergrade == 'BASIC'}">
@@ -181,8 +181,7 @@
             </div>
             <div class="detail-rank">
                 <div class="rank-box-title">
-                    <h2>${detail.title}</h2>
-                    <!-- <p>run time ${detail.runtime}</p> -->
+                    <h2>${detail.title}</h2>                    
                 </div>
                 <div class="rank-box-ranks">
                     <div class="rank">
@@ -242,7 +241,12 @@
         </div>
 
         <div class="detail-rate-modal-button">
-            <button id="openModal">사소한평가 남기기</button>
+            <c:if test="${empty login}">
+                <a id="rate-none-btn" href="/user/login">평가는 로그인 후 작성 가능합니다.</a>
+            </c:if>
+            <c:if test="${not empty login}">                    
+                <button id="openModal">사소한평가 남기기</button>
+            </c:if>
         </div>
         <div>
             <button id="movie-like">이 영화 찜하기</button>
@@ -266,25 +270,37 @@
 
 
     <script>
+
+        const URL = '/rates';
+
+        const mNum = '${detail.movieNum}';
+
         var $modal = document.getElementById("myModal");
         var $btn = document.getElementById("openModal");
         var $span = document.getElementsByClassName("close")[0];
 
-        $btn.onclick = e => {
-            $modal.style.display = "block";
+        
 
+        $btn.onclick = e => {
+
+            fetch('/rates/'+ mNum)
+                .then(res => res.json())
+                .then(check => {
+                    if (!check) {
+                        $modal.style.display = "block";
+                    } else {
+                        alert('평가는 한번만 남길 수 있으며 마이페이지에서 평가의 수정, 삭제가 가능합니다.');
+                    }
+                });
+
+            // console.log('이거 왜 안나와 : ' + insertCheck);
         }
 
         $span.onclick = e => {
             $modal.style.display = "none";
         }
 
-        const URL = '/rates';
-
-        const mNum = '${detail.movieNum}';
-        console.log(mNum);
-
-
+        // 좋아요 만들거야?
         const $likeBtn = document.getElementById('movie-like');
 
         $likeBtn.onclick = e => {
@@ -293,15 +309,7 @@
         }
 
 
-        const ratingInputs = document.querySelectorAll('.rating input');
-        let selectedRating = null;
-
-        ratingInputs.forEach(input => {
-            input.addEventListener('change', function () {
-                selectedRating = this.value;
-                console.log(selectedRating);
-            });
-        });
+        
 
 
         // 평가 목록 가져오기
@@ -328,17 +336,17 @@
 
             if (rates === null || rates.length === 0) {
                 tag += "<div class='speech-bubble'>" +
-                    "<div class='movie-detail-icon-text-box'>" +
-                    "<div class='movie-detail-rate-icon'>" +
-                    "<img src='/assets/img/apple.png' alt=''>" +
-                    "</div>" +
-                    "<div class='movie-detail-rate-text'>" +
-                    "<span>" +
-                    "<b> 첫 평가를 남겨주세요! </b>" +
-                    "</span>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>";
+                            "<div class='movie-detail-icon-text-box'>" +
+                                "<div class='movie-detail-rate-icon'>" +
+                                    "<img src='/assets/img/apple.png' alt=''>" +
+                                "</div>" +
+                                "<div class='movie-detail-rate-text'>" +
+                                    "<span>" +
+                                        "<b> 첫 평가를 남겨주세요! </b>" +
+                                    "</span>" +
+                                "</div>" +
+                            "</div>" +
+                       "</div>";
             } else {
                 var i = 0;
                 for (let rate of rates) {
@@ -355,46 +363,46 @@
 
 
 
-                    tag += `<div class="movie-detail-rate-containier" >
-                                <div class="movie-detail-rate-containier" data-rn="\${rateNum}">
-                                    <div class="speech-bubble">
-                                        <div class="movie-detail-icon-text-box">
-                                            <div class="movie-detail-rate-icon">
-                                                <img src="/assets/img/apple.png" alt=""> 
-                                            </div>
-                                        </div>
-                                        <div class="movie-detail-rate-text">
-                                            <span> 
-                                                \${rateReview}
-                                            </span>
-                                        </div>                                    
-                                        <div class="movie-detail-rate-time-like-box">
-                                            <div class="movie-detail-rate-time-box">
-                                                <p>
-                                                    <span> \${rateDate}</span> |<span> Rating: \${rateScore}5</span>
-                                                </p>
-                                            </div>                                    
-                                            <div class="movie-detail-rate-like-box">
-                                                <img src="/assets/img/star.png" alt=""> 
-                                            </div>                                    
+                tag += `<div class="movie-detail-rate-containier" >
+                            <div class="movie-detail-rate-containier" data-rn="\${rateNum}">
+                                <div class="speech-bubble">
+                                    <div class="movie-detail-icon-text-box">
+                                        <div class="movie-detail-rate-icon">
+                                            <img src="/assets/img/apple.png" alt=""> 
                                         </div>
                                     </div>
-                                    <div class="movie-detail-rate-writer">
-                                        <div class="writer-name-score-box">
-                                            <div class="writer-name">
-                                                <span>
-                                                    \${userId} 
-                                                </span>
-                                            </div>
-                                            <div class="writer-score">
-                                                <span>
-                                                    324 
-                                                </span>
-                                            </div>
-                                        </div>                             
+                                    <div class="movie-detail-rate-text">
+                                        <span> 
+                                            \${rateReview}
+                                        </span>
+                                    </div>                                    
+                                    <div class="movie-detail-rate-time-like-box">
+                                        <div class="movie-detail-rate-time-box">
+                                            <p>
+                                                <span> \${rateDate}</span> |<span> Rating: \${rateScore}/5</span>
+                                            </p>
+                                        </div>                                    
+                                        <div class="movie-detail-rate-like-box">
+                                            <img src="/assets/img/star.png" alt=""> 
+                                        </div>                                    
                                     </div>
                                 </div>
-                            </div>`;
+                                <div class="movie-detail-rate-writer">
+                                    <div class="writer-name-score-box">
+                                        <div class="writer-name">
+                                            <span>
+                                                \${userId} 
+                                            </span>
+                                        </div>
+                                        <div class="writer-score">
+                                            <span>
+                                                324 
+                                            </span>
+                                        </div>
+                                    </div>                             
+                                </div>
+                            </div>
+                        </div>`;
 
                 }
             }
@@ -412,23 +420,41 @@
 
         // 임시: 얘는 모달창이 열린곳에서 포스트가 넘어가는 기능임 
         function ratePostButton() {
-            const $postBtn = document.getElementById('modal-save');
-            const userid = 'test2';
-            $postBtn.onclick = e => {
-                const $review = document.getElementById('modal-content');
-                // const $score = 
+            // 평가 등록 버튼
+            const $postBtn = document.getElementById('modal-save');            
+            
+            $postBtn.onclick = e => {            
+
+                // 유저 id
+                const id = document.getElementById('rate-writer').textContent;
+                // 유저 num
+                const num = document.getElementById('user-num').dataset.un;
+                // 평가 내용
+                const review = document.querySelector('.rate-content').value;
+                // 별점
+                const $starScore = document.querySelectorAll('.rating input[type="radio"]');
+                let selected = 0;
+
+                $starScore.forEach(target => {
+                    if (target.checked) {
+                        selected = target.value;
+                    }
+                });
 
                 const payload = {
                     // userNum => 세션 dto에서 가져와야되고                
-                    userNum: 5,
+                    userNum: num,
                     movieNum: mNum,
                     // 입력값 받아오고
-                    rateReview: 'asd',
+                    rateReview: review,
                     // 입력 점수 받아오고
-                    rateScore: 9,
+                    rateScore: selected,
                     // 세션에서 받아와야됨
-                    userId: userid
+                    userId: id
                 };
+
+
+                console.log(payload);
 
                 const requestInfo = {
                     method: 'POST',
@@ -443,12 +469,10 @@
                         if (res.status === 200) {
                             alert('평가가 정상적으로 등록되었습니다.');
                             // 등록 모달 닫기
-                            window.addEventListener('click', e => {
-                                // 모달 디스플레이 none 처리 등
-
-                                // 평가 리스트 출력
-                                getRateList();
-                            });
+                            
+                                $modal.style.display = "none";
+                                location.reload();
+                            
                             // $rw.value = '';
                         } else {
                             alert('댓글 등록에 실패함!');
@@ -458,26 +482,7 @@
             }
         }
 
-        const stars = document.querySelectorAll('.rating input[type="radio"]');
-        stars.forEach((star) => {
-            star.addEventListener('click', (event) => {
-                const selectedRating = event.target.value;
-                fillStars(selectedRating);
-            });
-        });
-
-        // 선택된 별점 이하의 별을 채웁니다.
-        function fillStars(selectedRating) {
-            const starsContainer = document.querySelector('.rating');
-            const starElements = starsContainer.querySelectorAll('.star');
-            starElements.forEach((star, index) => {
-                if (index < selectedRating) {
-                    star.classList.add('filled');
-                } else {
-                    star.classList.remove('filled');
-                }
-            });
-        }
+        
 
         (function () {
             getRateList();
@@ -485,8 +490,7 @@
             ratePostButton();
         })();
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- footer -->
     <%@ include file="../include/footer.jsp" %>
     <!-- footer end-->

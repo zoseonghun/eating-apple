@@ -27,7 +27,7 @@ public class MovieService {
     private final RateMapper rateMapper;
     private final InterestMapper interestMapper;
 
-    // 영화 평가점수 만점 수치 (테스트중 만점 10점)
+    // 영화 평가점수 만점 수치 (테스트중 만점 10점) -> 5점으로 바꿔야함
     private static final int MAX_SCORE_COUNT = 10;
 
     // 영화 목록 전체 조회 (필터링 붙여야된다)
@@ -45,7 +45,7 @@ public class MovieService {
     public MovieDetailResponseDTO movieDetail(int movieNum) {
 
         List<MovieImg> movieImgs = movieMapper.targetMovieImg(movieNum);
-        System.out.println("movieImgs = " + movieImgs);
+//        System.out.println("movieImgs = " + movieImgs);
         Movie movie = movieFindOne(movieNum);
         log.info("movieNum {}: ", movie.getMovieNum());
 

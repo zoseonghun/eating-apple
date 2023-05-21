@@ -86,7 +86,7 @@ public class UserController {
         if (flag) {
 
 
-            return "movies/list"; // 메인페이지 이동, 수정확인필요
+            return "redirec:/movies/list"; // 메인페이지 이동, 수정확인필요
         } else {
             return "user/login"; // 회원 가입 실패 페이지로 이동
         }

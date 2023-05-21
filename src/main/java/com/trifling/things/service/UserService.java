@@ -67,9 +67,10 @@ public class UserService {
 
     // 중복검사 서비스 처리
     public boolean checkSignUpValue(String type, String keyword) {
-
+log.info(type);
+        log.info(keyword);
         int flagNum = userMapper.isDuplicate(type, keyword);
-
+log.info(String.valueOf(flagNum));
         return flagNum == 1;
     }
 
@@ -121,9 +122,8 @@ public List<Review> myReviewList(int userNum){
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
                 .sprofileimage(user.getProfileImage())
-                .susergrade(user.getUserGrade().name())
                 .build();
-
+log.info("dto:{}",dto);
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
     }

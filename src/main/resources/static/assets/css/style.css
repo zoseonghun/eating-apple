@@ -448,14 +448,15 @@ h1#logo a img{
     
 }
 .header-li {
-    margin-top: 33px;
+    margin-top: 40px;
 }
 
 #navigation ul .header-li-home a{
     color: red;
 }
 
-#navigation ul .header-li-user a{
-    text-decoration: none;
+
+#navigation ul .header-li-user p{
     color: yellow;
+    margin-top: 3px;
 }

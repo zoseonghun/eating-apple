@@ -15,11 +15,10 @@ public class LoginUserResponseDTO {
 
 
 
-    private String sUserId;
-    private String sUserEmail;
-    private String sUserGender;
-    private int sUserAge;
-    private int sUserPoint;
-    private String sUserGrade;
-    private String profileImage;
+    private String suserid;
+    private String susergender;
+    private int suserage;
+    private String sprofileimage;
+    private String susergrade;
+
 }

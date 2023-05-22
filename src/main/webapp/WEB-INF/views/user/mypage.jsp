@@ -278,7 +278,6 @@
                                     <div class="mydetail-contents">
                                         <div class="mydetail-myreview">
 
-
                                             <%-- 리뷰 데이터를 표시할 위치 --%>
                                             <div id="review-finalBox">
                                                 <c:if test="${not empty reviews}">
@@ -297,6 +296,7 @@
                                             </div>
 
                                             <%-- 관련영화목록 데이터를 표시할 위치 --%>
+
                                             <div id="interest-finalBox">
                                                 <c:if test="${not empty interestList}">
 
@@ -310,6 +310,7 @@
                                                                 <img src="/assets/img/endgame.jpg" alt="어벤져스">
                                                             </div>
                                                         </div>
+
                                                     </c:forEach>
                                                 </c:if>
                                             </div>
@@ -317,9 +318,6 @@
 
                                         </div>
                                     </div>
-
-
-
 
                                     <div>
                                         <!-- 이전 버튼 -->
@@ -347,16 +345,6 @@
                                                 href="/user/review?pageNo=${pageMaker.end + 1}&amount=${page.amount}">Next</a>
                                         </c:if>
                                     </div>
-
-
-
-
-
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -462,16 +450,6 @@
             }
         };
 
-
-
-
-
-
-
-
-
-
-
 //         const div = document.querySelector('div');
 
 // // 이전 버튼 생성 여부 확인 및 이벤트 바인딩
@@ -504,10 +482,32 @@
 //     div.appendChild(nextLink);
 // }
 
+//         fetch(`/interest/${userNum}`) // URL 경로를 "/review/{userNum}"로 수정
+//             .then(response => response.json())
+//             .then(data => {
+//                 // 데이터를 표시할 HTML 요소 선택
+//                 const reviewContainer = document.querySelector('#interest-container'); // 선택자 수정
+
+//                 // 데이터를 HTML에 추가
+//                 if (Array.isArray(data)) {
+//                     data.forEach(review => {
+//                         const reviewElement = document.createElement('p');
+//                         reviewElement.textContent = review.rateReview; // rate_review 대신 rateReview로 수정
+//                         reviewContainer.appendChild(reviewElement);
+//                     });
+//                 } else {
+//                     // 데이터가 배열이 아닌 경우 처리
+//                     console.log('데이터가 유효하지 않습니다.');
+//                 }
+//             })
+//             .catch(error => {
+//                 console.log('데이터를 가져오는 중 오류가 발생했습니다.', error);
+//             });
+//     }
+ 
+// };
+
     </script>
-
-
-
 </body>
 
 </html>

@@ -12,13 +12,11 @@
     <!--        WHERE movie_num = #{movie_num}-->
     <!--    </select>-->
 
-    <!--    //찜하기(추가)&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--    <delete id="deletebyMovieNum">-->
+<!--        DELETE FROM m_movie-->
+<!--        WHERE movie_num = #{movieNum}-->
+<!--    </delete>-->
 
-
-    <!--    <delete id="deletebyMovieNum">-->
-    <!--        DELETE FROM m_movie-->
-    <!--        WHERE movie_num = #{movieNum}-->
-    <!--    </delete>-->
     <select id="movieLikeCount" resultType="int">
         SELECT COUNT(*)
         FROM m_interest

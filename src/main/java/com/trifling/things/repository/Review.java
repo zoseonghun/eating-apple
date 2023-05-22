@@ -13,7 +13,6 @@ public class Review {
     private String userNum;
     private int rateNum;
     private int movieNum;
-
     private String movieTitle;
     private String rateReview;
     private int rateScore;

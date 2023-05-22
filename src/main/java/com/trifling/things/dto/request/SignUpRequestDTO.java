@@ -2,6 +2,7 @@ package com.trifling.things.dto.request;
 
 import com.trifling.things.entity.user.Gender;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -32,5 +33,7 @@ public class SignUpRequestDTO {
 
     @NotBlank
     private int userAge;
+
+    private MultipartFile profileImage;
 
 }

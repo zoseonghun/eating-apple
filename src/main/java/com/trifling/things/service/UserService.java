@@ -4,7 +4,10 @@ import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
+//import com.trifling.things.dto.response.UserModifyResponseDTO;
+import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
+
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import com.trifling.things.repository.Review;
@@ -30,25 +33,26 @@ public class UserService {
 
 
 
-    public boolean join(SignUpRequestDTO dto) {
+    public boolean join(SignUpRequestDTO dto, String savePath) {
         User user = User.builder()
                 .userId(dto.getUserId())
                 .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
+                .profileImage(savePath)
                 .build();
-
-//         매퍼에게 회원정보 전달해서 저장명령
+//        매퍼에게 회원정보 전달해서 저장명령
         userMapper.save(user);
         return true;
     }
+
 
     public User findUser(String userId) {
         return userMapper.findUser(userId);
     }
 
-
     public boolean modify(UserModifyRequestDTO dto) {
+
         User user = User.builder().
                 userId(dto.getUserId())
                 .userPassword(dto.getUserPassword())
@@ -113,13 +117,11 @@ public List<Review> myReviewList(int userNum){
         User user = findUser(userId);
 
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
-                .sUserId(user.getUserId())
-                .sUserAge(user.getUserAge())
-                .sUserGender(user.getUserGender().toString())
-                .sUserEmail(user.getUserEmail())
-                .sUserPoint(user.getUserPoint())
-                .sUserGrade(user.getUserGrade().toString())
-                .profileImage(user.getProfileImage())
+                .suserid(user.getUserId())
+                .suserage(user.getUserAge())
+                .susergender(user.getUserGender().toString())
+                .sprofileimage(user.getProfileImage())
+                .susergrade(user.getUserGrade().name())
                 .build();
 
         // 세션에 유저 정보 저장

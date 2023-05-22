@@ -21,7 +21,7 @@ public class AfterLoginInterceptor
         HttpSession session = request.getSession();
 
         if (isLogin(session)) {
-            response.sendRedirect("/account/sign-in");
+            response.sendRedirect("/user/sign-in");
             return false;
         }
         return true;

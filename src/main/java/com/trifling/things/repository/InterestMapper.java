@@ -21,4 +21,6 @@ public interface InterestMapper {
     boolean deletebyMovieNum(
             @Param("movie_num") int movieNum,
             @Param("user_num") int userNum);
+
+    int movieLikeCount(int movieNum);
 }

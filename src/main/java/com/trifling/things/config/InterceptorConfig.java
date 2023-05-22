@@ -27,7 +27,7 @@ public class InterceptorConfig
 
         // 로그인 후처리 인터셉터 설정
         registry.addInterceptor(afterLoginInterceptor)
-                .addPathPatterns("/account/sign-in","/account/sign-up")
+                .addPathPatterns("/user/sign-in","/user/sign-up")
         ;
 
     }

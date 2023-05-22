@@ -36,7 +36,8 @@ div#menu a {
 
 #content {
   /* 틀 삭제 */
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
+  background-color: rgb(243, 243, 243);
   height: 700px;
   display: flex;
   width: 100%;
@@ -71,7 +72,7 @@ div#menu a {
   font-size: 20px;
   font-weight: 700px;
   margin: 30px;
-  color: white;
+  color: black;
   width: 50%;
 }
 
@@ -104,6 +105,7 @@ div#menu a {
   left: 200px;
   top: 40px;
   font-size: 15px;
+  color: black;
 
 }
 
@@ -116,23 +118,31 @@ div#menu a {
   margin-top: 40px;
   /* position: relative; */
   float: right;
+  /* color: black; */
+
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon {
   /* background: teal; */
   /* position: absolute; */
   /* float: right; */
+  /* color: black; */
+
 
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:first-child {
   font-size: 15px;
+  color: black;
+
 
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:last-child {
   text-align: center;
   padding: 17px;
+  color: black;
+
 }
 
 
@@ -147,10 +157,15 @@ div#menu a {
 .mypage .mypage-info .mybasic-info .mypoint .myrealpoint p {
   font-size: 15px;
   margin-bottom: 10px;
+  color: black;
+
 
 }
 
-.mypage .mypage-info .mybasic-info .mypoint .myrealpoint .how-to-get-point {}
+.mypage .mypage-info .mybasic-info .mypoint .myrealpoint .how-to-get-point li{
+  color: black;
+
+}
 
 
 .mypage .frame .bottom-info {
@@ -168,6 +183,8 @@ div#menu a {
 .mypage .frame .bottom-info .bottom-info-detail .myactive {
   font-size: 18px;
   margin: 30px;
+  color: black;
+
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest {
@@ -187,18 +204,20 @@ div#menu a {
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p {
   width: 50%;
-  border: 1px solid wheat;
+  border: 1px solid gray;
   padding: 10px;
+  color: black;
+
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p:hover {
-  background: whitesmoke;
-  color: black;
+  background: black;
+  color: whitesmoke;
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .mydetail-contents {
   width: 80%;
-  border: 1px solid wheat;
+  /* border: 1px solid wheat; */
   margin: auto;
   text-align: center;
   margin-top: 20px;
@@ -223,7 +242,7 @@ div#menu a {
 .interest-container {
   width: 200px;
   height: 200px;
-  border: 1px solid wheat;
+  /* border: 1px solid wheat; */
   /* position: relative; */
 }
 
@@ -232,6 +251,7 @@ div#menu a {
   margin: auto;
   padding: 10px;
   white-space: nowrap;
+  color: black;
   /* background: palegreen; */
   /* width: 200px;
   height: 200px; */
@@ -276,7 +296,7 @@ div#menu a {
   width: 200px;
   height: 200px;
   overflow: hidden; /* 이미지를 넘어가는 부분은 숨김 처리 */
-
+  color: black;
   /* 추가 스타일을 설정할 수 있습니다. */
 }
 

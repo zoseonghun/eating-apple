@@ -20,7 +20,7 @@
                 <li class="header-li header-li-user"><p>${login.suserid}님 환영 합니다!!</p></li>
                 <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
                 <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
-                <li class="header-li"><a href="#">마이페이지</a></li>
+                <li class="header-li"><a href="/user/mypage">마이페이지</a></li>
             </c:if>
 
         </ul>

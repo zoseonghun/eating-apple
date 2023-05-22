@@ -89,19 +89,28 @@
 
 
         <div id="header">
-            <h1 id="logo"><a href="/">MovieHunter</a></h1>
+            <!-- 로고 추가 수정 -->
+            <h1 id="logo"><a href="/movies/list"><img src="/assets/img/logo4.png" alt=""></a></h1>
+            <!-- 로고 추가 수정 -->
             <div id="navigation">
                 <ul>
-                    <li><a class="active" href="/movie/list">HOME</a></li>
-                    <li><a href="#">MOVIE</a></li>
-                    <li><a href="login">로그인</a></li>
+                    <c:if test="${login == null}">
+        
+                        <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                        <li class="header-li"><a href="/user/login">로그인</a></li>
+                        <li class="header-li"><a href="/user/sign-up">회원가입</a></li>
+                    </c:if>
+        
+                    <c:if test="${login != null}">
+                        <li class="header-user-profile-image"><img src="${login.sprofileimage}" alt=""></li>
+                        <li class="header-li header-li-user"><p>${login.suserid}님 환영 합니다!!</p></li>
+                        <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                        <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
+                        <li class="header-li"><a href="/user/mypage">마이페이지</a></li>
+                    </c:if>
+        
                 </ul>
             </div>
-            <div id="sub-navigation">
-
-            </div>
-        </div>
-
 
         <div id="main">
             <div id="content">
@@ -389,13 +398,13 @@
                                 const reviewSet = document.createElement('div');
                                 reviewSet.classList.add('review-container');
                                 reviewSet.innerHTML = `
-                <div class="review-box">
+               
                   <p class="r-movieTitle">${review.movieTitle}</p>
                   <p class="r-rateReview">${review.rateReview}</p>
                   <p class="r-rateScore">${review.rateScore}</p>
                   <p class="r-rateLike">${review.rateLike}</p>
                   <p class="r-rateDate">${review.rateDate}</p>
-                </div>
+                
               `;
                                 reviewContainer.appendChild(reviewSet);
                             });
@@ -450,9 +459,9 @@
             }
         };
 
-//         const div = document.querySelector('div');
+        const div = document.querySelector('div');
 
-// // 이전 버튼 생성 여부 확인 및 이벤트 바인딩
+// 이전 버튼 생성 여부 확인 및 이벤트 바인딩
 // if (${pageMaker.prev}) {
 //     const prevLink = document.createElement('a');
 //     prevLink.href = `/user/review?pageNo=${pageMaker.begin - 1}&amount=${page.amount}`;

@@ -114,8 +114,8 @@ public List<Review> myReviewList(int userNum){
 
 
     //마이페이지
-    public   List<MyInfoResponseDTO> getMypage(String userId){
-        return userMapper.myInfo(userId);
+    public   List<MyInfoResponseDTO> getMypage(int userNum){
+        return userMapper.myInfo(userNum);
     }
 
 

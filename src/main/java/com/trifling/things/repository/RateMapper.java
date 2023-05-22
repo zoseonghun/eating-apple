@@ -35,4 +35,9 @@ public interface RateMapper {
     public int insertBeforeCheck(@Param("movieNum") int movieNum
             , @Param("userNum") int userNum);
 
+    public int insertLike(@Param("movieNum") int movieNum
+            , @Param("userNum") int userNum);
+
+    public int deleteLike(@Param("movieNum") int movieNum
+            , @Param("userNum") int userNum);
 }

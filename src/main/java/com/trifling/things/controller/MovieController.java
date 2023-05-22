@@ -3,10 +3,7 @@ package com.trifling.things.controller;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
 import com.trifling.things.dto.page.Search;
-import com.trifling.things.dto.response.MainListResponseDTO;
-import com.trifling.things.dto.response.MainListTransResponseDTO;
-import com.trifling.things.dto.response.MovieDetailResponseDTO;
-import com.trifling.things.dto.response.MovieListResponseDTO;
+import com.trifling.things.dto.response.*;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
 import com.trifling.things.util.LoginUtil;
@@ -16,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -72,6 +70,9 @@ public class MovieController {
         log.info("/movies/detail : GET");
 
         boolean flag = false;
+        LoginUserResponseDTO login = (LoginUserResponseDTO) request.getSession().getAttribute("login");
+
+        int like = movieService.checkLike(mno, login.getSusernum());
 
         // 세션 확인
 //        Object login = request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
@@ -84,12 +85,13 @@ public class MovieController {
         MovieDetailResponseDTO dto = movieService.movieDetail(mno);
         log.info("score: {}", dto.getScore());
         model.addAttribute("detail", dto);
+        model.addAttribute("jjim", like);
 
 
         return "movies/detail";
     }
 
-//    @GetMapping("/")
+
 
 
 }

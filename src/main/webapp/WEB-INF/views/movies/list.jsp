@@ -33,13 +33,13 @@
     <!-- header -->
     <%@ include file="../include/header.jsp" %>
     <div id="sub-navigation">
-      <ul>
+      <!-- <ul>
         <li><a href="#">액션/느와르</a></li>
         <li><a href="#">SF/판다지</a></li>
         <li><a href="#">스릴러/호러</a></li>
         <li><a href="#">코미디/휴먼</a></li>
 
-      </ul>
+      </ul> -->
       <div id="search">
         <form action="/movies/list" method="get" accept-charset="utf-8">
 
@@ -47,7 +47,6 @@
             <option value="title">제목</option>
             <option value="director">감독</option>
           </select>
-
           <label for="search-field">SEARCH</label>
           <input type="text" name="keyword" placeholder="Enter search here" id="search-field" class="blink search-field"
             value="${s.keyword}" />

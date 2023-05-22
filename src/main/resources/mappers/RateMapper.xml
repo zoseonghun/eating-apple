@@ -66,4 +66,14 @@
         FROM m_rate
         WHERE movie_num = #{movieNum} AND user_num = #{userNum}
     </select>
+
+    <insert id="insertLike">
+        INSERT INTO m_interest (movie_num, user_num)
+        VALUE (#{movieNum}, #{userNum})
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE FROM m_interest
+        WHERE movie_num = #{movieNum} AND user_num = #{userNum}
+    </delete>
 </mapper>

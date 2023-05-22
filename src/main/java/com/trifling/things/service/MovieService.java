@@ -76,4 +76,9 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
+    public int checkLike(int movieNum, int userNum) {
+
+        return movieMapper.checkLike(movieNum, userNum);
+
+    }
 }

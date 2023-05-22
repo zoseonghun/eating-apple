@@ -95,4 +95,13 @@ public class RateService {
     }
 
 
+    public boolean insertLike(int movieNum, int userNum) {
+
+        return rateMapper.insertLike(movieNum, userNum) == 1;
+    }
+
+    public boolean deleteLike(int movieNum, int userNum) {
+
+        return rateMapper.deleteLike(movieNum, userNum) == 1;
+    }
 }

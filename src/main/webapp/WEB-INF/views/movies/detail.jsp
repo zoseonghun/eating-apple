@@ -140,7 +140,7 @@
         <div id="sub-navigation">
             <ul>
                 <!-- 장르 카테고리 -->
-                <li><a href="#">GUARDIANS OF THE GALAXY VOL. 3</a></li>
+                <li>${detail.title}</li>
             </ul>
             <div id="search">
                 <form action="#" method="get" accept-charset="utf-8">
@@ -170,40 +170,6 @@
                 </c:forEach>
             </div>
         </div>
-        <div class="detail-post-rank-box">
-            <div class="detail-post">
-                <c:forEach var="d" items="${detail.movieImgList}">
-                    <c:if test="${d.imgName == 'poster'}">
-                        <img src="${d.imgUrl}" alt="#">
-                    </c:if>
-                </c:forEach>
-
-            </div>
-            <div class="detail-rank">
-                <div class="rank-box-title">
-                    <h2>${detail.title}</h2>                    
-                </div>
-                <div class="rank-box-ranks">
-                    <div class="rank">
-                        <img src="/assets/img/apple.png" alt="#">
-                        <h3>사소한 평가</h3>
-                    </div>
-                    <div class="rank-num-box">
-                        <p>${detail.score}%</p>
-                    </div>
-                    <div class="like">
-                        <img src="/assets/img/like-httpswww.flaticon.com.png" alt="#">
-                        <h3>LIKE</h3>
-                    </div>
-                    <div class="like-num-box">
-                        <p>${detail.likeCount}♥</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
 
         <div class="movie-detail-box">
             <div class="movie-detail-subname">
@@ -236,9 +202,50 @@
             <div>
                 <p>런타임: <span>${detail.runtime}</span></p>
             </div>
-
-
         </div>
+
+        <div class="detail-post-rank-box">
+            <div class="detail-post">
+                <c:forEach var="d" items="${detail.movieImgList}">
+                    <c:if test="${d.imgName == 'poster'}">
+                        <img src="${d.imgUrl}" alt="#">
+                    </c:if>
+                </c:forEach>
+
+            </div>
+            <div class="detail-rank">
+                <div class="rank-box-title">
+                    <h2>영화 평가</h2>                    
+                </div>
+                <div class="rank-box-ranks">
+                    <div class="rank">
+                        <img src="/assets/img/apple.png" alt="#">
+                        <h3>사소한 평가</h3>
+                    </div>
+                    <div class="rank-num-box">
+                        <p>${detail.score}%</p>
+                    </div>
+                    <!-- <div class="like">
+                        <img src="/assets/img/like-httpswww.flaticon.com.png" alt="#">
+                        <h3>LIKE</h3>
+                    </div> -->
+                    <div class="like-num-box" id="like-btn">
+                        <c:if test="${jjim == 0}">
+                            <img class="like-img" src="/assets/img/blankheart.png" alt="빈하트">
+                        </c:if>
+                        <c:if test="${jjim == 1}">
+                            <img class="like-img" src="/assets/img/filledheart.png" alt="풀하트">
+                        </c:if>
+                        <h3>LIKE</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        
 
         <div class="detail-rate-modal-button">
             <c:if test="${empty login}">
@@ -247,10 +254,7 @@
             <c:if test="${not empty login}">                    
                 <button id="openModal">사소한평가 남기기</button>
             </c:if>
-        </div>
-        <div>
-            <button id="movie-like">이 영화 찜하기</button>
-        </div>
+        </div>        
 
         <div class="movie-detail-ranks-box">
             <div class="movie-detail-subname">
@@ -270,6 +274,9 @@
 
 
     <script>
+
+
+        const num = '${login.susernum}';
 
         const URL = '/rates';
 
@@ -300,16 +307,42 @@
             $modal.style.display = "none";
         }
 
+        let likeNum = +'${jjim}';
+
         // 좋아요 만들거야?
-        const $likeBtn = document.getElementById('movie-like');
+        const $likeBtn = document.getElementById('like-btn');
+        const $likeImg = document.querySelector('.like-img');
 
         $likeBtn.onclick = e => {
+            console.log('이거맞지' + likeNum);
+            if (e.target == $likeImg) {      
 
+                if (likeNum === 0) {
+                    
+                    fetch(URL + '/in/' + mNum + '/' + num , {method:'POST'})
+                        .then(res => res.json())
+                        .then(insertFlag => {
+                            if (insertFlag) {
+                                console.log("찜");
+                                $likeImg.src = '/assets/img/filledheart.png';
+                                likeNum = 1;
+                            }                        
+                        });
+                } else if (likeNum === 1) {
+                    
+                    fetch(URL + '/out/' + mNum + '/' + num , {method:'DELETE'})
+                        .then(res => res.json())
+                        .then(deleteFlag => {
+                            if (deleteFlag) {
+                                console.log("삭제");
+                                $likeImg.src = '/assets/img/blankheart.png';
+                                likeNum = 0;
+                            }    
+                        });                   
+                }
+            }
 
-        }
-
-
-        
+        };
 
 
         // 평가 목록 가져오기
@@ -319,7 +352,7 @@
             fetch(`\${URL}/movies/contents/\${mNum}/page/\${page}`)
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
                     renderRateList(result);
                 });
         }
@@ -335,7 +368,7 @@
             // count 미사용
 
             if (rates === null || rates.length === 0) {
-                tag += "<div class='speech-bubble'>" +
+                tag += "<div class='speech-bubble cetner-position'>" +
                             "<div class='movie-detail-icon-text-box'>" +
                                 "<div class='movie-detail-rate-icon'>" +
                                     "<img src='/assets/img/apple.png' alt=''>" +

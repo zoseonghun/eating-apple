@@ -84,5 +84,19 @@ public class RateController {
         return null;
     }
 
+    @PostMapping("/in/{mNum}/{num}")
+    public ResponseEntity<?> likeIn(@PathVariable("mNum") int movieNum,
+                                    @PathVariable("num") int userNum) {
+        log.info("{} {}", movieNum, userNum);
+        boolean insertFlag = rateService.insertLike(movieNum, userNum);
+        return ResponseEntity.ok().body(insertFlag);
+    }
 
+    @DeleteMapping("/out/{mNum}/{num}")
+    public ResponseEntity<?> likeOut(@PathVariable("mNum") int movieNum,
+                                    @PathVariable("num") int userNum) {
+        log.info("{} {}", movieNum, userNum);
+        boolean deleteFlag = rateService.deleteLike(movieNum, userNum);
+        return ResponseEntity.ok().body(deleteFlag);
+    }
 }

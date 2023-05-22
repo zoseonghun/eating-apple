@@ -390,6 +390,7 @@
 
 .movie-detail-ranks-box {
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 .movie-detail-rate-containier{
     margin-bottom: 10px;
@@ -431,4 +432,8 @@ pointer-events: none;
 #sub-navigation {
     border-bottom: none;
 
+}
+
+.cetner-position {
+    left: 200px;
 }

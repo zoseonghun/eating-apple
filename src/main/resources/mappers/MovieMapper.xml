@@ -62,6 +62,12 @@
         WHERE movie_num = #{movieNum}
     </select>
 
+    <select id="checkLike" resultType="int">
+        SELECT COUNT(*)
+        FROM m_interest
+        WHERE movie_num = #{movieNum} AND user_num = #{userNum}
+    </select>
+
     <select id="mainTopTenList" resultType="movie">
         SELECT m.movie_num, m.movie_title, m.movie_score, i.img_url
         FROM m_movie m

@@ -5,20 +5,18 @@
 
 <mapper namespace="com.trifling.things.repository.InterestMapper">
 
-<!--    <select id="InterestbyUserNum" resultType="int">-->
-<!--        select-->
-<!--        (movie_title, movie_info, movie_runtime, movie_director, movie_genre, movie_age)-->
-<!--        from m_movie-->
-<!--        WHERE movie_num = #{movie_num}-->
-<!--    </select>-->
-
-<!--    //찜하기(추가)&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-
+    <!--    <select id="InterestbyUserNum" resultType="int">-->
+    <!--        select-->
+    <!--        (movie_title, movie_info, movie_runtime, movie_director, movie_genre, movie_age)-->
+    <!--        from m_movie-->
+    <!--        WHERE movie_num = #{movie_num}-->
+    <!--    </select>-->
 
 <!--    <delete id="deletebyMovieNum">-->
 <!--        DELETE FROM m_movie-->
 <!--        WHERE movie_num = #{movieNum}-->
 <!--    </delete>-->
+
     <select id="movieLikeCount" resultType="int">
         SELECT COUNT(*)
         FROM m_interest

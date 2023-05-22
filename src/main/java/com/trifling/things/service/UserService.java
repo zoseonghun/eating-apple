@@ -67,8 +67,9 @@ public class UserService {
 
     // 중복검사 서비스 처리
     public boolean checkSignUpValue(String type, String keyword) {
-log.info(type);
+        log.info(type);
         log.info(keyword);
+
         int flagNum = userMapper.isDuplicate(type, keyword);
 log.info(String.valueOf(flagNum));
         return flagNum == 1;

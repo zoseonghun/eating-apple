@@ -165,20 +165,29 @@ public class UserController {
 //        }
 //    }
 
+    // 회원정보 수정 페이지로 이동
+    @GetMapping("/modify")
+    public String modify(){
+        log.info("/user/modify GET - forwarding to jsp");
+        return "user/modify"; // 로그인 페이지로 이동
+    }
 
     //정보수정 -modify
-    @PutMapping("/modify/{userId}")
-    public ResponseEntity<String> modifyUser(@PathVariable String userId,
-                                             @RequestBody UserModifyRequestDTO requestDTO) {
-        requestDTO.setUserId(userId);
-        boolean modifySuccess = userService.modify(requestDTO);
+    @PostMapping("/modify")
+    public String modifyUser(UserModifyRequestDTO dto) {
+        log.info("/update POST!!");
+        log.info("dto:{}",dto);
+
+        boolean modifySuccess = userService.modify(dto);
 
         if (modifySuccess) {
-            return ResponseEntity.ok("정보수정이 완료되었습니다");
+            return "redirect:/movies/list";
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("다시 입력해주세요");
+            return "redirect:/user/modify";
         }
     }
+
+
 
 
     //영화찜하기

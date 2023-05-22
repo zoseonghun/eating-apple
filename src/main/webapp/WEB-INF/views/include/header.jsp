@@ -21,6 +21,7 @@
                 <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
                 <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
                 <li class="header-li"><a href="/user/mypage">마이페이지</a></li>
+                <li class="header-li"><a href="/user/modify">회원정보수정</a></li>
             </c:if>
 
         </ul>

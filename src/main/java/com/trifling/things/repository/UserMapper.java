@@ -38,7 +38,7 @@ public interface UserMapper {
     //내가 쓴 댓글목록
     List<Review> myReviewList(int userNum);
 
-    List<MyInfoResponseDTO> myInfo(String userId);
+    List<MyInfoResponseDTO> myInfo(int userNum);
 
 
 

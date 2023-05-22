@@ -434,6 +434,12 @@ pointer-events: none;
 
 }
 
-.cetner-position {
-    left: 200px;
+.center-position {
+    left: 245px;
+}
+
+.none-write {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

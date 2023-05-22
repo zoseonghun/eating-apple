@@ -247,18 +247,21 @@
 
         
 
-        <div class="detail-rate-modal-button">
+        <div class="detail-rate-modal-buttons">
             <c:if test="${empty login}">
                 <a id="rate-none-btn" href="/user/login">평가는 로그인 후 작성 가능합니다.</a>
             </c:if>
-            <c:if test="${not empty login}">                    
-                <button id="openModal">사소한평가 남기기</button>
+            <c:if test="${not empty login}">          
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button id="openModal" class="btn btn-primary" type="button">평가 남기기</button>
+                </div>          
+                <!-- <button id="openModal">사소한평가 남기기</button> -->
             </c:if>
         </div>        
 
         <div class="movie-detail-ranks-box">
             <div class="movie-detail-subname">
-                <p><span>│</span> CRITIC REVIEWS FOR GUARDIANS OF THE GALAXY VOL. 3</p>
+                <p><span>│</span> ${detail.title}</p>
             </div>
             <div class="movie-detail-main-rank" id="rate-box">
                 <!-- 평가 목록 생성 -->
@@ -368,7 +371,7 @@
             // count 미사용
 
             if (rates === null || rates.length === 0) {
-                tag += "<div class='speech-bubble cetner-position'>" +
+                tag += "<div class='speech-bubble center-position'>" +
                             "<div class='movie-detail-icon-text-box'>" +
                                 "<div class='movie-detail-rate-icon'>" +
                                     "<img src='/assets/img/apple.png' alt=''>" +
@@ -379,6 +382,7 @@
                                     "</span>" +
                                 "</div>" +
                             "</div>" +
+                            "<div class='none-write'><img src='/assets/img/write.png'></div>"
                        "</div>";
             } else {
                 var i = 0;

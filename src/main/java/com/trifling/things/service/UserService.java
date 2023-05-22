@@ -129,7 +129,9 @@ public List<Review> myReviewList(int userNum){
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
+                .suserpoint(user.getUserPoint())
                 .sprofileimage(user.getProfileImage())
+                .susergrade(user.getUserGrade().toString())
                 .build();
 log.info("dto:{}",dto);
         // 세션에 유저 정보 저장

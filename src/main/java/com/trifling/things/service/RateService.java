@@ -4,14 +4,17 @@ import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
 import com.trifling.things.dto.request.RateModifyRequestDTO;
 import com.trifling.things.dto.request.RatePostRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.RateListResponseDTO;
 import com.trifling.things.dto.response.RateResponseDTO;
 import com.trifling.things.entity.Rate;
 import com.trifling.things.repository.RateMapper;
+import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,19 +42,13 @@ public class RateService {
     }
 
 
-    public RateListResponseDTO rateWrite(RatePostRequestDTO dto) {
+    public RateListResponseDTO rateWrite(RatePostRequestDTO dto, HttpSession session) {
         // dto를 entity로 변환해줘야댐
         Rate rate = dto.toEntity();
 
-//        Rate checkRate = rateMapper.rateFindOne(rate.getRateNum());
-        // 얘로는 못찾아 유저번호랑 무비넘으로 있는지 조회해야 되는거아님?
+        LoginUserResponseDTO user = (LoginUserResponseDTO)session.getAttribute(LoginUtil.LOGIN_KEY);
+        rate.setUserId(user.getSuserid());
 
-        // 이미 평가를 했는지를 확인하려면
-
-        // dto -> 새로 입력한 정보 (userNum)
-        // checkRate -> null 이 아니면 평가가 존재
-//        rateMapper.insertBeforeCheck(checkRate)
-        // 예외처리는 어떤데?
         boolean flag = rateMapper.rateWrite(rate);
         return getRateList("movie", dto.getMovieNum(), new Page(1,10));
         // 엔티티 리턴해줘야 RESTful 적용 가능 바로 보여져야됨
@@ -62,9 +59,16 @@ public class RateService {
         return rateMapper.rateFindOne(rateNum);
     }
 
-    public int insertBeforeCheck(int movieNum, int userNum) {
 
-        return rateMapper.insertBeforeCheck(movieNum, userNum);
+    // 평가 등록 여부 검사 기능
+    public boolean insertBeforeCheck(int movieNum, HttpSession session) {
+
+        LoginUserResponseDTO user = (LoginUserResponseDTO)session.getAttribute(LoginUtil.LOGIN_KEY);
+
+        // 현재 세션의 유저번호
+        int susernum = user.getSusernum();
+
+        return rateMapper.insertBeforeCheck(movieNum, susernum) == 1;
     }
 
     @Transactional

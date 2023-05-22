@@ -24,6 +24,7 @@
     <div id="sub-navigation">
 
     </div>
+
 </div>
 <div id="main">
     <div id="content">
@@ -39,6 +40,7 @@
                         <div class="user-box">
                             <input type="password" name="userPassword" required="required" >
                             <label>Your Password</label>
+
                         </div>
                         <a id="custom-login-btn" href="/kakao/login">
                             <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg">

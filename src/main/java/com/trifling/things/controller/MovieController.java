@@ -74,19 +74,22 @@ public class MovieController {
         boolean flag = false;
 
         // 세션 확인
-        Object login = request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
-
-        if (login != null) flag = true;
-
-        if (!flag) return "redirect:/movies/list";
+//        Object login = request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
+//
+//        if (login != null) flag = true;
+//
+//        if (!flag) return "redirect:/movies/list";
 
         movieService.movieScoreRenew(mno);
         MovieDetailResponseDTO dto = movieService.movieDetail(mno);
-        log.info("age: {}", dto.getScore());
+        log.info("score: {}", dto.getScore());
         model.addAttribute("detail", dto);
 
 
         return "movies/detail";
     }
+
+//    @GetMapping("/")
+
 
 }

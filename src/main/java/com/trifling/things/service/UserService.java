@@ -80,6 +80,8 @@ log.info(String.valueOf(flagNum));
         User foundUser = userMapper.findUser(dto.getUserId());
         log.info("dto:{}",foundUser.getUserPassword());
 
+//        log.info("입력 비밀번호 {} : ", dto.getUserPassword());
+//        log.info("데이터베이스 비밀번호 {} : ", foundUser.getUserPassword());
         // 회원가입 여부 확인
         if (foundUser == null) {
             log.info("account unmatch");
@@ -87,7 +89,9 @@ log.info(String.valueOf(flagNum));
         }
         // 비밀번호 일치 확인
         if (!encoder.matches(dto.getUserPassword(), foundUser.getUserPassword())) {
+
            log.info("password unmatch");
+
             return NO_PW;
         }
 
@@ -121,6 +125,7 @@ public List<Review> myReviewList(int userNum){
         User user = findUser(userId);
 
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
+                .susernum(user.getUserNum())
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())

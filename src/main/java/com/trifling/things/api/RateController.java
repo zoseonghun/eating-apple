@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -47,7 +49,7 @@ public class RateController {
     // 평가 등록 기능
     @PostMapping("/post")
     public ResponseEntity<?> rateWrite(
-            @Validated @RequestBody RatePostRequestDTO dto, BindingResult result) {
+            @Validated @RequestBody RatePostRequestDTO dto, BindingResult result, HttpServletRequest request) {
 
         if (result.hasErrors()) {
             return ResponseEntity
@@ -57,20 +59,20 @@ public class RateController {
         log.info("/api/v1/rate/post : POST!");
         log.info("param: {}", dto);
 
+        // 세션 정보
 
-        RateListResponseDTO rateList = rateService.rateWrite(dto);
-
+        RateListResponseDTO rateList = rateService.rateWrite(dto, request.getSession());
 
         return ResponseEntity.ok().body(rateList); // 보여줄 responsedto를 실어 줘야함
     }
 
     // 평가 등록 모달 진입 전 평가 남겼는지 확인하는 기능
-    @GetMapping("/{userNum}/num/{movieNum}")
+    @GetMapping("/{movieNum}")
     public ResponseEntity<?> isBeforeRate(
-           @PathVariable int userNum
+           HttpServletRequest request
            , @PathVariable int movieNum) {
-        log.info("userNum:{}, movieNum:{}",userNum,movieNum);
-        int check = rateService.insertBeforeCheck(movieNum, userNum);
+//        log.info("userNum:{}, movieNum:{}",userNum,);
+        boolean check = rateService.insertBeforeCheck(movieNum, request.getSession());
         return ResponseEntity.ok().body(check);
     }
 

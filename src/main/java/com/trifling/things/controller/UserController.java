@@ -1,5 +1,9 @@
 package com.trifling.things.controller;
 
+import com.trifling.things.dto.page.PageMaker;
+import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.response.MainListResponseDTO;
+import com.trifling.things.dto.response.MovieListResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
@@ -19,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -92,7 +97,8 @@ public class UserController {
         if (flag) {
 
 
-            return "user/login"; // 메인페이지 이동, 수정확인필요
+            return "redirect:/movies/list"; // 메인페이지 이동, 수정확인필요
+
         } else {
             return "user/sign-up"; // 회원 가입 실패 페이지로 이동
         }
@@ -124,7 +130,7 @@ public class UserController {
     // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
-        log.info("/user/sign-in POST");
+        log.info("/user/sign-in POST: {}", dto);
 
 
         LoginResult result = userService.authenticate(dto);
@@ -176,6 +182,7 @@ public class UserController {
     @GetMapping("/interest/{userNum}")
     public String getInterestList(@PathVariable int userNum, Model model) {
         List<Interest> interestList = userService.myInterestList(userNum);
+
         log.info("interest {}{}{}", interestList);
         model.addAttribute("interestList", interestList);
         return "user/mypage";
@@ -201,7 +208,9 @@ public class UserController {
 //        return "user/mypage";
 //    }
 
+
     //마이페이지 -- 테스트 --userid, userNum 맞춰야함
+
     @GetMapping("/mypage")
     public String getMypage(Model model) {
         String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값
@@ -210,6 +219,7 @@ public class UserController {
         log.info("lll: {} ", mypage);
         return "user/mypage";
     }
+
 
 
     // 로그아웃 요청 처리

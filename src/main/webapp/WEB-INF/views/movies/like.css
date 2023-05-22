@@ -242,4 +242,5 @@ div#menu a {
   
   .floating-action-button:hover {
     background-color: #ff2111;
-    box-shadow: 0 0 6px rgba(0,0,0,.16), 0 6px 12px rgba(
+    box-shadow: 0 0 6px rgba(0,0,0,.16), 0 6px 12px rgba(0,0,0,.16);
+  }

@@ -52,7 +52,7 @@
         FROM m_user mu
         JOIN m_rate mr ON mu.user_num = mr.user_num
         JOIN m_movie mm ON mr.movie_num = mm.movie_num
-        where mu.user_id = #{userId}
+        where mu.user_Num = #{userNum}
     </select>
 
     <select id="interestList" resultType="Interest">

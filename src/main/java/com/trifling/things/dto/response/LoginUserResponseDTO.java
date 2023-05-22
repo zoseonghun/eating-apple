@@ -20,6 +20,7 @@ public class LoginUserResponseDTO {
     private int suserage;
     private String sprofileimage;
     private String susergrade;
+    private int suserpoint;
 
 
 }

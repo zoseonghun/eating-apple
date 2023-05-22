@@ -1,6 +1,7 @@
 package com.trifling.things.repository;
 
 import com.trifling.things.dto.response.MyInfoResponseDTO;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.entity.user.Gender;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
@@ -93,7 +94,7 @@ class UserMapperTest {
     @DisplayName("userNum을 조회하면 관련된 정보를 가져온다")
     void myReviewListTest(){
         int userNum =1;
-        List<Review> reviews = userMapper.myReviewList(userNum);
+        List<ReviewResponseDTO> reviews = userMapper.myReviewList(userNum);
 
         System.out.println("reviews" + reviews);
         assertEquals(4, reviews.size());

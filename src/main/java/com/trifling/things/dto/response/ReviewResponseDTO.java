@@ -1,5 +1,6 @@
-package com.trifling.things.repository;
+package com.trifling.things.dto.response;
 
+import com.trifling.things.entity.Movie;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Review {
+public class ReviewResponseDTO {
     private String userNum;
     private int rateNum;
     private int movieNum;
@@ -19,4 +20,9 @@ public class Review {
     private LocalDateTime rateDate;
     private int rateLike;
 
+
+    public ReviewResponseDTO(Movie movie) {
+        this.movieNum = movie.getMovieNum();
+        this.movieTitle = movie.getMovieTitle();
+    }
 }

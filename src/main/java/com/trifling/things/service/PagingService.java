@@ -1,7 +1,7 @@
 package com.trifling.things.service;
 
 import com.trifling.things.repository.PagingMapper;
-import com.trifling.things.repository.Review;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class PagingService {
 
     private final PagingMapper pagingMapper;
 
-    public List<Review> pagingReview(int pageStart, int amount) {
+    public List<ReviewResponseDTO> pagingReview(int pageStart, int amount) {
         return pagingMapper.userPaging(pageStart, amount);
     }
 

@@ -5,18 +5,18 @@ import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 //import com.trifling.things.dto.response.UserModifyResponseDTO;
-import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
-import com.trifling.things.repository.Review;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.repository.UserMapper;
 import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -101,13 +101,13 @@ log.info(String.valueOf(flagNum));
 
 
 //내가 작성한 리뷰 보기
-public List<Review> myReviewList(int userNum){
-    List<Review> reviews = userMapper.myReviewList(userNum);
+public List<ReviewResponseDTO> myReviewList(int userNum){
+    List<ReviewResponseDTO> reviews = userMapper.myReviewList(userNum);
     return reviews;
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList( int userNum) {
+    public List<Interest> myInterestList(int userNum) {
         List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
@@ -115,8 +115,8 @@ public List<Review> myReviewList(int userNum){
 
 
     //마이페이지
-    public   List<MyInfoResponseDTO> getMypage(String userId){
-        return userMapper.myInfo(userId);
+    public   List<MyInfoResponseDTO> getMypage(int userNum){
+        return userMapper.myInfo(userNum);
     }
 
 
@@ -130,7 +130,9 @@ public List<Review> myReviewList(int userNum){
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
+                .suserpoint(user.getUserPoint())
                 .sprofileimage(user.getProfileImage())
+                .susergrade(user.getUserGrade().toString())
                 .build();
 log.info("dto:{}",dto);
         // 세션에 유저 정보 저장

@@ -1,11 +1,12 @@
 package com.trifling.things.repository;
 
 import com.trifling.things.dto.response.MyInfoResponseDTO;
-import com.trifling.things.entity.Rate;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -36,9 +37,9 @@ public interface UserMapper {
 // interest int로 dto title. num img_url table2개조인
 
     //내가 쓴 댓글목록
-    List<Review> myReviewList(int userNum);
+    List<ReviewResponseDTO> myReviewList(int userNum);
 
-    List<MyInfoResponseDTO> myInfo(String userId);
+    List<MyInfoResponseDTO> myInfo(int userNum);
 
 
 

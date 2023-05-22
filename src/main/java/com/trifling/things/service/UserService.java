@@ -67,9 +67,10 @@ public class UserService {
 
     // 중복검사 서비스 처리
     public boolean checkSignUpValue(String type, String keyword) {
-
+log.info(type);
+        log.info(keyword);
         int flagNum = userMapper.isDuplicate(type, keyword);
-
+log.info(String.valueOf(flagNum));
         return flagNum == 1;
     }
 
@@ -77,15 +78,20 @@ public class UserService {
     public LoginResult authenticate(LoginRequestDTO dto) {
 
         User foundUser = userMapper.findUser(dto.getUserId());
+        log.info("dto:{}",foundUser.getUserPassword());
 
 //        log.info("입력 비밀번호 {} : ", dto.getUserPassword());
 //        log.info("데이터베이스 비밀번호 {} : ", foundUser.getUserPassword());
         // 회원가입 여부 확인
         if (foundUser == null) {
+            log.info("account unmatch");
             return NO_ACC;
         }
         // 비밀번호 일치 확인
         if (!encoder.matches(dto.getUserPassword(), foundUser.getUserPassword())) {
+
+           log.info("password unmatch");
+
             return NO_PW;
         }
 
@@ -124,9 +130,8 @@ public List<Review> myReviewList(int userNum){
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
                 .sprofileimage(user.getProfileImage())
-                .susergrade(user.getUserGrade().name())
                 .build();
-
+log.info("dto:{}",dto);
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
     }

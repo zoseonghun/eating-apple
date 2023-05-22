@@ -1,5 +1,6 @@
 package com.trifling.things.util.upload;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
+@Slf4j
 public class FileUtil {
 
     /*
@@ -60,7 +61,9 @@ public class FileUtil {
         // fullPath = d:/abc/upload/2023/05/16/djsf.jpg
         // rootPath = d:/abc/upload/
 
-        return fullPath.substring(rootPath.length());
+        String substring = fullPath.substring(rootPath.length());
+        log.info(substring);
+        return "/local"+substring;
     }
 
     /**

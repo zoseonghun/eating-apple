@@ -1,6 +1,7 @@
 package com.trifling.things.dto.request;
 
 import com.trifling.things.entity.user.Gender;
+import com.trifling.things.entity.user.JoinMethod;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +14,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
+@Builder
 public class SignUpRequestDTO {
 
     //회원가입에 필요한 dto
@@ -35,5 +38,7 @@ public class SignUpRequestDTO {
     private int userAge;
 
     private MultipartFile profileImage;
+
+    private JoinMethod joinMethod;
 
 }

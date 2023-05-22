@@ -12,32 +12,9 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/detail.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    <style>
-        .rating {
-            display: inline-block;
-        }
-
-        .rating input {
-            display: none;
-        }
-
-        .rating label {
-            float: right;
-            cursor: pointer;
-            color: gray;            
-        }
-
-        .rating label:before {
-            content: '\2605';
-            font-size: 30px;
-        }
-
-        .rating input:checked~label {
-            color: orange;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -48,7 +25,7 @@
         <!-- rate-modal  -->
         <!-- <%@ include file="../include/create-rate-modal.jsp" %> -->
         <div id="myModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-contents">
                 <form method="POST" action="/submit">
                     <div class="modal-top-box">
                         <div class="modal-top-rate-icon-box">
@@ -69,14 +46,7 @@
                             </div>
 
                         </div>
-                        <!-- <div class="modal-top-md-box">
-                            <div class="modal-top-modify-box">
-                                <a id="modal-modify" href="#">수 정</a>
-                            </div>
-                            <div class="modal-top-delete-box">
-                                <a href="#">삭 제</a>
-                            </div>
-                        </div> -->
+                        
                         <div class="modal-tot-close-button-box">
                             <span class="close">&times;</span>
                         </div>
@@ -139,9 +109,9 @@
         <%@ include file="../include/header.jsp" %>
         <div id="sub-navigation">
             <ul>
-                <!-- 장르 카테고리 -->
                 <li>${detail.title}</li>
             </ul>
+            <!--
             <div id="search">
                 <form action="#" method="get" accept-charset="utf-8">
                     <label for="search-field">SEARCH</label>
@@ -149,7 +119,7 @@
                         class="blink search-field" />
                     <input type="submit" value="GO!" class="search-button" />
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- header end -->
@@ -230,30 +200,27 @@
                         <h3>LIKE</h3>
                     </div> -->
                     <div class="like-num-box" id="like-btn">
-                        <c:if test="${jjim == 0}">
-                            <img class="like-img" src="/assets/img/blankheart.png" alt="빈하트">
+                        <c:if test="${login != null}">
+                            <c:if test="${jjim == 0}">
+                                <img class="like-img" src="/assets/img/blankheart.png" alt="빈하트">
+                            </c:if>
+                            <c:if test="${jjim == 1}">
+                                <img class="like-img" src="/assets/img/filledheart.png" alt="풀하트">
+                            </c:if>
+                            <h3>LIKE</h3>
                         </c:if>
-                        <c:if test="${jjim == 1}">
-                            <img class="like-img" src="/assets/img/filledheart.png" alt="풀하트">
-                        </c:if>
-                        <h3>LIKE</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
-        
-
         <div class="detail-rate-modal-buttons">
             <c:if test="${empty login}">
-                <a id="rate-none-btn" href="/user/login">평가는 로그인 후 작성 가능합니다.</a>
+                <a class="btn btn-primary rate-box" id="rate-none-btn" href="/user/login">평가는 로그인 후 작성 가능합니다.</a>
             </c:if>
             <c:if test="${not empty login}">          
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button id="openModal" class="btn btn-primary" type="button">평가 남기기</button>
+                    <button id="openModal" class="btn btn-primary modal-open" type="button">평가 남기기</button>
                 </div>          
                 <!-- <button id="openModal">사소한평가 남기기</button> -->
             </c:if>
@@ -371,7 +338,7 @@
             // count 미사용
 
             if (rates === null || rates.length === 0) {
-                tag += "<div class='speech-bubble center-position'>" +
+                tag += "<div class='speech-bubble-none center-position'>" +
                             "<div class='movie-detail-icon-text-box'>" +
                                 "<div class='movie-detail-rate-icon'>" +
                                     "<img src='/assets/img/apple.png' alt=''>" +
@@ -450,12 +417,8 @@
         }
 
 
-        // 모달창을 열때 fetch에 userNum, movieNum 담아서 보낸 후
-        // 평가를 남겼었는지 판단해서 조건으로 처리 해야함
-        // const addURL = "/" + "유저넘(세션)" + "/" + mNum;
-        // fetch(URL + addURL)  사용하면 될듯?
 
-        // 임시: 얘는 모달창이 열린곳에서 포스트가 넘어가는 기능임 
+        // 얘는 모달창이 열린곳에서 포스트가 넘어가는 기능임 
         function ratePostButton() {
             // 평가 등록 버튼
             const $postBtn = document.getElementById('modal-save');            
@@ -474,7 +437,10 @@
 
                 $starScore.forEach(target => {
                     if (target.checked) {
-                        selected = target.value;
+                        selected = +target.value;
+                        if (selected > 3) {
+                            document.querySelector('.modal-top-rate-icon-box').closest;
+                        }
                     }
                 });
 

@@ -13,7 +13,7 @@
 
 }
 
-.modal-content {
+.modal-contents {
     position: relative;
     background-color: #fefefe;
     margin: 15% auto;
@@ -39,15 +39,6 @@
     text-decoration: none;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -122,6 +113,10 @@
 
 }
 
+.modal-tot-close-button-box {
+    position: relative;
+    left: 400px;
+}
 
 
 .modal-middle-box {

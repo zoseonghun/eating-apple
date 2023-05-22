@@ -69,24 +69,19 @@ public class MovieController {
     public String movieDetail(Model model, int mno, HttpServletRequest request) {
         log.info("/movies/detail : GET");
 
-        boolean flag = false;
+
         LoginUserResponseDTO login = (LoginUserResponseDTO) request.getSession().getAttribute("login");
 
-        int like = movieService.checkLike(mno, login.getSusernum());
-
-        // 세션 확인
-//        Object login = request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
-//
-//        if (login != null) flag = true;
-//
-//        if (!flag) return "redirect:/movies/list";
+        int like = 0;
+        if (login != null)  {
+            like = movieService.checkLike(mno, login.getSusernum());
+            model.addAttribute("jjim", like);
+        }
 
         movieService.movieScoreRenew(mno);
         MovieDetailResponseDTO dto = movieService.movieDetail(mno);
         log.info("score: {}", dto.getScore());
         model.addAttribute("detail", dto);
-        model.addAttribute("jjim", like);
-
 
         return "movies/detail";
     }

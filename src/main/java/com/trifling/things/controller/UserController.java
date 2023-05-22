@@ -106,6 +106,9 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> check(String type, String keyword) {
 
+        log.info("/user/sign-up check - !!", type, keyword);
+        log.info(type);
+        log.info(keyword);
         boolean flag = userService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
     }

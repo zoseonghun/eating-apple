@@ -24,7 +24,7 @@ public interface UserMapper {
     //회원 정보 수정
     boolean modify(User user);
 
-    //아이디, 이메일 중복값 확인 ㅇ
+    //아이디, 이메일 중복값 확인
     int isDuplicate(
             @Param("type") String type,
             @Param("keyword") String keyword);

@@ -136,9 +136,9 @@
 
                                                     <!-- 부트스트랩 파일업로드 -->
                                                     <div class="input-group mb-3">
-                                                        <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                                        <input type="file" class="form-control" id="inputGroupFile01">
-                                                      </div>
+                                                        <label class="input-group-text" for="profile">Upload</label>
+                                                        <input type="file" class="form-control" name="profileImage" id="profile" accept="image/*">
+                                                    </div>
 
                                                     <div class="back-button">
                                                         <input id="sign-up-btn" type="button" value="회원가입" class="btn mt-4"

@@ -14,11 +14,12 @@ import lombok.*;
 public class LoginUserResponseDTO {
 
 
-
+    private int susernum;
     private String suserid;
     private String susergender;
     private int suserage;
     private String sprofileimage;
     private String susergrade;
+
 
 }

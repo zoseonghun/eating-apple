@@ -7,7 +7,6 @@
 
     <insert id="save" parameterType="User">
         INSERT INTO m_user
-
         (user_id, user_password, user_email, user_gender, user_age, profile_image)
         Values
         (#{userId}, #{userPassword}, #{userEmail} ,#{userGender}, #{userAge}, #{profileImage} )
@@ -16,7 +15,8 @@
 
     <select id="findUser" resultType="user">
         select
-        user_id, user_password, user_email, user_gender, user_age, profile_image
+        user_num, user_id, user_password, user_email, user_gender
+        , user_age, profile_image, user_point, user_grade
         from m_user
         WHERE user_id = #{userId}
     </select>
@@ -63,4 +63,6 @@
         INNER JOIN m_user ON m_user.user_num = m_interest.user_num
         where m_user.user_num = #{userNum}
     </select>
+
+
 </mapper>

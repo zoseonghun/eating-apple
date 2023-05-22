@@ -91,7 +91,7 @@ public class UserController {
         if (flag) {
 
 
-            return "redirec:/movies/list"; // 메인페이지 이동, 수정확인필요
+            return "redirect:/movies/list"; // 메인페이지 이동, 수정확인필요
         } else {
             return "user/login"; // 회원 가입 실패 페이지로 이동
         }
@@ -123,7 +123,7 @@ public class UserController {
     // 로그인 검증 요청 --로그인?
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
-        log.info("/user/sign-in POST");
+        log.info("/user/sign-in POST: {}", dto);
 
 
         LoginResult result = userService.authenticate(dto);

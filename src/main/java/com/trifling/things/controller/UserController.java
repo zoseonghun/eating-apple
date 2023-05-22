@@ -199,29 +199,19 @@ public class UserController {
         log.info("reviewList: {}", reviewList);
         model.addAttribute("reviews", reviewList);
 
-        return "user/mypage";
+        return "";
     }
 
 
-    //마이페이지 --로그인 연동시
-//    @GetMapping("/mypage")
-//    public String getMyPage(@PathVariable int userNum, Model model) {
-//        List<MyInfoResponseDTO> mypage = userService.getMypage(userNum);
-//        model.addAttribute("mypage", mypage);
-//        return "user/mypage";
-//    }
-
-
-    //마이페이지 -- 테스트 --userid, userNum 맞춰야함
-
+//    마이페이지 --로그인 연동시
     @GetMapping("/mypage")
-    public String getMypage(Model model) {
-        String userId = "유저1"; // 임시로 설정한 사용자의 userNum 값
-        List<MyInfoResponseDTO> mypage = userService.getMypage(userId);
-        model.addAttribute("mypage", mypage);
-        log.info("lll: {} ", mypage);
+    public String getMyPage() {
+
         return "user/mypage";
     }
+
+
+
 
 
 

@@ -40,17 +40,6 @@
     cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .modal-top-box {
 
     height: 130px;
@@ -70,7 +59,7 @@
     height: auto;
     object-fit: cover;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
 
 
 }

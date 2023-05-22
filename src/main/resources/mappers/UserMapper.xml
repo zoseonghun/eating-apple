@@ -42,7 +42,7 @@
         SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review, r.rate_date, r.rate_score, r.rate_like, m.movie_title
         FROM m_rate r
         JOIN m_movie m ON r.movie_num = m.movie_num
-        WHERE r.user_num = 1;
+        WHERE r.user_num = #{userNum};
     </select>
 
 
@@ -52,7 +52,7 @@
         FROM m_user mu
         JOIN m_rate mr ON mu.user_num = mr.user_num
         JOIN m_movie mm ON mr.movie_num = mm.movie_num
-        where mu.user_id = #{userId}
+        where mu.user_Num = #{userNum}
     </select>
 
     <select id="interestList" resultType="Interest">

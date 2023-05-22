@@ -36,8 +36,9 @@ div#menu a {
 
 #content {
   /* 틀 삭제 */
-  border: 1px solid #fff;
-  height: 700px;
+  /* border: 1px solid #fff; */
+  background-color: rgb(243, 243, 243);
+  height: 800px;
   display: flex;
   width: 100%;
 
@@ -71,10 +72,11 @@ div#menu a {
   font-size: 20px;
   font-weight: 700px;
   margin: 30px;
-  color: white;
+  color: black;
   width: 50%;
 }
 
+/* //프로필부터 포인트산정방법 태그 시작 */
 .mypage .mypage-info .mybasic-info {
   /* background: orange; */
   position: relative;
@@ -82,14 +84,19 @@ div#menu a {
 }
 
 .mypage .mypage-info .mybasic-info .profile-image {
-  background: lavender;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
+  /* place-content: center; */
   position: absolute;
   left: 30px;
   top: 20px;
-  /* place-content: center; */
+}
+
+.profile-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20%;
 }
 
 .mypage .mypage-info .mybasic-info .profile-image p {
@@ -104,6 +111,7 @@ div#menu a {
   left: 200px;
   top: 40px;
   font-size: 15px;
+  color: black;
 
 }
 
@@ -113,26 +121,34 @@ div#menu a {
   /* border: 1px solid blue; */
   width: 50%;
   /* float: right; */
-  margin-top: 40px;
+  /* margin-top: 40px; */
   /* position: relative; */
   float: right;
+  /* color: black; */
+
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon {
   /* background: teal; */
   /* position: absolute; */
   /* float: right; */
+  /* color: black; */
+
 
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:first-child {
   font-size: 15px;
+  color: black;
+
 
 }
 
 .mypage .mypage-info .mybasic-info .mypoint .mycoupon p:last-child {
   text-align: center;
   padding: 17px;
+  color: black;
+
 }
 
 
@@ -147,12 +163,18 @@ div#menu a {
 .mypage .mypage-info .mybasic-info .mypoint .myrealpoint p {
   font-size: 15px;
   margin-bottom: 10px;
+  color: black;
+
 
 }
 
-.mypage .mypage-info .mybasic-info .mypoint .myrealpoint .how-to-get-point {}
+.mypage .mypage-info .mybasic-info .mypoint .myrealpoint .how-to-get-point li{
+  color: black;
+
+}
 
 
+/* 나의 활동내역 아래 태그 시작 */
 .mypage .frame .bottom-info {
   /* border: 1px solid olivedrab; */
 
@@ -168,6 +190,8 @@ div#menu a {
 .mypage .frame .bottom-info .bottom-info-detail .myactive {
   font-size: 18px;
   margin: 30px;
+  color: black;
+
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest {
@@ -187,13 +211,15 @@ div#menu a {
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p {
   width: 50%;
-  border: 1px solid wheat;
+  border: 1px solid gray;
   padding: 10px;
+  color: black;
+
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag p:hover {
-  background: whitesmoke;
-  color: black;
+  background: black;
+  color: whitesmoke;
 }
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .mydetail-contents {
@@ -205,6 +231,7 @@ div#menu a {
   height: 230px;
   position: relative;
   padding-top: 20px;
+  
   
   
 }
@@ -223,22 +250,32 @@ div#menu a {
 .interest-container {
   width: 200px;
   height: 200px;
-  border: 1px solid wheat;
-  /* position: relative; */
+  border: 1px solid palevioletred;
+
+  text-align: center;
+  position: relative;
 }
 
+.review-container img{
+  /* position: relative; */
 
+}
+.review-box{
+  width: 100%;
+	vertical-align: middle;
+  position: absolute;
+  Top : 75px;
+  left: auto;
+}
  .review-box p{
-  margin: auto;
-  padding: 10px;
-  white-space: nowrap;
-  /* background: palegreen; */
-  /* width: 200px;
-  height: 200px; */
-  /* position: relative; */
+  /* position: absolute; */
+  padding: 5px 10px;
+	text-align: center;
+  color: white;
+  /* background: peru; */
+
 
 }
-
 
 /* .interest-box p .interest-box img {
   position: absolute;
@@ -276,7 +313,7 @@ div#menu a {
   width: 200px;
   height: 200px;
   overflow: hidden; /* 이미지를 넘어가는 부분은 숨김 처리 */
-
+  color: black;
   /* 추가 스타일을 설정할 수 있습니다. */
 }
 

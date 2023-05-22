@@ -107,7 +107,7 @@ public List<Review> myReviewList(int userNum){
 }
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList( int userNum) {
+    public List<Interest> myInterestList(int userNum) {
         List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
@@ -115,8 +115,8 @@ public List<Review> myReviewList(int userNum){
 
 
     //마이페이지
-    public   List<MyInfoResponseDTO> getMypage(String userId){
-        return userMapper.myInfo(userId);
+    public   List<MyInfoResponseDTO> getMypage(int userNum){
+        return userMapper.myInfo(userNum);
     }
 
 
@@ -130,7 +130,9 @@ public List<Review> myReviewList(int userNum){
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
+                .suserpoint(user.getUserPoint())
                 .sprofileimage(user.getProfileImage())
+                .susergrade(user.getUserGrade().toString())
                 .build();
 log.info("dto:{}",dto);
         // 세션에 유저 정보 저장

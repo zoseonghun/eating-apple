@@ -36,6 +36,7 @@ public class UserService {
     public boolean join(SignUpRequestDTO dto, String savePath) {
         User user = User.builder()
                 .userId(dto.getUserId())
+                .userAge(dto.getUserAge())
                 .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
@@ -130,6 +131,7 @@ public List<ReviewResponseDTO> myReviewList(int userNum){
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
+                .semail(user.getUserEmail())
                 .suserpoint(user.getUserPoint())
                 .sprofileimage(user.getProfileImage())
                 .susergrade(user.getUserGrade().toString())

@@ -73,40 +73,19 @@
 </head>
 
 
-<body>
-
-    <!-- START PAGE SOURCE -->
-    <div id="shell">
-
-
-
-
-
-        <div id="header">
-            <!-- 로고 추가 수정 -->
-            <h1 id="logo"><a href="/movies/list"><img src="/assets/img/logo4.png" alt=""></a></h1>
-            <!-- 로고 추가 수정 -->
-            <div id="navigation">
-                <ul>
-                    <c:if test="${login == null}">
-
-                        <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
-                        <li class="header-li"><a href="/user/login">로그인</a></li>
-                        <li class="header-li"><a href="/user/sign-up">회원가입</a></li>
-                    </c:if>
-
-                    <c:if test="${login != null}">
-                        <li class="header-user-profile-image"><img src="${login.sprofileimage}" alt=""></li>
-                        <li class="header-li header-li-user">
-                            <p>${login.suserid}님 환영 합니다!!</p>
-                        </li>
-                        <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
-                        <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
-                        <li class="header-li"><a href="/user/mypage">마이페이지</a></li>
-                    </c:if>
-
-                </ul>
+    <body>
+        <!-- START PAGE SOURCE -->
+        <div id="shell">
+            <%--  헤더--%>
+            <%@ include file="../include/header.jsp" %>
+            <%--  헤더 end--%>
+            <div id="sub-navigation">
+        
             </div>
+        
+        </div>
+       
+                
 
             <div id="main">
                 <div id="content">
@@ -193,29 +172,70 @@
                     <!-- //blue -->
                     <div class="mypage">
                         <div class="frame">
-
+            
                             <div class="mypage-info">
-                                <div class="mypage-id">
-                                    ${login.suserid}님 반갑습니다
-                                </div>
+            
+            
                                 <div class="mybasic-info">
                                     <div class="profile-image">
                                         <!-- <p>프로필사진</p> -->
                                         <img src="${login.sprofileimage}" alt="#">
                                     </div>
-
-                                    <div class="usergrade">
-                                        ${login.suserid}님의
-                                        등급은 ${login.susergrade} 입니다
-
+                                    <div class="mypage-id">
+            
+                                        <h3>#INFO#</h3>
+                                        <br>
+                                        <c:if test="${login.suserage == 0}">
+                                            <p>ID: <span>${login.suserid}</span></p>
+                                        <p class="kakao-center">카카오 로그인 회원입니다</p>
+                                        <p class="kakao-center">카카오 회원은 회원정보</p>
+                                        <p class="kakao-center">추가가 필요합니다</p>
+                                    
+                                        </c:if>
+                                    <c:if test="${login.suserage != 0}">
+                                        <p>ID: <br><span>${login.suserid}</span></p>
+                                       
+                                        <p>EMAIL: <br><span>${login.semail}</span></p>
+                                       
+                                        <p>AGE: <br><span>${login.suserage}</span></p>
+                                   
+                                        <p>GENDER: <br><span>${login.susergender}</span></p>
+                                    </c:if>
                                     </div>
-
+                                    <div class="usergrade">
+                                        
+                                        <div class="user-point-grade-box">
+                                            <div class="user-point">
+                                                <h3>#POINT#</h3>
+                                                <p>${login.suserpoint}</p>
+                                        
+                                            </div>
+                                            <div class="user-grade">
+                                                <h3>#GRADE#</h3>
+                                                <p>${login.susergrade}</p>
+                                          
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="user-grade-info-box">
+                                            <h3>#포인트 산정 방법#</h3>
+                                            <ul class="how-to-get-point">
+                                                <li class="list">&nbsp;</li>
+                                                <li class="list">&nbsp;1. 영화 리뷰 작성 시 포인트 100점</li>
+                                                <li class="list">&nbsp;2. 영화 리뷰 연속 5개 작성 시 포인트 200점</li>
+                                                <li class="list">&nbsp;3. 영화 좋아요 클릭 시 포인트 20점</li>
+                                            </ul>
+                                        </div>
+                                  
+            
+                                    </div>
+            <!-- 
                                     <div class="mypoint">
                                         <div class="mycoupon">
                                             <p>나의 포인트</p>
                                             <p>${login.suserpoint}점</p>
                                         </div>
-
+            
                                         <div class="myrealpoint">
                                             <p> 포인트 산정방법</p>
                                             <ul class="how-to-get-point">
@@ -224,7 +244,7 @@
                                                 <li class="list">3. 영화 좋아요 클릭 시 포인트 20점</li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -285,10 +305,9 @@
 
                                                         </c:forEach>
                                                     </c:if>
-                                                </div>
+                                        
 
 
-                                            </div>
                                         </div>
 
 
@@ -299,7 +318,21 @@
                     </div>
                 </div>
             </div>
+            <div class="cl"></div>
         </div>
+
+
+
+<!-- footer -->
+<%@ include file="../include/footer.jsp" %>
+<!-- footer end-->
+</div>
+<!-- END PAGE SOURCE -->
+
+
+
+
+
 
         <script>
 

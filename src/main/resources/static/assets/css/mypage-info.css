@@ -5,12 +5,7 @@ div#menu a {
   width: 100%;
 
 }
-.modal-movie-title {
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
-  line-height: 50px;
-}
+
 /* 
   .popup_menu .m_acco {
     margin-top: 100px;
@@ -61,47 +56,80 @@ div#menu a {
   position: relative;
   height: 80%;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 50px;
 
 }
 
 .mypage .mypage-info {
   /* border: 1px solid red; */
   /* position: absolute; */
-
+  /* box-shadow: 0 0 0 1px black; */
+  height: 290px;
+ 
 }
 
 .mypage .mypage-info .mypage-id {
   /* background: orange; */
   /* padding: 10px; */
-  font-size: 20px;
-  font-weight: 700px;
-  margin: 30px;
+  font-size: 16px;
+  font-weight: 900px;
+   width: 200px;
+ height: 95%;
   color: black;
-  width: 50%;
+  
+
+
+  margin: 10px;
+  margin-right: 0px;
+
+  box-shadow: 0 0 0 1px black;
+}
+
+
+.mypage .mypage-info .mypage-id span{
+  font-size: 16px;
+  margin-left: 8px;
+  font-weight: normal;
+
+}
+.mypage .mypage-info .mypage-id p{
+  margin-left: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.mypage .mypage-info .mypage-id h3{
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 0 1px black;
 }
 
 /* //프로필부터 포인트산정방법 태그 시작 */
 .mypage .mypage-info .mybasic-info {
   /* background: orange; */
   position: relative;
-  height: 150px;
+  height: 290px;
+  /* box-shadow: 0 0 0 1px black; */
+  display: flex;
+  
 }
 
 .mypage .mypage-info .mybasic-info .profile-image {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 95%;
   /* place-content: center; */
-  position: absolute;
-  left: 30px;
-  top: 20px;
+  box-shadow: 0 0 0 1px black;
+  margin: 10px;
+  margin-right: 0px;
+
 }
 
 .profile-image img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20%;
+ 
 }
 
 .mypage .mypage-info .mybasic-info .profile-image p {
@@ -111,25 +139,66 @@ div#menu a {
 
 .mypage .mypage-info .mybasic-info .usergrade {
   /* background: red; */
-  display: flex;
-  position: absolute;
-  left: 200px;
-  top: 40px;
   font-size: 15px;
   color: black;
+  width: 430px;
+  height: 100%;
+  /* box-shadow: 0 0 0 1px black; */
+
+}
+.mypage .mypage-info .mybasic-info .usergrade h3{
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 0 1px black;
 
 }
 
-.mypage .mypage-info .mybasic-info .mypoint {
+.user-point-grade-box, .user-grade-info-box{
+height: 46%;
+box-shadow: 0 0 0 1px black;
+}
+.user-point-grade-box{
   display: flex;
+  text-align: center;
+  margin: 10px;
+
+}
+.user-grade-info-box{
+  margin: 10px;
+}
+.user-point-grade-box p{
+  font-size: 40px;
+  font-weight: 900px;
+  margin-top: 30px;
+
+}
+.kakao-center{
+  text-align: center;
+}
+.user-point-grade-box div{
+ 
+  width: 50%;
+}
+.user-point{
+margin-right: 5px;
+}
+.user-grade{
+  margin-left: 5px;
+}
+.mypage .mypage-info .mybasic-info .mypoint {
+ 
   /* background: orchid; */
   /* border: 1px solid blue; */
-  width: 50%;
+   width: 200px;
+  height: 200px;
   /* float: right; */
   /* margin-top: 40px; */
   /* position: relative; */
   float: right;
   /* color: black; */
+ 
 
 }
 
@@ -355,7 +424,12 @@ scroll-snap-align: start;
 }
 
 
-
+.modal-movie-title {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  line-height: 50px;
+}
 
 
 

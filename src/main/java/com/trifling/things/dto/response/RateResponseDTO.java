@@ -24,15 +24,18 @@ public class RateResponseDTO {
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime rateDate;
     private String userId;
+    private String profileImage;
 
     public RateResponseDTO(Rate rate) {
         this.rateNum = rate.getRateNum();
         this.userNum = rate.getUserNum();
         this.movieNum = rate.getMovieNum();
-        this.rateReview = shortReview(rate.getRateReview(), 50);
+//        this.rateReview = shortReview(rate.getRateReview(), 50);
+        this.rateReview = rate.getRateReview();
         this.rateScore = rate.getRateScore();
         this.rateDate = rate.getRateDate();
         this.userId = rate.getUserId();
+        this.profileImage = rate.getProfileImage();
     }
 
     public String shortReview(String target, int wishLength) {

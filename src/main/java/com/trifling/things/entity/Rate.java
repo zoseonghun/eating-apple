@@ -20,5 +20,6 @@ public class Rate {
     private LocalDateTime rateDate;
     private int rateLike;
     private String userId;
+    private String profileImage;
 
 }

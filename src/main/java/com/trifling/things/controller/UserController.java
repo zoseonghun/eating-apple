@@ -195,7 +195,7 @@ public class UserController {
 
         model.addAttribute("reviews", reviewList);
 
-        return "user/mypage";
+        return "";
     }
 //    @GetMapping("/mypage/{userNum}")
 //    @ResponseBody

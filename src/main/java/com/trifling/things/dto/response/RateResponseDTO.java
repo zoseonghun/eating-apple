@@ -29,9 +29,15 @@ public class RateResponseDTO {
         this.rateNum = rate.getRateNum();
         this.userNum = rate.getUserNum();
         this.movieNum = rate.getMovieNum();
-        this.rateReview = rate.getRateReview();
+        this.rateReview = shortReview(rate.getRateReview(), 50);
         this.rateScore = rate.getRateScore();
         this.rateDate = rate.getRateDate();
         this.userId = rate.getUserId();
+    }
+
+    public String shortReview(String target, int wishLength) {
+        return (target.length() > wishLength)
+                ? target.substring(0, wishLength) + "..."
+                : target;
     }
 }

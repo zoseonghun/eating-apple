@@ -32,6 +32,9 @@
                             <img src="/assets/img/xapple.png" alt="#" id="modal-rate-icon">
                         </div>
                         <div class="modal-top-rate-input-box">
+                            <div class="modal-bottom-movie-title-box">
+                                <span class="modal-movie-title">${detail.title}</span>
+                            </div>
                             <div class="rating">
                                 <input type="radio" id="star5" name="rating" value="5">
                                 <label for="star5"></label>
@@ -59,19 +62,21 @@
                     </div>
                     <div class="modal-bottom-box">
                         <div class="modal-bottom-left-box">
-                            <div class="modal-bottom-movie-title-box">
-                                <span class="modal-movie-title">${detail.title}</span>
-                            </div>
+                            
                             <div class="modal-bottom-writer-info-box">
                                 <div id="user-num" class="modal-bottom-writer-profile-box" data-un="${login.susernum}">
                                     <c:if test="${login.sprofileimage != null}">
-                                        <img src="/assets/img/people-httpswww.flaticon.com.png" alt="">
+                                        <img src="${login.sprofileimage}" alt="프사">
+                                    </c:if>
+                                    <c:if test="${login.sprofileimage == null}">
+                                        <img src="/assets/img/no-profile.png" alt="X">
                                     </c:if>
                                                                         
                                 </div>
                                 <div class="modal-bottom-writer-id-score-box">
-                                    <div class="modal-bottom-writer-id-box"><span id="rate-writer">${login.suserid}</span></div>
-                                    
+                                    <div class="modal-bottom-writer-id-box">
+                                        <span id="rate-writer">${login.suserid}</span>
+                                    </div>                                    
                                 </div>
                                 <div class="modal-bottom-writer-score-icon-box">
                                     <c:if test="${login.susergrade == 'BASIC'}">
@@ -89,11 +94,8 @@
                         <div class="modal-bottom-right-box">
                             <div class="modal-bottom-like-box">
                                 <div class="modal-bottom-like-icon-box">
-                                    <img src="/assets/img/love-httpswww.flaticon.com.png" alt="">
-                                </div>
-                                <div class="modal-bottom-like-num-box">
-                                    <span>${detail.likeCount}</span>
-                                </div>
+                                    <img src="/assets/img/welcome.gif" alt="welcome">
+                                </div>                                
                             </div>
                             <div class="modal-bottom-save-button-box">
                                 <button id="modal-save" type="button" class="modal-save-button">저 장</button>
@@ -228,7 +230,7 @@
 
         <div class="movie-detail-ranks-box">
             <div class="movie-detail-subname">
-                <p><span>│</span> ${detail.title}</p>
+                <p><span>│</span> 평가 목록</p>
             </div>
             <div class="movie-detail-main-rank" id="rate-box">
                 <!-- 평가 목록 생성 -->
@@ -334,8 +336,17 @@
             rates
         }) {
             let tag = '';
+            let totalScore = 0;
+            for (let rScore of rates) {
+                totalScore += rScore.rateScore;
+            } // p에 뿌려
 
-            // count 미사용
+            const $pTag = document.querySelector('.rank-num-box p');
+            $pTag.innerHTML = totalScore + '%';
+            
+            console.log("평가 점수 총합" + totalScore);
+
+            
 
             if (rates === null || rates.length === 0) {
                 tag += "<div class='speech-bubble-none center-position'>" +
@@ -364,49 +375,52 @@
                         userId
                     } = rate;
                     // console.log(i++);
+                    let shortString = '';
+                    if (rateReview.length > 50) {
+                        shortString = (rateReview.substring(0, 50) + "...");
+                    } else {
+                        shortString = rateReview;
+                    }
 
-
-
-                tag += `<div class="movie-detail-rate-containier" >
-                            <div class="movie-detail-rate-containier" data-rn="\${rateNum}">
-                                <div class="speech-bubble">
-                                    <div class="movie-detail-icon-text-box">
-                                        <div class="movie-detail-rate-icon">
-                                            <img src="/assets/img/apple.png" alt=""> 
+                    
+                    tag += `<div class="movie-detail-rate-containier" data-rn="\${rateNum}">
+                                    <div class="speech-bubble">
+                                        <div class="movie-detail-icon-text-box">
+                                            <div class="movie-detail-rate-icon">
+                                                <img src="/assets/img/apple.png" alt=""> 
+                                            </div>
+                                        </div>
+                                        <div class="movie-detail-rate-text">
+                                            <span>
+                                                \${shortString}
+                                            </span>
+                                        </div>                                    
+                                        <div class="movie-detail-rate-time-like-box">
+                                            <div class="movie-detail-rate-time-box">
+                                                <p>
+                                                    <span> \${rateDate}</span> |<span> Rating: \${rateScore}/5</span>
+                                                </p>
+                                            </div>                                    
+                                            <div class="movie-detail-rate-like-box">
+                                                <img src="/assets/img/star.png" alt=""> 
+                                            </div>                                    
                                         </div>
                                     </div>
-                                    <div class="movie-detail-rate-text">
-                                        <span> 
-                                            \${rateReview}
-                                        </span>
-                                    </div>                                    
-                                    <div class="movie-detail-rate-time-like-box">
-                                        <div class="movie-detail-rate-time-box">
-                                            <p>
-                                                <span> \${rateDate}</span> |<span> Rating: \${rateScore}/5</span>
-                                            </p>
-                                        </div>                                    
-                                        <div class="movie-detail-rate-like-box">
-                                            <img src="/assets/img/star.png" alt=""> 
-                                        </div>                                    
+                                    <div class="movie-detail-rate-writer">
+                                        <div class="writer-name-score-box">
+                                            <div class="writer-name">
+                                                <span>
+                                                    \${userId} 
+                                                </span>
+                                            </div>
+                                            <div class="writer-score">
+                                                <span>
+                                                    324 
+                                                </span>
+                                            </div>
+                                        </div>                             
                                     </div>
-                                </div>
-                                <div class="movie-detail-rate-writer">
-                                    <div class="writer-name-score-box">
-                                        <div class="writer-name">
-                                            <span>
-                                                \${userId} 
-                                            </span>
-                                        </div>
-                                        <div class="writer-score">
-                                            <span>
-                                                324 
-                                            </span>
-                                        </div>
-                                    </div>                             
-                                </div>
-                            </div>
-                        </div>`;
+                                </div>`;
 
                 }
             }
@@ -435,12 +449,13 @@
                 const $starScore = document.querySelectorAll('.rating input[type="radio"]');
                 let selected = 0;
 
+                // 별점 따라 사과 모양 바꿀까 말까?
                 $starScore.forEach(target => {
                     if (target.checked) {
                         selected = +target.value;
-                        if (selected > 3) {
-                            document.querySelector('.modal-top-rate-icon-box').closest;
-                        }
+                        // if (selected > 3) {
+                        //     document.querySelector('.modal-top-rate-icon-box').closest;
+                        // }
                     }
                 });
 
@@ -466,22 +481,24 @@
                     },
                     body: JSON.stringify(payload)
                 };
-
-                fetch(`\${URL}/post`, requestInfo)
-                    .then(res => {
-                        if (res.status === 200) {
-                            alert('평가가 정상적으로 등록되었습니다.');
-                            // 등록 모달 닫기
-                            
-                                $modal.style.display = "none";
-                                location.reload();
-                            
-                            // $rw.value = '';
-                        } else {
-                            alert('댓글 등록에 실패함!');
-                        }
-                    });
-
+                if (selected < 1) {
+                    alert('별점은 최소 1점 이상이어야 합니다.');
+                } else {
+                    fetch(`\${URL}/post`, requestInfo)
+                        .then(res => {
+                            if (res.status === 200) {
+                                alert('평가가 정상적으로 등록되었습니다.');
+                                // 등록 모달 닫기
+                                
+                                    $modal.style.display = "none";
+                                    // location.reload();
+                                    getRateList();
+                                // $rw.value = '';
+                            } else {
+                                alert('댓글 등록에 실패함!');
+                            }
+                        });
+                }
             }
         }
 

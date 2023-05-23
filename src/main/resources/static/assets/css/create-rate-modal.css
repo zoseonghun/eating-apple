@@ -19,7 +19,7 @@
     margin: 15% auto;
     padding: 20px;
     width: 900px;
-    height: 600px;
+    height: 500px;
     box-sizing: border-box;
     border-radius: 10px;
 
@@ -28,7 +28,7 @@
 .close {
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -66,12 +66,7 @@
 
 }
 
-.modal-top-rate-input-box {
-
-    /* background-color: #faffb1; */
-    height: 50px;
-    width: 250px;
-    margin-top: 60px;
+.modal-top-rate-input-box {    
     margin-left: 30px;
     width: 215px;
     height: 43px;
@@ -115,7 +110,8 @@
 
 .modal-tot-close-button-box {
     position: relative;
-    left: 400px;
+    left: 480px;
+    top: 30px;
 }
 
 
@@ -148,21 +144,31 @@
 
     height: 175px;
     display: flex;
+    margin-bottom: 20px;
 }
 
 
-.modal-bottom-left-box,
-.modal-bottom-right-box {
+.modal-bottom-left-box {
 
     width: 50%;
-    height: 175px;
+    height: 90px;
+}
+.modal-bottom-right-box {
+    width: 50%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-bottom-like-icon-box a {
+    font-size: 30px;
 }
 
 .modal-bottom-movie-title-box {
 
     height: 50px;
-    margin-top: 35px;
-    width: 380px;
+    margin-top: 10px;
+    width: 500px;
 
 
 }
@@ -175,11 +181,9 @@
 
 .modal-bottom-writer-info-box {
     height: 60px;
-
-
-
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-left: 20px;
 
 }
 
@@ -224,10 +228,8 @@
 .modal-bottom-like-box {
 
     width: 120px;
-    height: 50px;
-    margin-left: 300px;
-    display: flex;
-    margin-top: 35px;
+    height: 50px;    
+    
 }
 
 .modal-bottom-like-icon-box {
@@ -236,8 +238,8 @@
     height: 50px;
 }
 .modal-bottom-like-icon-box img{
-    width: 48px;
-    height: auto;
+    width: 80px;
+    height: 50;
     object-fit: cover;
 
 }
@@ -254,11 +256,8 @@
 }
 
 .modal-bottom-save-button-box{
-    margin-top: 30px;
-
     height: 50px;
     width: 130px;
-    margin-left: 290px;
 
 }
 

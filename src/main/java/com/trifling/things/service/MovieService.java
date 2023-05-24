@@ -2,6 +2,7 @@ package com.trifling.things.service;
 
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.request.InsertMovieRequestDTO;
 import com.trifling.things.dto.response.MainListResponseDTO;
 import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
@@ -12,8 +13,10 @@ import com.trifling.things.repository.MovieMapper;
 import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -80,5 +83,25 @@ public class MovieService {
 
         return movieMapper.checkLike(movieNum, userNum);
 
+    }
+
+    @Transactional
+    public int insertMovie(InsertMovieRequestDTO dto, String savePath) {
+        int i = 0, j = 0, k = 0;
+        // 현재 영화 갯수
+        int movieCount = movieMapper.maxMovieNum();
+
+        Movie newMovie = dto.toMovie();
+
+        MovieImg newMovieImg = dto.toMovieImg(movieCount + 1, savePath);
+        MovieImg newMovieYoutube = dto.toMovieYoutube(movieCount + 1);
+
+        i = movieMapper.insertMovieInfo(newMovie);
+        if (i == 1) {
+            j = movieMapper.insertMovieImg(newMovieYoutube);
+            k = movieMapper.insertMovieImg(newMovieImg);
+        }
+
+        return i+j+k;
     }
 }

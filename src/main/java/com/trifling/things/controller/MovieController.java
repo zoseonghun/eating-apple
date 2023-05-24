@@ -3,12 +3,15 @@ package com.trifling.things.controller;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.request.InsertMovieRequestDTO;
 import com.trifling.things.dto.response.*;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.service.MovieService;
 import com.trifling.things.util.LoginUtil;
+import com.trifling.things.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,6 +34,8 @@ public class MovieController {
 
     private final MovieService movieService;
 
+    @Value("${file.upload.root-path")
+    private String rootPath;
 
     @GetMapping
     public String mainGo() {
@@ -55,13 +62,14 @@ public class MovieController {
 //        transResponseDTO.setNumList(listByNum);
 //        transResponseDTO.setScoreList(listByScore);
 
+        int inResult =(int)model.asMap().get("inResult");
 
         model.addAttribute("topTenListByNum", listByNum);
         model.addAttribute("topTenListByScore", listByScore);
         model.addAttribute("mList", dto);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);
-
+        model.addAttribute("inResult", inResult);
         return "movies/list";
     }
 
@@ -86,7 +94,20 @@ public class MovieController {
         return "movies/detail";
     }
 
+    @PostMapping("/new")
+    public String newMovie(RedirectAttributes ra, InsertMovieRequestDTO dto) {
 
+        MultipartFile imgFile = dto.getImgFile();
+
+        String savePath = null;
+        savePath = FileUtil.uploadFile(imgFile, rootPath);
+
+
+        int result = movieService.insertMovie(dto, rootPath);
+        ra.addFlashAttribute("inResult", result);
+
+        return "redirect:/movies/list";
+    }
 
 
 }

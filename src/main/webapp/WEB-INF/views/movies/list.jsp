@@ -160,34 +160,14 @@
         autoplayHoverPause: true
       });
     });
-    // function horizonList() {
 
-    //   fetch('/movies/main')
-    //     .then(res => res.json())
-    //     .then(result => {
-    //       showList(result);
-    //     });
-    // }
-
-    // function showList({
-    //   numList,
-    //   scoreList
-    // }) {
-    //   for (let n of numList) {
-    //     const {
-    //       movieNum,
-    //       movieTitle,
-    //       movieScore,
-    //       imgUrl
-    //     } = n;
-    //     console.log(movieTitle);
-    //   }
-    // }
-    // appendPageActive();
-
-    // (function () {
-    //   horizonList();
-    // })();
+    const insertResult = +'${inResult}';
+    
+    function checkResult() {
+      if (insertResult === 3) {
+        alert('영화 등록에 성공하였습니다.');
+      }
+    }
   </script>
 </body>
 

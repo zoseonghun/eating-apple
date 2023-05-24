@@ -404,7 +404,8 @@
                                     <div class="speech-bubble">
                                         <div class="movie-detail-icon-text-box">
                                             <div class="movie-detail-rate-icon">
-                                                <img src="/assets/img/apple.png" alt=""> 
+                                                <img src="/assets/img/apple.png" alt="">
+                                                <span class="full-review">펼쳐보기</span>
                                             </div>
                                         </div>
                                         <div class="movie-detail-rate-text">
@@ -510,8 +511,17 @@
         }
 
 
+        function fullReview() {
+            const $full = document.querySelector('.full-review');
+            $full.onclick = e => {
+                if( e.target.matches($full)){
+                    console.log('펼쳐보기');
+                }
+            }
+        }
 
-        // 얘는 모달창이 열린곳에서 포스트가 넘어가는 기능임 
+
+        // 댓글 등록 기능
         function ratePostButton() {
             // 평가 등록 버튼
             const $postBtn = document.getElementById('modal-save');

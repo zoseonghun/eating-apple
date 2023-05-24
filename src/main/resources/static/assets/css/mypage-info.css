@@ -68,6 +68,10 @@ div#menu a {
  
 }
 
+.mypage-info .profile-image{
+  border-radius: 20%;
+}
+
 .mypage .mypage-info .mypage-id {
   /* background: orange; */
   /* padding: 10px; */
@@ -312,6 +316,7 @@ margin-right: 5px;
   height: 230px;
   position: relative;
   padding-top: 20px;  
+  overflow: hidden;
 }
 
 #review-finalBox,
@@ -322,8 +327,9 @@ margin-right: 5px;
   /* background: palevioletred; */
   justify-content: space-between;
 
-  overflow: auto;
-  scroll-snap-type: y mandatory;
+
+  overflow: auto;  
+  /* scroll-snap-type: y; */
 
 }
 
@@ -331,14 +337,26 @@ margin-right: 5px;
 .interest-container {
   width: 200px;
   height: 200px;
-  border: 1px solid palevioletred;
+  /* border: 1px solid palevioletred; */
   text-align: center;
   position: relative;
   margin-bottom: 50px;
 
+  position: sticky;
+  /* top: -250px; */
+
 
   
 }
+
+@supports (position: sticky) or (position: -webkit-sticky) {
+  .review-container{
+      position: sticky;
+      top: 8px;
+      /* background: red; */
+  }}
+
+
 
 
 .review-box{

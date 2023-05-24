@@ -64,5 +64,8 @@
         where m_user.user_num = #{userNum}
     </select>
 
-
+    <select id="adminAuth" resultType="User">
+        select user_id from m_user mu
+        where mu.user_id = 'admin';
+    </select>
 </mapper>

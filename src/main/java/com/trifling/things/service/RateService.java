@@ -104,4 +104,7 @@ public class RateService {
 
         return rateMapper.deleteLike(movieNum, userNum) == 1;
     }
+
+
+
 }

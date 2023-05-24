@@ -15,5 +15,6 @@ public class RateListResponseDTO {
     private int count;
     private PageMaker pageInfo;
     private List<RateResponseDTO> rates;
+    private int rateNum;
 
 }

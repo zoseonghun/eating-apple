@@ -99,4 +99,19 @@ public class RateController {
         boolean deleteFlag = rateService.deleteLike(movieNum, userNum);
         return ResponseEntity.ok().body(deleteFlag);
     }
+
+    @DeleteMapping("/{rNum}")
+    public ResponseEntity<?> rateDelete(@PathVariable("rNum")  int rateNum
+    ){
+        try {
+            RateListResponseDTO rateDelete = rateService.rateDelete(rateNum);
+            return ResponseEntity.ok().body(rateDelete);
+        }catch (Exception e ){
+            return ResponseEntity.internalServerError()
+                    .body(e.getMessage());
+        }
+
+    }
+
+
 }

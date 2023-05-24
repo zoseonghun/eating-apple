@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -140,4 +139,11 @@ log.info("dto:{}",dto);
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
     }
+
+    //회원정보 조회
+    public List<User> adminAuth(String userId) {
+        return userMapper.adminAuth(userId);
+    }
+
+
 }

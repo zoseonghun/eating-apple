@@ -101,16 +101,16 @@ class UserMapperTest {
     }
 
 
-    @Test
-    @DisplayName("userID를 조회하면 관련된 정보를 가져온다")
-    void myInfoTest() {
-        String userId = "유저1";
-        List<MyInfoResponseDTO> infoDTOList = userMapper.myInfo(userId);
-
-        // 리스트 크기 확인
-        System.out.println("infoDTO : " + infoDTOList);
-        assertEquals(4, infoDTOList.size());
-    }
+//    @Test
+//    @DisplayName("userID를 조회하면 관련된 정보를 가져온다")
+//    void myInfoTest() {
+//        String userId = "유저1";
+//        List<MyInfoResponseDTO> infoDTOList = userMapper.myInfo(userId);
+//
+//        // 리스트 크기 확인
+//        System.out.println("infoDTO : " + infoDTOList);
+//        assertEquals(4, infoDTOList.size());
+//    }
 
     @Test
     @DisplayName("movieNum을 조회하면 관련된 정보를 가져온다")

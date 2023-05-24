@@ -3,6 +3,7 @@ package com.trifling.things.repository;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.Search;
 import com.trifling.things.entity.Movie;
+import com.trifling.things.entity.MovieImg;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,47 @@ class MovieMapperTest {
         System.out.println("movie = " + movie.getMovieTitle());
         System.out.println("movie = " + movie.getMovieScore());
 
+    }
+
+    @Test
+    @DisplayName("영화 등록 성공시 리턴값이 3이어야 한다")
+    void newMovie() {
+        //given
+        Movie info = Movie.builder()
+                .movieTitle("테스트용")
+                .movieInfo("줄거리1")
+                .movieGenre("공포")
+                .movieDirector("동관쓰")
+                .movieRuntime("200분")
+                .movieAge(19)
+                .build();
+
+        int count = mapper.maxMovieNum();
+        System.out.println("count = " + count);
+        MovieImg poster = MovieImg.builder()
+                .movieNum(count+1)
+                .imgName("poster")
+                .imgUrl("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSOw35Rhk1HVB0Qs8m8G9WtCae5o_6wEk_ElJxc2pYH1MA_Zcgg")
+                .build();
+
+        MovieImg youtube = MovieImg.builder()
+                .movieNum(count+1)
+                .imgName("youtube")
+                .imgUrl("-HWEgCMTQxE")
+                .build();
+
+        //when
+        int i = mapper.insertMovieInfo(info);
+        int j = 0;
+        int k = 0;
+        System.out.println(count+1);
+        if (i == 1) {
+            j = mapper.insertMovieImg(poster);
+            k = mapper.insertMovieImg(youtube);
+        }
+
+        //then
+        assertEquals(124, count);
+        assertEquals(3, i+j+k);
     }
 }

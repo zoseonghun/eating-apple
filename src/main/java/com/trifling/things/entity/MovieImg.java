@@ -14,4 +14,5 @@ public class MovieImg {
     private int imgNum;
     private String imgName;
     private String imgUrl;
+    private int movieNum;
 }

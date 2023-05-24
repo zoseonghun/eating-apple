@@ -174,18 +174,36 @@ public class UserController {
 
     //정보수정 -modify
     @PostMapping("/modify")
-    public String modifyUser(UserModifyRequestDTO dto) {
+    public String modifyUser(HttpServletRequest request,
+                             HttpSession session,
+                             UserModifyRequestDTO dto, @RequestParam("profileImage") MultipartFile profileImage)  {
         log.info("/update POST!!");
-        log.info("dto:{}",dto);
+        log.info("dto: {}", dto);
 
-        boolean modifySuccess = userService.modify(dto);
+        dto.setProfileImage(profileImage);
+
+
+        // 파일 저장 경로 설정
+        String savePath = FileUtil.uploadFile(dto.getProfileImage(), rootPath); // 실제 저장 경로로 변경해야 합니다.
+
+        boolean modifySuccess = userService.modify(dto, savePath); // savePath 값을 추가로 전달
 
         if (modifySuccess) {
-            return "redirect:/movies/list";
+            // 세션에서 login정보를 제거
+            session.removeAttribute("login");
+
+            // 세션을 아예 초기화 (세션만료 시간 초기화)
+            session.invalidate();
+
+            userService.maintainLoginState(request.getSession(), dto.getUserId());
+
+            return "redirect:/user/mypage";
         } else {
             return "redirect:/user/modify";
         }
     }
+
+
 
 
 
@@ -212,16 +230,12 @@ public class UserController {
     }
 
 
-//    마이페이지 --로그인 연동시
+    //    마이페이지 --로그인 연동시
     @GetMapping("/mypage")
     public String getMyPage() {
 
         return "user/mypage";
     }
-
-
-
-
 
 
     // 로그아웃 요청 처리

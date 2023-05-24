@@ -51,18 +51,19 @@ public class UserService {
         return userMapper.findUser(userId);
     }
 
-    public boolean modify(UserModifyRequestDTO dto) {
+    public boolean modify(UserModifyRequestDTO dto, String savePath) {
 
-        User user = User.builder().
-                userId(dto.getUserId())
+        User user = User.builder()
+                .profileImage(savePath)
+                .userId(dto.getUserId())
                 .userPassword(encoder.encode(dto.getUserPassword()))
                 .userEmail(dto.getUserEmail())
                 .build();
 
         boolean flag = userMapper.modify(user);
+
         return flag;
     }
-
 
 
     // 중복검사 서비스 처리
@@ -71,7 +72,7 @@ public class UserService {
         log.info(keyword);
 
         int flagNum = userMapper.isDuplicate(type, keyword);
-log.info(String.valueOf(flagNum));
+        log.info(String.valueOf(flagNum));
         return flagNum == 1;
     }
 
@@ -91,7 +92,7 @@ log.info(String.valueOf(flagNum));
         // 비밀번호 일치 확인
         if (!encoder.matches(dto.getUserPassword(), foundUser.getUserPassword())) {
 
-           log.info("password unmatch");
+            log.info("password unmatch");
 
             return NO_PW;
         }
@@ -100,11 +101,11 @@ log.info(String.valueOf(flagNum));
     }
 
 
-//내가 작성한 리뷰 보기
-public List<Review> myReviewList(int userNum){
-    List<Review> reviews = userMapper.myReviewList(userNum);
-    return reviews;
-}
+    //내가 작성한 리뷰 보기
+    public List<Review> myReviewList(int userNum){
+        List<Review> reviews = userMapper.myReviewList(userNum);
+        return reviews;
+    }
 
     //영화 찜하기 기능
     public List<Interest> myInterestList( int userNum) {
@@ -134,7 +135,7 @@ public List<Review> myReviewList(int userNum){
                 .sprofileimage(user.getProfileImage())
                 .susergrade(user.getUserGrade().toString())
                 .build();
-log.info("dto:{}",dto);
+        log.info("dto:{}",dto);
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
     }

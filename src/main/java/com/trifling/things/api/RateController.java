@@ -6,6 +6,7 @@ import com.trifling.things.dto.request.RatePostRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.RateListResponseDTO;
 import com.trifling.things.dto.response.RateResponseDTO;
+import com.trifling.things.dto.response.ScoreResponseDTO;
 import com.trifling.things.service.RateService;
 import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -104,11 +105,11 @@ public class RateController {
         return ResponseEntity.ok().body(deleteFlag);
     }
 
-    @GetMapping("/total/{movieNum}")
-    public ResponseEntity<?> movieTotalScore(@PathVariable int movieNum) {
-        log.info("movieNum~~~ {}:",movieNum);
-        int totalMovieScore = rateService.totalMovieScore(movieNum);
-        return ResponseEntity.ok().body(totalMovieScore);
+    @GetMapping("/total/{mNum}")
+    public ResponseEntity<?> movieTotalScore(@PathVariable int mNum) {
+        log.info("movieNum~~~ {}",mNum);
+        ScoreResponseDTO dto = rateService.totalMovieScore(mNum);
+        return ResponseEntity.ok().body(dto);
     }
 
 

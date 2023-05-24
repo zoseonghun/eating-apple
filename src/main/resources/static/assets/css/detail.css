@@ -429,6 +429,12 @@
     margin-bottom: 20px;
 }
 
+
+.center-rate {
+    position: relative;
+    left: 300px;
+}
+
 .star {
 position: relative;
 font-size: 2rem;

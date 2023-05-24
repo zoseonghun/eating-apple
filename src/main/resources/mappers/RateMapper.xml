@@ -82,9 +82,11 @@
         WHERE movie_num = #{movieNum} AND user_num = #{userNum}
     </delete>
 
-    <select id="totalMovieScore" resultType="int">
-        SELECT movie_score
-        FROM m_movie
-        WHERE movie_num = #{movieNum}
+    <select id="totalMovieScore" resultType="score">
+        SELECT m.movie_score as totalScore, COUNT(r.rate_num) as maxCount
+        FROM m_movie m
+        JOIN m_rate r
+        ON m.movie_num = r.movie_num
+        WHERE m.movie_num = #{movieNum}
     </select>
 </mapper>

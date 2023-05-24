@@ -470,10 +470,6 @@ pointer-events: none;
 
 }
 
-.center-position {
-    left: 245px;
-}
-
 .none-write {
     display: flex;
     align-items: center;
@@ -504,3 +500,4 @@ pointer-events: none;
     color: orange;
 
 }
+

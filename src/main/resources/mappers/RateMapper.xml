@@ -81,4 +81,10 @@
         DELETE FROM m_interest
         WHERE movie_num = #{movieNum} AND user_num = #{userNum}
     </delete>
+
+    <select id="totalMovieScore" resultType="int">
+        SELECT movie_score
+        FROM m_movie
+        WHERE movie_num = #{movieNum}
+    </select>
 </mapper>

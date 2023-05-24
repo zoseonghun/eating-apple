@@ -251,9 +251,6 @@
 
 
     <script>
-        let num = '${login.susernum}';
-
-
         const num = '${login.susernum}';
 
         const URL = '/rates';
@@ -346,24 +343,6 @@
             rates
         }) {
             let tag = '';
-            let totalScore = 0;
-            for (let rScore of rates) {
-                totalScore += rScore.rateScore;
-            } // p에 뿌려
-
-            let maxScore = 5 * rates.length;
-
-            let percentScore = Math.floor((totalScore / maxScore) * 100);
-
-            const $pTag = document.querySelector('.rank-num-box p');
-
-
-            // console.log('p :' + percentScore + '/tot : ' + totalScore + "/ max : " + maxScore);
-
-
-            // console.log("평가 점수 총합" + totalScore);
-
-
 
             if (rates === null || rates.length === 0) {
                 $pTag.innerHTML = '0%';
@@ -402,13 +381,14 @@
                         shortString = rateReview;
                     }
 
+                    // <span class="full-review">펼쳐보기</span>
 
                     tag += `<div class="movie-detail-rate-containier" data-rn="\${rateNum}">
                                     <div class="speech-bubble">
                                         <div class="movie-detail-icon-text-box">
                                             <div class="movie-detail-rate-icon">
                                                 <img src="/assets/img/apple.png" alt="">
-                                                <span class="full-review">펼쳐보기</span>
+                                                
                                             </div>
                                         </div>
                                         <div class="movie-detail-rate-text">
@@ -449,6 +429,18 @@
             }
 
             document.getElementById('rate-box').innerHTML = tag;
+
+            fetch(URL + '/total/' + movieNum)
+                .then(res => res.json())
+                .then(total => {
+                    
+                    let maxScore = 5 * rates.length;
+
+                    let percentScore = Math.floor((totalScore / maxScore) * 100);
+
+            const $pTag = document.querySelector('.rank-num-box p');
+                })
+
 
             // 페이지 렌더링 해야되나...
             renderPage(pageInfo);
@@ -551,15 +543,11 @@
                     }
                 });
 
-                const payload = {
-                    // userNum => 세션 dto에서 가져와야되고                
+                const payload = {             
                     userNum: num,
                     movieNum: mNum,
-                    // 입력값 받아오고
                     rateReview: review,
-                    // 입력 점수 받아오고
                     rateScore: selected,
-                    // 세션에서 받아와야됨
                     userId: id
                 };
 

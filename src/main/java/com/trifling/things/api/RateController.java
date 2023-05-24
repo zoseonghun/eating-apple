@@ -103,4 +103,13 @@ public class RateController {
         boolean deleteFlag = rateService.deleteLike(movieNum, userNum);
         return ResponseEntity.ok().body(deleteFlag);
     }
+
+    @GetMapping("/total/{movieNum}")
+    public ResponseEntity<?> movieTotalScore(@PathVariable int movieNum) {
+        log.info("movieNum~~~ {}:",movieNum);
+        int totalMovieScore = rateService.totalMovieScore(movieNum);
+        return ResponseEntity.ok().body(totalMovieScore);
+    }
+
+
 }

@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class RateService {
 
     private final RateMapper rateMapper;
+    private final MovieService movieService;
 
     public RateListResponseDTO getRateList(String type, int target, Page page) {
 
@@ -50,6 +51,7 @@ public class RateService {
         rate.setUserId(user.getSuserid());
 
         boolean flag = rateMapper.rateWrite(rate);
+        movieService.movieScoreRenew(dto.getMovieNum());
         return getRateList("movie", dto.getMovieNum(), new Page(1,10));
         // 엔티티 리턴해줘야 RESTful 적용 가능 바로 보여져야됨
     }
@@ -103,5 +105,9 @@ public class RateService {
     public boolean deleteLike(int movieNum, int userNum) {
 
         return rateMapper.deleteLike(movieNum, userNum) == 1;
+    }
+
+    public int totalMovieScore(int movieNum) {
+        return rateMapper.totalMovieScore(movieNum);
     }
 }

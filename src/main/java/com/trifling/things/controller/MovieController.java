@@ -15,12 +15,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,7 +33,7 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    @Value("${file.upload.root-path")
+    @Value("${file.upload.root-path}")
     private String rootPath;
 
     @GetMapping
@@ -61,8 +60,11 @@ public class MovieController {
 //        MainListTransResponseDTO transResponseDTO = new MainListTransResponseDTO();
 //        transResponseDTO.setNumList(listByNum);
 //        transResponseDTO.setScoreList(listByScore);
+        int inResult = 999;
+        if (model.asMap().get("inResult") != null) {
+            inResult = (int)model.asMap().get("inResult");
+        }
 
-        int inResult =(int)model.asMap().get("inResult");
 
         model.addAttribute("topTenListByNum", listByNum);
         model.addAttribute("topTenListByScore", listByScore);
@@ -98,17 +100,23 @@ public class MovieController {
     @PostMapping("/new")
     public String newMovie(RedirectAttributes ra, InsertMovieRequestDTO dto) {
 
+//        log.info("dto: {}", dto);
         MultipartFile imgFile = dto.getImgFile();
+        UriComponents url = UriComponentsBuilder
+                .fromUriString(dto.getImgYoutubeUrl())
+                .build();
+//        log.info("url:{}",url.getPathSegments().get(0));
+        dto.setImgYoutubeUrl(url.getPathSegments().get(0));
 
         String savePath = null;
         savePath = FileUtil.uploadFile(imgFile, rootPath);
-
 
         int result = movieService.insertMovie(dto, rootPath);
         ra.addFlashAttribute("inResult", result);
 
         return "redirect:/movies/list";
     }
+
 
 
 }

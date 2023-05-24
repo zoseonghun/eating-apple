@@ -40,4 +40,6 @@ public interface RateMapper {
 
     public int deleteLike(@Param("movieNum") int movieNum
             , @Param("userNum") int userNum);
+
+    public int totalMovieScore(int movieNum);
 }

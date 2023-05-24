@@ -35,7 +35,7 @@
         <div id="container">
             <div class="container movie-save-box">
 
-                <form action="post-url" name="post-name" id="post-id" method="POST"
+                <form action="/movies/new" name="post-name" id="post-id" method="POST" 
                       enctype="multipart/form-data">
 
                     <div class="movie-img-box">
@@ -43,17 +43,13 @@
                             <img src="/assets/img/free-icon-addition-thick-symbol-20183.png" alt="포스터 썸네일">
                         </div>
                         <label for="poster-img">포스터 사진 추가</label>
-                        <input type="file" id="poster-img" name="imgUrl" accept="image/*">
+                        <input type="file" id="poster-img" name="imgFile" accept="image/*">
                     </div>
 
 
 
                     <div class="movie-save-left-right-box">
-
-
                         <div class="movie-save-left-box">
-
-
                             <div class="form-group">
                                 <label for="test1"><strong>Movie Title</strong>
                                     <p id="test1-err"></p>
@@ -80,12 +76,7 @@
                                 </label>
                                 <input type="text" id="test4" name="genre" placeholder="입력해주세요">
                             </div>
-
-
-
                         </div>
-
-
 
                         <div class="movie-save-right-box">
                             <div class="form-group">
@@ -107,19 +98,10 @@
                                 </label>
                                 <input type="text" id="movie-info" name="info" placeholder="입력해주세요">
                             </div>
-
-
-
                         </div>
-
-
-
-
                     </div>
 
-
-
-                    <input type="button" value="저장하기" id="movie-save-button">
+                    <input type="submit" value="저장하기" id="movie-save-button">
                 </form>
             </div>
         </div>
@@ -222,6 +204,22 @@
             $imgTag.setAttribute('src', reader.result);
         };
     };
+
+    const $insertSubmit = document.getElementById('movie-save-button');
+    
+    $insertSubmit.onclick = e => {
+
+        const $form = document.getElementById('post-id');
+
+        // if (checkResultList.includes(false)) {
+        //     $form.submit();
+        // } else {
+        //     alert('정보를 정확히 입력해주세요');
+        // }
+        // 검증 완료 되면 조건문 사용
+        $form.submit();
+    }
+
 </script>
 
 

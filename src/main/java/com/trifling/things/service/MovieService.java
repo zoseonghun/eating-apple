@@ -87,20 +87,23 @@ public class MovieService {
     @Transactional
     public int insertMovie(InsertMovieRequestDTO dto, String savePath) {
         int i = 0, j = 0, k = 0;
-        // 현재 영화 갯수
-        int movieCount = movieMapper.maxMovieNum();
 
         Movie newMovie = dto.toMovie();
-
-        MovieImg newMovieImg = dto.toMovieImg(movieCount + 1, savePath);
-        MovieImg newMovieYoutube = dto.toMovieYoutube(movieCount + 1);
-
         i = movieMapper.insertMovieInfo(newMovie);
+        log.info("i : {}", i);
         if (i == 1) {
+            // 현재 영화 갯수(시퀀스 마지막 번호)
+            int movieCount = movieMapper.maxMovieNum();
+            log.info("auto : {}",movieCount);
+            MovieImg newMovieImg = dto.toMovieImg(movieCount-1, savePath);
+            MovieImg newMovieYoutube = dto.toMovieYoutube(movieCount-1);
+
             j = movieMapper.insertMovieImg(newMovieYoutube);
             k = movieMapper.insertMovieImg(newMovieImg);
         }
 
         return i+j+k;
     }
+
+
 }

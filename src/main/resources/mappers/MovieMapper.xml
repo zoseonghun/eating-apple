@@ -98,7 +98,9 @@
     </insert>
 
     <select id="maxMovieNum" resultType="int">
-        SELECT MAX(movie_num)
-        FROM m_movie
+        SELECT AUTO_INCREMENT
+        FROM information_schema.TABLES
+        WHERE TABLE_SCHEMA = 'eatingapple'
+        AND TABLE_NAME = 'm_movie'
     </select>
 </mapper>

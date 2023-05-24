@@ -253,6 +253,9 @@
     <script>
         let num = '${login.susernum}';
 
+
+        const num = '${login.susernum}';
+
         const URL = '/rates';
 
         let mNum = '${detail.movieNum}';

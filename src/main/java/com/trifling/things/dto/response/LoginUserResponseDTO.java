@@ -16,6 +16,7 @@ public class LoginUserResponseDTO {
 
     private int susernum;
     private String suserid;
+    private String semail;
     private String susergender;
     private int suserage;
     private String sprofileimage;

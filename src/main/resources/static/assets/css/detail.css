@@ -423,6 +423,7 @@
 .movie-detail-ranks-box {
     margin-top: 10px;
     margin-bottom: 50px;
+
 }
 .movie-detail-rate-containier{
     margin-bottom: 20px;
@@ -501,4 +502,5 @@ pointer-events: none;
 
 .rating input:checked~label {
     color: orange;
+
 }

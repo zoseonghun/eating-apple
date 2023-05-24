@@ -2,8 +2,7 @@ package com.trifling.things.controller;
 
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.PageMaker;
-import com.trifling.things.repository.Review;
-import com.trifling.things.service.MovieService;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.service.PagingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,7 @@ public class PagingController {
         int totalCount = pagingService.getTotalCount(); // 전체 리뷰 수를 가져옴
         PageMaker pageMaker = new PageMaker(page, totalCount); // 페이지 정보를 생성
 
-        List<Review> reviewList = pagingService.pagingReview(page.getPageStart(), page.getAmount()); // 페이징된 리뷰 목록을 가져옴
+        List<ReviewResponseDTO> reviewList = pagingService.pagingReview(page.getPageStart(), page.getAmount()); // 페이징된 리뷰 목록을 가져옴
 
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("pageMaker", pageMaker);

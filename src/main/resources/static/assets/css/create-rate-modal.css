@@ -41,7 +41,6 @@
 }
 
 
-
 .modal-top-box {
 
     height: 130px;
@@ -61,7 +60,7 @@
     height: auto;
     object-fit: cover;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
 
 
 }
@@ -178,7 +177,12 @@
     font-weight: bold;
     line-height: 50px;
 }
-
+.modal-movie-review {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    line-height: 50px;
+}
 .modal-bottom-writer-info-box {
     height: 60px;
     display: flex;

@@ -84,7 +84,6 @@ public class MovieService {
         return movieMapper.checkLike(movieNum, userNum);
 
     }
-
     @Transactional
     public int insertMovie(InsertMovieRequestDTO dto, String savePath) {
         int i = 0, j = 0, k = 0;

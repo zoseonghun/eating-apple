@@ -77,7 +77,6 @@ public class MovieController {
     public String movieDetail(Model model, int mno, HttpServletRequest request) {
         log.info("/movies/detail : GET");
 
-
         LoginUserResponseDTO login = (LoginUserResponseDTO) request.getSession().getAttribute("login");
 
         int like = 0;
@@ -90,9 +89,11 @@ public class MovieController {
         MovieDetailResponseDTO dto = movieService.movieDetail(mno);
         log.info("score: {}", dto.getScore());
         model.addAttribute("detail", dto);
+        model.addAttribute("jjim", like);
 
         return "movies/detail";
     }
+
 
     @PostMapping("/new")
     public String newMovie(RedirectAttributes ra, InsertMovieRequestDTO dto) {

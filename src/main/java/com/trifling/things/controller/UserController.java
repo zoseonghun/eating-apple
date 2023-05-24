@@ -262,6 +262,23 @@ public class UserController {
 
 
 
+
+
+    //admin page 요청
+    @GetMapping("/admin")
+    public String admin() {
+        log.info("/user/admin GET - forwarding to jsp");
+        return "user/admin"; // 로그인 페이지로 이동
+    }
+
+
+
+
+
+
+
+
+
     }
 
 

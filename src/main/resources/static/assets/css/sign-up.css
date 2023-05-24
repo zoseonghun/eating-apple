@@ -7,7 +7,7 @@
     /* height: auto;
     width: 100%; */
     background-color: #222;
-    max-height: 700px; /* 최대 높이 설정 */
+   padding-bottom: 50px;
     overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
 }
 

@@ -2,6 +2,7 @@ package com.trifling.things.config;
 
 import com.trifling.things.interceptor.AfterLoginInterceptor;
 import com.trifling.things.interceptor.RateInterceptor;
+import com.trifling.things.interceptor.UserInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,6 +16,7 @@ public class InterceptorConfig
 
     private final RateInterceptor replyInterceptor;
     private  final AfterLoginInterceptor afterLoginInterceptor;
+    private final UserInterceptor userInterceptor;
     // 인터셉터 설정 등록
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -30,5 +32,13 @@ public class InterceptorConfig
                 .addPathPatterns("/user/sign-in","/user/sign-up")
         ;
 
+        // 로그인 후처리 인터셉터 설정
+        registry.addInterceptor(userInterceptor)
+                .addPathPatterns("/user/*")
+                .excludePathPatterns("/user/sign-up", "/user/login", "/user/sign-in", "/user/check") // 인터셉터를 실행하지 않을 경로
+        ;
+
     }
+
+
 }

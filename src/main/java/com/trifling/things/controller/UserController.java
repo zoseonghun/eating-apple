@@ -3,8 +3,12 @@ package com.trifling.things.controller;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
+import com.trifling.things.dto.response.MovieDetailResponseDTO;
+import com.trifling.things.entity.user.Grade;
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.dto.response.ReviewResponseDTO;
+import com.trifling.things.entity.user.User;
 import com.trifling.things.service.LoginResult;
 import com.trifling.things.service.UserService;
 import com.trifling.things.util.LoginUtil;
@@ -129,7 +133,6 @@ public class UserController {
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST: {}", dto);
 
-
         LoginResult result = userService.authenticate(dto);
 
 
@@ -147,6 +150,8 @@ public class UserController {
         // 로그인 실패시
         return "redirect:/user/login";
     }
+
+
 // find user 정보 찾기 -- 필요한가?
 //    @GetMapping("/find/{userId}")
 //    public String findUser(@PathVariable String userId, Model model) {
@@ -195,7 +200,7 @@ public class UserController {
 
         model.addAttribute("reviews", reviewList);
 
-        return "";
+        return "user/mypage";
     }
 //    @GetMapping("/mypage/{userNum}")
 //    @ResponseBody
@@ -206,6 +211,7 @@ public class UserController {
 //
 //        return ResponseEntity.ok().body(reviewList);
 //    }
+
 
 
 
@@ -254,4 +260,13 @@ public class UserController {
     }
 
 
-}
+
+
+    }
+
+
+
+
+
+
+

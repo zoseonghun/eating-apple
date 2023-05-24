@@ -1,5 +1,7 @@
 package com.trifling.things.repository;
 
+import com.trifling.things.dto.request.LoginRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.entity.user.Interest;
@@ -41,7 +43,7 @@ public interface UserMapper {
 
     List<MyInfoResponseDTO> myInfo(int userNum);
 
+    List<User> adminAuth(String userId);
 
+    }
 
-
-}

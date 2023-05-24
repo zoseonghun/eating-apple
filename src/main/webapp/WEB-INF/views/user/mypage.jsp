@@ -93,18 +93,6 @@
 
 
 
-                    <!-- 모달 창 -->
-                    <!-- <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <!-- 모달 내용 -->
-                    <!-- <h2>모달 내용</h2>
-                        <p>모달 내용의 설명이 들어갑니다.</p> -->
-                    <!-- 닫기 버튼 -->
-                    <!-- <span class="close">&times;</span>
-                    </div>
-                </div>  -->
-
-
                     <!-- rate-modal  -->
                     <!-- <%@ include file="../include/create-rate-modal.jsp" %> -->
                     <div id="myModal" class="modal">
@@ -146,10 +134,8 @@
                                 </div>
                                 <div class="modal-middle-box">
                                     <div class="modal-middle-rate-content-box">
-                                     
-                                        <div class="modal-movie-title">영화 제목</div>
-                
-                                        <div class="modal-movie-review">영화 리뷰 </div>
+                                        <span class="modal-movie-title" id="modal-movie-title">영화 제목</span>                
+                                        <span class="modal-movie-review">영화 리뷰 </span>
                                         <textarea name="modal-content" id="modal-content" cols="20"
                                             rows="10"></textarea>
                                           
@@ -277,7 +263,7 @@
                                                                     <p class="r-movieTitle">영화 제목 : ${review.movieTitle}
                                                                     </p>
                                                                     <p class="r-rateReviewA">평가 내용 :</p>
-                                                                    <p class="r-rateReview"> ${review.rateReview}      </p>
+                                                                    <p class="r-rateReview"> ${review.rateReview}</p>
                                                                     
                                                                     <p class="r-rateScore">영화 평점 : ${review.rateScore}
                                                                     </p>
@@ -339,6 +325,8 @@
             //모달
             const reviewFinalBox = document.querySelector('#review-finalBox');
             const modalTextarea = document.getElementById('modal-content');
+            const modalMovieTitle = document.getElementById('modal-movie-title');
+
 
             reviewFinalBox.onclick = e => {
                 console.log(e.target.closest('.review-container'));
@@ -346,16 +334,39 @@
                 const target = e.target.closest('.review-container');
                 const title = target.querySelector('.r-movieTitle').textContent;
                 const reviewText = target.querySelector('.r-rateReview').textContent;
+                const reviewScore = target.querySelector('.r-rateScore').textContent;
+                const lastTwoChars = reviewScore.slice(8);
+                const reviewScoreNum = +lastTwoChars.trim()
 
                 // console.log(title);
                 // console.log(reviewText);
 
                 document.getElementById('myModal').style.display = 'block';
                 modalTextarea.textContent = `\${reviewText}`;
-            };
+                modalMovieTitle.textContent = `\${title}`;
 
-     
+                console.log(reviewScoreNum);
 
+                switch (reviewScoreNum){
+                    case 1:
+                        document.getElementById("star1").checked = true;
+                        break;
+                    case 2:
+                        document.getElementById("star2").checked = true;
+                        break;
+                    case 3:
+                        document.getElementById("star3").checked = true;
+                        break;
+                    case 4:
+                        document.getElementById("star4").checked = true;
+                        break;
+                    default :
+                        console.log("잘못됨")
+                };
+
+
+
+            };   
 
             // 모달 닫기 버튼 클릭 이벤트
             document.querySelector('.close').addEventListener('click', function () {
@@ -437,9 +448,9 @@
 
                     if (e.target.matches('#myreview')) {
                         console.log('리뷰 부르기~');
-                        const userNum = 1; // 사용자 번호
+                        // const userNum = 1; // 사용자 번호
 
-                        fetch(`user/review/${1}`)
+                        fetch(`user/review/${userNum}`)
                             .then(response => response.json())
                             .then(data => {
                                 const reviewContainer = document.querySelector('#review-finalBox');
@@ -462,7 +473,7 @@
                                     console.log('데이터가 유효하지 않습니다.');
                                 }
 
-                                window.location.href = `/user/review/${1}`;
+                                window.location.href = `/user/review/${userNum}`;
                             })
                             .catch(error => {
                                 console.log('데이터를 가져오는 중 오류가 발생했습니다.', error);

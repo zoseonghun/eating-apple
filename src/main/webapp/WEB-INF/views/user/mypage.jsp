@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/css/create-rate-modal2.css" type="text/css" media="all" />
     <style>
         .rating {
             display: inline-block;
@@ -34,18 +34,22 @@
             color: orange;
         }
 
-        -->.modal {
+        .modal {
             display: none;
             /* 처음에는 숨김 상태로 설정 */
             position: fixed;
             z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            /* left: 0;
+            top: 0; */
+            width: fit-content;
+            height: fit-content;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.5);
             /* 반투명한 배경 */
+            /* position: absolute; */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .modal-content {
@@ -286,7 +290,7 @@
                                                     <div id="interest-container">
                                                         <div class="interest-box">
                                                             <!-- <!-- <p class="i-userNum">${interest.userNum}</p> -->
-                                                                <p class="i-movieNum">${interest.movieNum}</p> 
+                                                            <p class="i-movieNum">${interest.movieNum}</p>
                                                             <p class="i-movieTitle">${interest.movieTitle}</p>
                                                             <p class="i-imgUrl">${interest.imgUrl}</p>
                                                             <!-- <img src="/assets/img/endgame.jpg" alt="어벤져스"> -->
@@ -296,7 +300,7 @@
                                                 </c:forEach>
                                             </c:if>
 
-                                        
+
 
                                         </div>
 

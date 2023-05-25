@@ -2,7 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div id="footer">
-    <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-    <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
+    <p class="lf">해당 웹페이지는 상업 목족이 아닌 공부용으로 만들어졌습니다<a href="#"></a></p>
+    <p class="rf">배포 및 재사용 금지합니다<a href="#"></a></p>
+
     <div style="clear:both;"></div>
 </div>

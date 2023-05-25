@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>MovieHunter</title>
+    <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="/assets/css/sign-in.css" type="text/css" media="all"/>

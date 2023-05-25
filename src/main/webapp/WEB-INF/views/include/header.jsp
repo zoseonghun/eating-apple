@@ -29,7 +29,7 @@
                 <li class="header-li header-li-user"><p>관리자 계정입니다</p></li>
                 <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
                 <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
-                <li class="header-li"><a href="/user/admin">사진등록</a></li>
+                <li class="header-li"><a href="/user/admin">영화등록</a></li>
             </c:if>
 
         </ul>

@@ -38,9 +38,10 @@ div#menu a {
   /* 틀 삭제 */
   /* border: 1px solid #fff; */
   background-color: rgb(243, 243, 243);
-  height: 800px;
+
   display: flex;
   width: 100%;
+  padding: 30px;
 
 }
 
@@ -311,11 +312,11 @@ margin-right: 5px;
 
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .mydetail-contents {
   width: 80%;
-  border: 1px solid wheat;
+
   margin: auto;
   text-align: center;
   margin-top: 20px;
-  height: 230px;
+ 
   position: relative;
   padding-top: 20px;  
   overflow: hidden;
@@ -331,26 +332,33 @@ margin-right: 5px;
   /* background: palevioletred; */
   justify-content: space-between;
 
-
-  overflow: auto;  
+ 
   /* scroll-snap-type: y; */
 
 }
 
-.review-container,
+
+/* 수정 */
+.review-container {
+  background-image: url(../img/redapple.png);
+  background-size:cover;
+    width: 200px;
+    height: 230px;
+    border: 1px solid palevioletred;
+    text-align: center;
+    margin-bottom: 30px;
+    background-position: -8px 0; /* 왼쪽으로 5px 이동 */
+}
+
 .interest-container {
-  width: 200px;
-  height: 200px;
-  border: 1px solid palevioletred;
-  text-align: center;
-  position: relative;
-  margin-bottom: 50px;
-
-  position: sticky;
-  /* top: -250px; */
-
-
-  
+  background-image: url(../img/love-httpswww.flaticon.com.png);
+  background-size:contain;
+    width: 200px;
+    height: 200px;
+    border: 1px solid palevioletred;
+    text-align: center;
+    margin-bottom: 30px;
+   
 }
 
 @supports (position: sticky) or (position: -webkit-sticky) {
@@ -455,10 +463,31 @@ scroll-snap-align: start;
 
 
 
+/* 수정 */
+.r-movieTitle{
+  margin-top: 110px;
+  color: aliceblue;
+}
+
+
+
+.review-container p{
+  color: aliceblue;
+  width: 80%;
+  margin-left: 20px;
+}
 
 
 
 
+.i-movieTitle{
+  color: aliceblue;
+  font-size: 15px;
+  font-weight: bold;
+text-decoration: none;
+cursor: pointer;
+line-height: 190px;
+}
 
 
 

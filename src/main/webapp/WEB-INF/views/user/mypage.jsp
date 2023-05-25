@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/css/create-rate-modal2.css" type="text/css" media="all" />
     <style>
         .rating {
             display: inline-block;
@@ -54,6 +54,8 @@
             padding: 20px;
             border: 1px solid #888;
             /* width: 80%; */
+            height: 500px;
+            width: 860px;
         }
 
         .close {
@@ -212,13 +214,13 @@
 
 
                             </div>
-                            <!-- 
+                            <!--
                                     <div class="mypoint">
                                         <div class="mycoupon">
                                             <p>나의 포인트</p>
                                             <p>${login.suserpoint}점</p>
                                         </div>
-            
+
                                         <div class="myrealpoint">
                                             <p> 포인트 산정방법</p>
                                             <ul class="how-to-get-point">
@@ -249,13 +251,15 @@
 
                                 <div class="mydetail-contents">
                                     <div class="mydetail-myreview">
-                                        <!-- <br>
+                                        <div class ="mydetail-message">
+                                        <br>
                                         상단에 원하는 카테고리를 선택하여 클릭해주세요 <br><br>
 
                                         안녕하세요, EATING <span color=red>APPLE</span>을 이용해주셔서 감사합니다 <br>
                                         여러분의 작은 리뷰 하나가 큰 도움과 행복이 됩니다🤓 <br>
                                         짧지만 소중한 리뷰를 잠깐의 시간을내어 작성해주신다면 감사하겠습니다😀 <br>
-                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다. -->
+                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다.
+                                    </div>
                                         <%-- 리뷰 데이터를 표시할 위치 --%>
                                         <div id="review-finalBox">
                                             <c:if test="${not empty reviews}">
@@ -266,7 +270,7 @@
                                                         <div class="review-box" id="reviewBox">
                                                             <p class="r-movieTitle">영화 제목 : ${review.movieTitle}</p>
                                                             <p><br><br></p>
-                                                            <p class="r-rateReviewA">평가 내용 :</p>
+                                                            <p class="r-rateReviewA"></p>
                                                             <p class="r-rateReview"> ${review.rateReview}</p>
 
                                                             <p class="r-rateScore">영화 평점 : ${review.rateScore}
@@ -285,8 +289,8 @@
                                                 <c:forEach items="${interestList}" var="interest">
                                                     <div id="interest-container">
                                                         <div class="interest-box">
-                                                            <!-- <!-- <p class="i-userNum">${interest.userNum}</p> -->
-                                                                <p class="i-movieNum">${interest.movieNum}</p> 
+                                                            <!--  <p class="i-userNum">${interest.userNum}</p> -->
+                                                                <p class="i-movieNum">${interest.movieNum}</p>
                                                             <p class="i-movieTitle">${interest.movieTitle}</p>
                                                             <p class="i-imgUrl">${interest.imgUrl}</p>
                                                             <!-- <img src="/assets/img/endgame.jpg" alt="어벤져스"> -->
@@ -296,7 +300,7 @@
                                                 </c:forEach>
                                             </c:if>
 
-                                        
+
 
                                         </div>
 
@@ -325,7 +329,6 @@
 
 
     <script>
-        // 내가 쓴 리뷰 버튼 클릭
         document.addEventListener('DOMContentLoaded', () => {
             const myReviewButton = document.querySelector('#myreview');
             myReviewButton.onclick = e => {
@@ -337,8 +340,12 @@
                     const user = '${login.susernum}'; // 사용자 번호
                     console.log(user);
 
-                    // const myReviewContent = document.querySelector('.mydetail-myreview');
-                    // myReviewContent.style.display = 'none';
+                    const myReviewContent = document.querySelector('.mydetail-message');
+                    myReviewContent.innerHTML = "";
+                    const myInterestContent = document.getElementById('interest-finalBox');
+                    while (myInterestContent.firstChild) {
+                        myInterestContent.removeChild(myInterestContent.firstChild);
+                    }
 
                     fetch('/user/review/' + user)
                         .then(response => {
@@ -359,7 +366,7 @@
                                     <div class="review-container" data-rum=\${review.rateNum}>
                                     <p class="r-movieTitle" >영화 제목 : \${review.movieTitle}</p>
                                     <p class="r-rateReview">평가 내용 : \${review.rateReview}</p>
-                                    <p class="r-rateScore">영화 평점 : \${review.rateScore}</p>       
+                                    <p class="r-rateScore">영화 평점 : \${review.rateScore}</p>
                   `;
                                     reviewContainer.innerHTML += reviewHTML;
                                 });
@@ -389,6 +396,15 @@
                     const user = '${login.susernum}';
                     console.log(user);
 
+                    const mydetailMessage = document.querySelector('.mydetail-message');
+                    mydetailMessage.innerHTML = "";
+                    const myReviewContent = document.getElementById('review-finalBox');
+                    while (myReviewContent.firstChild) {
+                        myReviewContent.removeChild(myReviewContent.firstChild);
+                    }
+
+
+
                     fetch(`/user/interest/` + user)
                         .then(response => {
                             console.log("제발");
@@ -404,10 +420,11 @@
                                 data.forEach(interest => {
                                     const interestSet = document.createElement('div');
                                     interestSet.classList.add('interest-container');
-                                    interestSet.innerHTML = ` 
-                            <p class="i-movieTitle">${interest.movieTitle}</p>
-                            <p class=i-imgUrl>${interest.imgUrl} </p>
-                            <a href="/movies/detail?mno=${interest.movieNum}">
+                                    interestSet.innerHTML = `
+                            <a href="/movies/detail?mno=\${interest.movieNum}">
+                            <p class="i-movieTitle">\${interest.movieTitle}</p>
+<!--                            <img class=i-imgUrl src="\${interest.imgUrl}">-->
+                           </a>
                         `;
                                     interestContainer.appendChild(interestSet);
                                 });
@@ -431,8 +448,7 @@
         const reviewFinalBox = document.querySelector('#review-finalBox');
         const modalTextarea = document.getElementById('modal-content');
         const modalMovieTitle = document.getElementById('modal-movie-title');
-
-
+        let reviewScoreNum;
         reviewFinalBox.onclick = e => {
             console.log(e.target.closest('.review-container'));
 
@@ -441,7 +457,7 @@
             const reviewText = target.querySelector('.r-rateReview').textContent;
             const reviewScore = target.querySelector('.r-rateScore').textContent;
             const lastTwoChars = reviewScore.slice(8);
-            const reviewScoreNum = +lastTwoChars.trim()
+            reviewScoreNum = +lastTwoChars.trim();
 
             // console.log(title);
             // console.log(reviewText);
@@ -464,6 +480,9 @@
                     break;
                 case 4:
                     document.getElementById("star4").checked = true;
+                    break;
+                case 5:
+                    document.getElementById("star5").checked = true;
                     break;
                 default:
                     console.log("잘못됨")
@@ -516,7 +535,8 @@
                     }).then(res => {
                         if (res.status === 200) {
                             alert('정상적으로 삭제되었습니다.');
-                            return res.text();
+                            window.location.reload();
+
                         } else {
                             alert('다시 시도해주세요');
                         }
@@ -531,7 +551,7 @@
 
             }
         }
-        //수정 버튼 클릭시 변경 이벤트 
+        //수정 버튼 클릭시 변경 이벤트
         function modifyButton() {
             const $modBtn = document.getElementById('modal-modify');
             console.log("modBtn", $modBtn);
@@ -540,20 +560,39 @@
                 console.log(e.target);
                 e.preventDefault();
 
+                const $starScore = document.querySelectorAll('.rating input[type="radio"]');
+                let selected = 0;
+
+                // 별점 따라 사과 모양 바꿀까 말까?
+                $starScore.forEach(target => {
+                    if (target.checked) {
+                        selected = +target.value;
+                        // if (selected > 3) {
+                        //     document.querySelector('.modal-top-rate-icon-box').closest;
+                        // }
+                    }
+                });
+
 
                 const rNum = document.querySelector('.review-container').getAttribute('data-rum');
                 console.log("test", rNum);
 
-                const URL = '/rates/' + rNum;
+                const URL = '/rates';
 
-                if (e.target.matches('#modal-delete')) {
+                if (e.target.matches('#modal-modify')) {
                     console.log('수정버튼 클릭');
 
-                    if (!confirm('정말 수정하십니까?'))
-                        return;
+                    // if (!confirm('정말 수정하십니까?'))
+                    //     return;
+
+                    const rateR = modalTextarea.value;
+                    console.log(rateR);
+
 
                     const data = {
-                        rNum: rNum // 해당 데이터의 key-value 형식으로 전송
+                        rateNum: rNum,
+                        rateReview: rateR,
+                        rateScore: selected,
                     };
 
                     fetch(URL, {
@@ -565,6 +604,7 @@
                     }).then(res => {
                         if (res.status === 200) {
                             alert('댓글이 정상 수정되었습니다!');
+                            window.location.reload();
 
                         } else {
                             alert('댓글 수정에 실패했습니다.');

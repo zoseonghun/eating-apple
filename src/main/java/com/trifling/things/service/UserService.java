@@ -5,12 +5,11 @@ import com.trifling.things.dto.request.SignUpRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.MyInfoResponseDTO;
 //import com.trifling.things.dto.response.UserModifyResponseDTO;
-import com.trifling.things.entity.user.Gender;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 
 import com.trifling.things.entity.user.Interest;
 import com.trifling.things.entity.user.User;
-import com.trifling.things.repository.Review;
+import com.trifling.things.dto.response.ReviewResponseDTO;
 import com.trifling.things.repository.UserMapper;
 import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +35,7 @@ public class UserService {
     public boolean join(SignUpRequestDTO dto, String savePath) {
         User user = User.builder()
                 .userId(dto.getUserId())
+                .userAge(dto.getUserAge())
                 .userPassword(encoder.encode(dto.getUserPassword())) //encoder.encode
                 .userEmail(dto.getUserEmail())
                 .userGender(dto.getUserGender())
@@ -101,14 +101,14 @@ public class UserService {
     }
 
 
-    //내가 작성한 리뷰 보기
-    public List<Review> myReviewList(int userNum){
-        List<Review> reviews = userMapper.myReviewList(userNum);
-        return reviews;
-    }
+//내가 작성한 리뷰 보기
+public List<ReviewResponseDTO> myReviewList(int userNum){
+    List<ReviewResponseDTO> reviews = userMapper.myReviewList(userNum);
+    return reviews;
+}
 
     //영화 찜하기 기능
-    public List<Interest> myInterestList( int userNum) {
+    public List<Interest> myInterestList(int userNum) {
         List<Interest> interestUser = userMapper.interestList(userNum);
         return interestUser;
     }
@@ -131,6 +131,7 @@ public class UserService {
                 .suserid(user.getUserId())
                 .suserage(user.getUserAge())
                 .susergender(user.getUserGender().toString())
+                .semail(user.getUserEmail())
                 .suserpoint(user.getUserPoint())
                 .sprofileimage(user.getProfileImage())
                 .susergrade(user.getUserGrade().toString())
@@ -139,4 +140,11 @@ public class UserService {
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
     }
+
+    //회원정보 조회
+    public List<User> adminAuth(String userId) {
+        return userMapper.adminAuth(userId);
+    }
+
+
 }

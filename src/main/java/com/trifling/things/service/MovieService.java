@@ -2,6 +2,7 @@ package com.trifling.things.service;
 
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.page.Search;
+import com.trifling.things.dto.request.InsertMovieRequestDTO;
 import com.trifling.things.dto.response.MainListResponseDTO;
 import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.response.MovieListResponseDTO;
@@ -12,8 +13,10 @@ import com.trifling.things.repository.MovieMapper;
 import com.trifling.things.repository.RateMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +31,7 @@ public class MovieService {
     private final InterestMapper interestMapper;
 
     // 영화 평가점수 만점 수치 (테스트중 만점 10점) -> 5점으로 바꿔야함
-    private static final int MAX_SCORE_COUNT = 10;
+    private static final int MAX_SCORE_COUNT = 5;
 
     // 영화 목록 전체 조회 (필터링 붙여야된다)
     public List<MovieListResponseDTO> movieList(Search page) {
@@ -81,4 +84,26 @@ public class MovieService {
         return movieMapper.checkLike(movieNum, userNum);
 
     }
+    @Transactional
+    public int insertMovie(InsertMovieRequestDTO dto, String savePath) {
+        int i = 0, j = 0, k = 0;
+
+        Movie newMovie = dto.toMovie();
+        i = movieMapper.insertMovieInfo(newMovie);
+        log.info("i : {}", i);
+        if (i == 1) {
+            // 현재 영화 갯수(시퀀스 마지막 번호)
+            int movieCount = movieMapper.maxMovieNum();
+            log.info("auto : {}",movieCount);
+            MovieImg newMovieImg = dto.toMovieImg(movieCount-1, savePath);
+            MovieImg newMovieYoutube = dto.toMovieYoutube(movieCount-1);
+
+            j = movieMapper.insertMovieImg(newMovieYoutube);
+            k = movieMapper.insertMovieImg(newMovieImg);
+        }
+
+        return i+j+k;
+    }
+
+
 }

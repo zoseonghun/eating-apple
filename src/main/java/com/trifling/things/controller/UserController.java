@@ -1,15 +1,14 @@
 package com.trifling.things.controller;
 
-import com.trifling.things.dto.page.PageMaker;
-import com.trifling.things.dto.page.Search;
-import com.trifling.things.dto.response.MainListResponseDTO;
-import com.trifling.things.dto.response.MovieListResponseDTO;
-import com.trifling.things.dto.response.MyInfoResponseDTO;
 import com.trifling.things.dto.request.UserModifyRequestDTO;
 import com.trifling.things.dto.request.LoginRequestDTO;
 import com.trifling.things.dto.request.SignUpRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
+import com.trifling.things.dto.response.MovieDetailResponseDTO;
+import com.trifling.things.entity.user.Grade;
 import com.trifling.things.entity.user.Interest;
-import com.trifling.things.repository.Review;
+import com.trifling.things.dto.response.ReviewResponseDTO;
+import com.trifling.things.entity.user.User;
 import com.trifling.things.service.LoginResult;
 import com.trifling.things.service.UserService;
 import com.trifling.things.util.LoginUtil;
@@ -25,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -135,7 +133,6 @@ public class UserController {
     public String signIn(LoginRequestDTO dto, HttpServletRequest request, RedirectAttributes ra) {
         log.info("/user/sign-in POST: {}", dto);
 
-
         LoginResult result = userService.authenticate(dto);
 
 
@@ -153,6 +150,8 @@ public class UserController {
         // 로그인 실패시
         return "redirect:/user/login";
     }
+
+
 // find user 정보 찾기 -- 필요한가?
 //    @GetMapping("/find/{userId}")
 //    public String findUser(@PathVariable String userId, Model model) {
@@ -219,15 +218,31 @@ public class UserController {
     }
 
 
+
     //리뷰보기
-    @GetMapping("/review/{userNum}")
+     @GetMapping("/review/{userNum}")
     public String getMyReviewList(@PathVariable int userNum, Model model) {
-        List<Review> reviewList = userService.myReviewList(userNum);
-        log.info("reviewList: {}", reviewList);
+        List<ReviewResponseDTO> reviewList = userService.myReviewList(userNum);
+         log.info("reviewList: {}", reviewList);
+
         model.addAttribute("reviews", reviewList);
 
         return "user/mypage";
     }
+//    @GetMapping("/mypage/{userNum}")
+//    @ResponseBody
+//    public ResponseEntity<?> mypageInfo(@PathVariable int userNum) {
+//        List<Review> reviewList = userService.myReviewList(userNum);
+//        log.info("reviewList: {}", reviewList);
+////        model.addAttribute("reviews", reviewList);
+//
+//        return ResponseEntity.ok().body(reviewList);
+//    }
+
+
+
+
+
 
 
     //    마이페이지 --로그인 연동시
@@ -237,6 +252,12 @@ public class UserController {
         return "user/mypage";
     }
 
+//    @GetMapping("/mypage")
+//    public String getMyPage(@PathVariable int userNum, Model model) {
+//        List<MyInfoResponseDTO> mypage = userService.getMypage(userNum);
+//        model.addAttribute("mypage", mypage);
+//        return "user/mypage";
+//    }
 
     // 로그아웃 요청 처리
     @GetMapping("/sign-out")
@@ -261,5 +282,11 @@ public class UserController {
         return "redirect:/user/sign-in";
     }
 
-
+    //admin page 요청
+    @GetMapping("/admin")
+    public String admin() {
+        log.info("/user/admin GET - forwarding to jsp");
+        return "user/admin"; // 로그인 페이지로 이동
+    }
 }
+

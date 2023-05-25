@@ -111,7 +111,7 @@ public class MovieController {
         String savePath = null;
         savePath = FileUtil.uploadFile(imgFile, rootPath);
 
-        int result = movieService.insertMovie(dto, rootPath);
+        int result = movieService.insertMovie(dto, savePath);
         ra.addFlashAttribute("inResult", result);
 
         return "redirect:/movies/list";

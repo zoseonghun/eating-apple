@@ -50,11 +50,11 @@ public class MovieService {
         List<MovieImg> movieImgs = movieMapper.targetMovieImg(movieNum);
 //        System.out.println("movieImgs = " + movieImgs);
         Movie movie = movieFindOne(movieNum);
-        log.info("movieNum {}: ", movie.getMovieNum());
+        log.info("score {}: ", movie.getMovieNum());
 
-        double counted = rateMapper.countScore(movieNum) * MAX_SCORE_COUNT; // 해당 영화의 총 평가 갯수
+//        double counted = rateMapper.countScore(movieNum) * MAX_SCORE_COUNT; // 해당 영화의 총 평가 갯수
 
-        movie.setMovieScore( (int)(movie.getMovieScore() / counted  * 100));
+//        movie.setMovieScore( (int)(movie.getMovieScore() / counted  * 100));
 
         int likeCount = interestMapper.movieLikeCount(movieNum);
 

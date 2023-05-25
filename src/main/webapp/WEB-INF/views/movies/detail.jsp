@@ -200,6 +200,12 @@
                         <h3>사소한 평가</h3>
                     </div>
                     <div class="rank-num-box">
+                        <!-- <c:if test="${empty detail.score}">
+                            <p class="score-p">0%</p>
+                        </c:if>
+                        <c:if test="${not empty detail.score}">
+                            <p class="score-p">${detail.score}%</p>
+                        </c:if> -->
                         <p class="score-p">${detail.score}%</p>
                     </div>
                     <!-- <div class="like">
@@ -428,7 +434,7 @@
 
             document.getElementById('rate-box').innerHTML = tag;
 
-            console.log("제발요...");
+            // console.log("제발요...");
             fetch(URL + '/total/' + mNum)
                 .then(res => res.json())
                 .then(total => {
@@ -436,9 +442,12 @@
                     let maxScore = 5 * total.maxCount;
                     
                     let percentScore = Math.floor((total.totalScore / maxScore) * 100);
-                    // console.log("맥스" + maxCount + "  퍼센트 " + totalScore);
+
+                    if (total == null) percentScore = 0;
+                    console.log("맥스" + total.maxCount + "  퍼센트 " + total.totalScore);
                     const $pTag = document.querySelector('.score-p');
-                    $pTag.innerHTML = percentScore + '%';
+                    console.log('이건 스크립트' + percentScore);
+                    $pTag.innerHTML = +percentScore + '%';
                 });
 
                 // 페이지 렌더링 해야되나...
@@ -582,9 +591,14 @@
             }
         }
 
+        function ttest() {
+            const nana = '${detail.score}';
+            console.log('왜 nan? 백에선 0', nana);
+        }
 
 
         (function () {
+            ttest();
             getRateList();
 
             ratePostButton();

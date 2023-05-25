@@ -1,0 +1,104 @@
+#main {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+}
+
+#content {
+    background-color: #f7f7f7;
+    padding: 10px;
+    width: 400px;
+
+}
+
+#container {
+    background-color: #fff;
+    padding: 40px;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+#modifyBtn {
+    display: block;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+}
+
+/* 프로필 사진 */
+
+#profile-img {
+    display: none;
+}
+
+.profile {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.profile label {
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #e7b038;
+}
+.profile .thumbnail-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto 10px;
+    cursor: pointer;
+}
+
+.profile .thumbnail-box img {
+    width: 200px;
+    height: 200px;
+}
+
+
+
+
+/*
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#footer a {
+    color: #fff;
+    text-decoration: none;
+}
+*/

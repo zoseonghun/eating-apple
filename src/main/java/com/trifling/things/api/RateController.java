@@ -82,8 +82,9 @@ public class RateController {
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
-    public ResponseEntity<?> rateModify(RateModifyRequestDTO dto) {
-
+    public ResponseEntity<?> rateModify(
+            @RequestBody RateModifyRequestDTO dto) {
+        log.info("radt{} ", dto);
         rateService.rateModify(dto);
 
         return null;

@@ -77,7 +77,7 @@
     <!-- footer -->
     <%@ include file="../include/footer.jsp" %>
     <!-- footer end -->
-</body>
+
 
 
 

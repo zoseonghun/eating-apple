@@ -18,7 +18,6 @@
 
             <c:if test="${login != null && login.suserid != 'admin'}">
                 <li class="header-user-profile-image"><img src="${login.sprofileimage}" alt=""></li>
-
                 <li class="header-li header-li-user"><p>${login.suserid}님 환영 합니다!!</p></li>
                 <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
                 <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>

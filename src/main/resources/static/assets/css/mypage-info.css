@@ -161,16 +161,21 @@ div#menu a {
 
 .user-point-grade-box, .user-grade-info-box{
 height: 46%;
-box-shadow: 0 0 0 1px black;
+
 }
 .user-point-grade-box{
   display: flex;
   text-align: center;
   margin: 10px;
 
+
+}
+.user-grade, .user-point{
+  box-shadow: 0 0 0 1px black;
 }
 .user-grade-info-box{
   margin: 10px;
+  box-shadow: 0 0 0 1px black;
 }
 .user-point-grade-box p{
   font-size: 40px;

@@ -127,14 +127,23 @@
 
     width: 90px;
     height: 90px;
-    margin-top: 33px;
+    margin-top: 25px;
+
+    margin-right: 130px;
 }
 
 .like-num-box {
 
-    width: 90px;
-    height: 90px;
-    margin-top: 33px;
+    width: 120px;
+    height: 120px;
+
+
+
+}
+.like-num-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .rank-num-box p,
@@ -410,8 +419,9 @@
 .detail-rate-modal-button button {
     background-color: #51ff00;
     height: 40px;
-    width: 130px;
+    width: 150px;
     font-weight: 900;
+
 
 
     color: rgb(56, 112, 109);

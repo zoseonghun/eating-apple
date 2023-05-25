@@ -12,6 +12,7 @@ import com.trifling.things.entity.Rate;
 import com.trifling.things.repository.RateMapper;
 import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 // RESTful 방식으로써 사실상 return이 getRateList여야 한다
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RateService {
 
     private final RateMapper rateMapper;
@@ -93,6 +95,7 @@ public class RateService {
 
 
         boolean flag = rateMapper.rateModify(rate);
+        log.info("플래그 : {}", flag);
 
         return getRateList("movie",dto.getRateNum(),new Page(1,10));
     }

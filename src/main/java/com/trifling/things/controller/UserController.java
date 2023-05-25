@@ -224,7 +224,7 @@ public class UserController {
     public ResponseEntity<?> getMyReviewList(@PathVariable int userNum, Model model) {
         log.info("usdfjd{}", userNum );
             List<ReviewResponseDTO> reviewList = userService.myReviewList(userNum);
-         log.info("reviewList: {}", reviewList);
+//         log.info("reviewList: {}", reviewList);
 
         model.addAttribute("reviews", reviewList);
 

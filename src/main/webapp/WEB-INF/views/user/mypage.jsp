@@ -9,8 +9,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/assets/css/create-rate-modal2.css" type="text/css" media="all" />
-    <style>
+    <link rel="stylesheet" href="/assets/css/create-rate-modal-user.css" type="text/css" media="all" />
+     <style>
         .rating {
             display: inline-block;
         }
@@ -34,22 +34,18 @@
             color: orange;
         }
 
-        .modal {
+        -->.modal {
             display: none;
             /* 처음에는 숨김 상태로 설정 */
             position: fixed;
             z-index: 1;
-            /* left: 0;
-            top: 0; */
-            width: fit-content;
-            height: fit-content;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.5);
             /* 반투명한 배경 */
-            /* position: absolute; */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
 
         .modal-content {
@@ -58,6 +54,8 @@
             padding: 20px;
             border: 1px solid #888;
             /* width: 80%; */
+            height: 500px;
+            width: 860px;
         }
 
         .close {
@@ -73,7 +71,13 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .modal-tot-close-button-box {
+
+            left: 0px;
+            top: 10px;
+        }
     </style>
+
 </head>
 
 
@@ -253,13 +257,15 @@
 
                                 <div class="mydetail-contents">
                                     <div class="mydetail-myreview">
-                                        <!-- <br>
+                                        <div class="mydetail-message">
+                                        <br>
                                         상단에 원하는 카테고리를 선택하여 클릭해주세요 <br><br>
 
                                         안녕하세요, EATING <span color=red>APPLE</span>을 이용해주셔서 감사합니다 <br>
                                         여러분의 작은 리뷰 하나가 큰 도움과 행복이 됩니다🤓 <br>
                                         짧지만 소중한 리뷰를 잠깐의 시간을내어 작성해주신다면 감사하겠습니다😀 <br>
-                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다. -->
+                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다. 
+                                        </div>
                                         <%-- 리뷰 데이터를 표시할 위치 --%>
                                         <div id="review-finalBox">
                                             <c:if test="${not empty reviews}">
@@ -341,7 +347,8 @@
                     const user = '${login.susernum}'; // 사용자 번호
                     console.log(user);
 
-                    // const myReviewContent = document.querySelector('.mydetail-myreview');
+                    const myReviewContent = document.querySelector('.mydetail-message');
+                    myReviewContent.innerHTML ="";
                     // myReviewContent.style.display = 'none';
 
                     fetch('/user/review/' + user)
@@ -435,8 +442,7 @@
         const reviewFinalBox = document.querySelector('#review-finalBox');
         const modalTextarea = document.getElementById('modal-content');
         const modalMovieTitle = document.getElementById('modal-movie-title');
-
-
+        let reviewScoreNum;
         reviewFinalBox.onclick = e => {
             console.log(e.target.closest('.review-container'));
 
@@ -445,7 +451,7 @@
             const reviewText = target.querySelector('.r-rateReview').textContent;
             const reviewScore = target.querySelector('.r-rateScore').textContent;
             const lastTwoChars = reviewScore.slice(8);
-            const reviewScoreNum = +lastTwoChars.trim()
+            reviewScoreNum = +lastTwoChars.trim();
 
             // console.log(title);
             // console.log(reviewText);
@@ -544,20 +550,39 @@
                 console.log(e.target);
                 e.preventDefault();
 
+                const $starScore = document.querySelectorAll('.rating input[type="radio"]');
+                let selected = 0;
+
+                // 별점 따라 사과 모양 바꿀까 말까?
+                $starScore.forEach(target => {
+                    if (target.checked) {
+                        selected = +target.value;
+                        // if (selected > 3) {
+                        //     document.querySelector('.modal-top-rate-icon-box').closest;
+                        // }
+                    }
+                });
+
 
                 const rNum = document.querySelector('.review-container').getAttribute('data-rum');
                 console.log("test", rNum);
 
-                const URL = '/rates/' + rNum;
+                const URL = '/rates';
 
-                if (e.target.matches('#modal-delete')) {
+                if (e.target.matches('#modal-modify')) {
                     console.log('수정버튼 클릭');
 
-                    if (!confirm('정말 수정하십니까?'))
-                        return;
+                    // if (!confirm('정말 수정하십니까?'))
+                    //     return;
+
+                    const rateR = modalTextarea.value;
+                    console.log(rateR);
+
 
                     const data = {
-                        rNum: rNum // 해당 데이터의 key-value 형식으로 전송
+                        rateNum: rNum,
+                        rateReview: rateR,
+                        rateScore: selected,
                     };
 
                     fetch(URL, {

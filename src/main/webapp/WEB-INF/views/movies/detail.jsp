@@ -437,17 +437,21 @@
             // console.log("제발요...");
             fetch(URL + '/total/' + mNum)
                 .then(res => res.json())
-                .then(total => {
+                .then(secret => {
                     
-                    let maxScore = 5 * total.maxCount;
+                    let maxScore = 5 * secret.maxCount;
                     
-                    let percentScore = Math.floor((total.totalScore / maxScore) * 100);
+                    
+                    let percentScore = Math.floor((secret.totalScore / maxScore) * 100);
 
-                    if (total == null) percentScore = 0;
-                    console.log("맥스" + total.maxCount + "  퍼센트 " + total.totalScore);
+                    if (isNaN(percentScore)) {
+                        // console.log('이건 스크립트' + maxScore);    
+                        percentScore = 0;
+                    } 
+                    // console.log("맥스" + secret.maxCount + "  퍼센트 " + secret.totalScore);
                     const $pTag = document.querySelector('.score-p');
-                    console.log('이건 스크립트' + percentScore);
-                    $pTag.innerHTML = +percentScore + '%';
+                    // console.log('이건 스크립트' + percentScore);
+                    $pTag.innerHTML = percentScore + '%';
                 });
 
                 // 페이지 렌더링 해야되나...
@@ -591,14 +595,10 @@
             }
         }
 
-        function ttest() {
-            const nana = '${detail.score}';
-            console.log('왜 nan? 백에선 0', nana);
-        }
 
 
         (function () {
-            ttest();
+
             getRateList();
 
             ratePostButton();

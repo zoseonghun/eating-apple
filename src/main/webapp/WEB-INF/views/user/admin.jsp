@@ -261,18 +261,18 @@
 
 
             // 포스터 사진관련 스크립트
-            const $profile = document.querySelector('.movie-img-box');
-            const $fileInput = document.getElementById('poster-img');
+            const $thumbnail = document.querySelector('.thumbnail-box');
+            const $poster = document.getElementById('poster-img');
 
             // 프로필 추가 영역 클릭 이벤트
-            $profile.onclick = e => {
-                $fileInput.click();
+            $thumnail.onclick = e => {
+                $poster.click();
             };
 
             // 프로필 사진 선택시 썸네일 이벤트
-            $fileInput.onchange = e => {
+            $poster.onchange = e => {
                 // 첨부한 파일의 데이터를 읽어오기
-                const fileData = $fileInput.files[0];
+                const fileData = $poster.files[0];
                 // console.log(fileData);
 
                 // 첨부파일의 바이트데이터를 읽어들이는 객체 생성

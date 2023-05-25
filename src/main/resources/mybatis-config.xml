@@ -19,7 +19,8 @@
         <typeAlias alias="Interest" type="com.trifling.things.entity.user.Interest"/>
         <typeAlias alias="Review" type="com.trifling.things.dto.response.ReviewResponseDTO"/>
         <typeAlias alias="MyInfoResponseDTO" type="com.trifling.things.dto.response.MyInfoResponseDTO"/>
-       <typeAlias alias="pagingReview" type="com.trifling.things.dto.page.Page"/>
+        <typeAlias alias="pagingReview" type="com.trifling.things.dto.page.Page"/>
+        <typeAlias alias="score" type="com.trifling.things.dto.response.ScoreResponseDTO"/>
         <!--        <typeAlias alias="apple" type="com.trifling.things.entity.appleTest"/>-->
     </typeAliases>
 

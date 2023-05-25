@@ -200,7 +200,7 @@
                         <h3>사소한 평가</h3>
                     </div>
                     <div class="rank-num-box">
-                        <p>${detail.score}%</p>
+                        <p class="score-p">${detail.score}%</p>
                     </div>
                     <!-- <div class="like">
                         <img src="/assets/img/like-httpswww.flaticon.com.png" alt="#">
@@ -242,7 +242,7 @@
 
             </div>
         </div>
-        <ul class="pagination">
+        <ul class="pagination center-rate">
             <!-- 댓글 페이지 -->
         </ul>   
     <!--  MAIN END  -->
@@ -344,8 +344,7 @@
         }) {
             let tag = '';
 
-            if (rates === null || rates.length === 0) {
-                $pTag.innerHTML = '0%';
+            if (rates === null || rates.length === 0) {                
                 tag += "<div class='speech-bubble-none center-position'>" +
                     "<div class='movie-detail-icon-text-box'>" +
                     "<div class='movie-detail-rate-icon'>" +
@@ -359,9 +358,8 @@
                     "</div>" +
                     "<div class='none-write'><img src='/assets/img/write.png'></div>"
                 "</div>";
-            } else {
-                $pTag.innerHTML = percentScore + '%';
-                var i = 0;
+            } else {                
+                document.querySelector('.score-p').innerHTML = '0%';
                 for (let rate of rates) {
                     const {
                         rateNum,
@@ -430,20 +428,22 @@
 
             document.getElementById('rate-box').innerHTML = tag;
 
-            fetch(URL + '/total/' + movieNum)
+            console.log("제발요...");
+            fetch(URL + '/total/' + mNum)
                 .then(res => res.json())
                 .then(total => {
                     
-                    let maxScore = 5 * rates.length;
+                    let maxScore = 5 * total.maxCount;
+                    
+                    let percentScore = Math.floor((total.totalScore / maxScore) * 100);
+                    // console.log("맥스" + maxCount + "  퍼센트 " + totalScore);
+                    const $pTag = document.querySelector('.score-p');
+                    $pTag.innerHTML = percentScore + '%';
+                });
 
-                    let percentScore = Math.floor((totalScore / maxScore) * 100);
+                // 페이지 렌더링 해야되나...
+                renderPage(pageInfo);
 
-            const $pTag = document.querySelector('.rank-num-box p');
-                })
-
-
-            // 페이지 렌더링 해야되나...
-            renderPage(pageInfo);
         }
 
         function renderPage({
@@ -506,14 +506,14 @@
         }
 
 
-        function fullReview() {
-            const $full = document.querySelector('.full-review');
-            $full.onclick = e => {
-                if( e.target.matches($full)){
-                    console.log('펼쳐보기');
-                }
-            }
-        }
+        // function fullReview() {
+        //     const $full = document.querySelector('.full-review');
+        //     $full.onclick = e => {
+        //         if( e.target.matches($full)){
+        //             console.log('펼쳐보기');
+        //         }
+        //     }
+        // }
 
 
         // 댓글 등록 기능

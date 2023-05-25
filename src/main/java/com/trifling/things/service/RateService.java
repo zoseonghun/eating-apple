@@ -7,6 +7,7 @@ import com.trifling.things.dto.request.RatePostRequestDTO;
 import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.RateListResponseDTO;
 import com.trifling.things.dto.response.RateResponseDTO;
+import com.trifling.things.dto.response.ScoreResponseDTO;
 import com.trifling.things.entity.Rate;
 import com.trifling.things.repository.RateMapper;
 import com.trifling.things.util.LoginUtil;
@@ -107,7 +108,8 @@ public class RateService {
         return rateMapper.deleteLike(movieNum, userNum) == 1;
     }
 
-    public int totalMovieScore(int movieNum) {
+    public ScoreResponseDTO totalMovieScore(int movieNum) {
         return rateMapper.totalMovieScore(movieNum);
     }
+
 }

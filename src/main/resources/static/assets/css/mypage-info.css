@@ -68,9 +68,6 @@ div#menu a {
  
 }
 
-.mypage-info .profile-image{
-  border-radius: 20%;
-}
 
 .mypage .mypage-info .mypage-id {
   /* background: orange; */
@@ -288,7 +285,7 @@ margin-right: 5px;
 .mypage .frame .bottom-info .bottom-info-detail .review-interest .top-button-tag {
   font-size: 18px;
   display: flex;
-  /* background: yellowgreen; */
+  background: yellowgreen;
   width: 80%;
   text-align: center;
   margin: auto;
@@ -317,6 +314,8 @@ margin-right: 5px;
   position: relative;
   padding-top: 20px;  
   overflow: hidden;
+  font-size: 15px;
+  color: black;
 }
 
 #review-finalBox,
@@ -337,7 +336,7 @@ margin-right: 5px;
 .interest-container {
   width: 200px;
   height: 200px;
-  /* border: 1px solid palevioletred; */
+  border: 1px solid palevioletred;
   text-align: center;
   position: relative;
   margin-bottom: 50px;

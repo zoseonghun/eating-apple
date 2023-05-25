@@ -105,11 +105,25 @@ public class RateController {
         return ResponseEntity.ok().body(deleteFlag);
     }
 
+
+    @DeleteMapping("/{rNum}")
+    public ResponseEntity<?> rateDelete(@PathVariable("rNum")  int rateNum
+    ){
+        try {
+            RateListResponseDTO rateDelete = rateService.rateDelete(rateNum);
+            return ResponseEntity.ok().body(rateDelete);
+        }catch (Exception e ){
+            return ResponseEntity.internalServerError()
+                    .body(e.getMessage());
+        }
+
+
     @GetMapping("/total/{mNum}")
     public ResponseEntity<?> movieTotalScore(@PathVariable int mNum) {
         log.info("movieNum~~~ {}",mNum);
         ScoreResponseDTO dto = rateService.totalMovieScore(mNum);
         return ResponseEntity.ok().body(dto);
+
     }
 
 

@@ -209,41 +209,27 @@ public class UserController {
 
     //영화찜하기
     @GetMapping("/interest/{userNum}")
-    public String getInterestList(@PathVariable int userNum, Model model) {
+    public ResponseEntity<?> getInterestList(@PathVariable int userNum, Model model) {
         List<Interest> interestList = userService.myInterestList(userNum);
 
         log.info("interest {}{}{}", interestList);
         model.addAttribute("interestList", interestList);
-        return "user/mypage";
+        return ResponseEntity.ok().body(interestList);
     }
 
 
 
     //리뷰보기
      @GetMapping("/review/{userNum}")
-    public String getMyReviewList(@PathVariable int userNum, Model model) {
-        List<ReviewResponseDTO> reviewList = userService.myReviewList(userNum);
+    public ResponseEntity<?> getMyReviewList(@PathVariable int userNum, Model model) {
+        log.info("usdfjd{}", userNum );
+            List<ReviewResponseDTO> reviewList = userService.myReviewList(userNum);
          log.info("reviewList: {}", reviewList);
 
         model.addAttribute("reviews", reviewList);
 
-        return "user/mypage";
+        return ResponseEntity.ok().body(reviewList);
     }
-//    @GetMapping("/mypage/{userNum}")
-//    @ResponseBody
-//    public ResponseEntity<?> mypageInfo(@PathVariable int userNum) {
-//        List<Review> reviewList = userService.myReviewList(userNum);
-//        log.info("reviewList: {}", reviewList);
-////        model.addAttribute("reviews", reviewList);
-//
-//        return ResponseEntity.ok().body(reviewList);
-//    }
-
-
-
-
-
-
 
     //    마이페이지 --로그인 연동시
     @GetMapping("/mypage")
@@ -251,6 +237,7 @@ public class UserController {
 
         return "user/mypage";
     }
+
 
 //    @GetMapping("/mypage")
 //    public String getMyPage(@PathVariable int userNum, Model model) {

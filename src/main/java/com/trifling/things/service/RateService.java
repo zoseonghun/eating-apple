@@ -111,4 +111,5 @@ public class RateService {
     public ScoreResponseDTO totalMovieScore(int movieNum) {
         return rateMapper.totalMovieScore(movieNum);
     }
+
 }

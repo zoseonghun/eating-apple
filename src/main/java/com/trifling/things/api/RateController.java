@@ -3,9 +3,12 @@ package com.trifling.things.api;
 import com.trifling.things.dto.page.Page;
 import com.trifling.things.dto.request.RateModifyRequestDTO;
 import com.trifling.things.dto.request.RatePostRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
 import com.trifling.things.dto.response.RateListResponseDTO;
 import com.trifling.things.dto.response.RateResponseDTO;
+import com.trifling.things.dto.response.ScoreResponseDTO;
 import com.trifling.things.service.RateService;
+import com.trifling.things.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -60,8 +63,8 @@ public class RateController {
         log.info("param: {}", dto);
 
         // 세션 정보
-
-        RateListResponseDTO rateList = rateService.rateWrite(dto, request.getSession());
+        HttpSession session = request.getSession();
+        RateListResponseDTO rateList = rateService.rateWrite(dto, session);
 
         return ResponseEntity.ok().body(rateList); // 보여줄 responsedto를 실어 줘야함
     }
@@ -71,7 +74,9 @@ public class RateController {
     public ResponseEntity<?> isBeforeRate(
            HttpServletRequest request
            , @PathVariable int movieNum) {
-//        log.info("userNum:{}, movieNum:{}",userNum,);
+
+//        LoginUserResponseDTO l = (LoginUserResponseDTO) request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
+//        log.info("session id {}", l.getSuserid());
         boolean check = rateService.insertBeforeCheck(movieNum, request.getSession());
         return ResponseEntity.ok().body(check);
     }
@@ -100,6 +105,7 @@ public class RateController {
         return ResponseEntity.ok().body(deleteFlag);
     }
 
+
     @DeleteMapping("/{rNum}")
     public ResponseEntity<?> rateDelete(@PathVariable("rNum")  int rateNum
     ){
@@ -110,6 +116,13 @@ public class RateController {
             return ResponseEntity.internalServerError()
                     .body(e.getMessage());
         }
+
+
+    @GetMapping("/total/{mNum}")
+    public ResponseEntity<?> movieTotalScore(@PathVariable int mNum) {
+        log.info("movieNum~~~ {}",mNum);
+        ScoreResponseDTO dto = rateService.totalMovieScore(mNum);
+        return ResponseEntity.ok().body(dto);
 
     }
 

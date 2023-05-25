@@ -164,20 +164,47 @@ public class UserController {
 //        }
 //    }
 
+    // 회원정보 수정 페이지로 이동
+    @GetMapping("/modify")
+    public String modify(){
+        log.info("/user/modify GET - forwarding to jsp");
+        return "user/modify"; // 로그인 페이지로 이동
+    }
 
     //정보수정 -modify
-    @PutMapping("/modify/{userId}")
-    public ResponseEntity<String> modifyUser(@PathVariable String userId,
-                                             @RequestBody UserModifyRequestDTO requestDTO) {
-        requestDTO.setUserId(userId);
-        boolean modifySuccess = userService.modify(requestDTO);
+    @PostMapping("/modify")
+    public String modifyUser(HttpServletRequest request,
+                             HttpSession session,
+                             UserModifyRequestDTO dto, @RequestParam("profileImage") MultipartFile profileImage)  {
+        log.info("/update POST!!");
+        log.info("dto: {}", dto);
+
+        dto.setProfileImage(profileImage);
+
+
+        // 파일 저장 경로 설정
+        String savePath = FileUtil.uploadFile(dto.getProfileImage(), rootPath); // 실제 저장 경로로 변경해야 합니다.
+
+        boolean modifySuccess = userService.modify(dto, savePath); // savePath 값을 추가로 전달
 
         if (modifySuccess) {
-            return ResponseEntity.ok("정보수정이 완료되었습니다");
+            // 세션에서 login정보를 제거
+            session.removeAttribute("login");
+
+            // 세션을 아예 초기화 (세션만료 시간 초기화)
+            session.invalidate();
+
+            userService.maintainLoginState(request.getSession(), dto.getUserId());
+
+            return "redirect:/user/mypage";
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("다시 입력해주세요");
+            return "redirect:/user/modify";
         }
     }
+
+
+
+
 
 
     //영화찜하기
@@ -204,12 +231,20 @@ public class UserController {
         return ResponseEntity.ok().body(reviewList);
     }
 
-//    마이페이지 --로그인 연동시
+    //    마이페이지 --로그인 연동시
     @GetMapping("/mypage")
     public String getMyPage() {
 
         return "user/mypage";
     }
+
+
+//    @GetMapping("/mypage")
+//    public String getMyPage(@PathVariable int userNum, Model model) {
+//        List<MyInfoResponseDTO> mypage = userService.getMypage(userNum);
+//        model.addAttribute("mypage", mypage);
+//        return "user/mypage";
+//    }
 
     // 로그아웃 요청 처리
     @GetMapping("/sign-out")
@@ -234,14 +269,11 @@ public class UserController {
         return "redirect:/user/sign-in";
     }
 
-
-
-
+    //admin page 요청
+    @GetMapping("/admin")
+    public String admin() {
+        log.info("/user/admin GET - forwarding to jsp");
+        return "user/admin"; // 로그인 페이지로 이동
     }
-
-
-
-
-
-
+}
 

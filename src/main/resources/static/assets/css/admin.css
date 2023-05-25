@@ -7,20 +7,21 @@
     /* height: auto;
     width: 100%; */
     background-color: #222;
-   padding-bottom: 50px;
+    /* max-height: 700px; 최대 높이 설정 */
     overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
 }
 
-.sign-up form {
-    width: 30%;
+.movie-save-box form {
+    width: 80%;
     margin: 0 auto;
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+margin-bottom: 50px;
 }
 
-.sign-up label {
+.movie-save-box label {
     display: block;
     font-size: 18px;
     font-weight: bold;
@@ -28,21 +29,32 @@
     margin-bottom: 10px;
 }
 
-.sign-up input[type="text"],
-.sign-up input[type="password"],
-.sign-up input[type="email"],
-.sign-up input[type="number"],
+.movie-save-box input[type="text"],
+.movie-save-box input[type="password"],
+.movie-save-box input[type="email"],
+.movie-save-box input[type="number"],
 select {
-    width: 100%;
+    width: 94%;
     padding: 10px;
     margin-bottom: 20px;
     border: none;
     border-bottom: 2px solid #e6e6e6;
     background-color: #f8f8f8;
     color: #333333;
+    border: 1px solid #000;
+    
+    
+}
+#movie-info{
+    height: 105px;
 }
 
-.sign-up #signBtn {
+
+
+
+
+
+.movie-save-box #movie-save-button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -56,46 +68,64 @@ select {
     transition: background-color 0.3s ease;
 }
 
-.sign-up button[type="submit"]:hover {
+.movie-save-box button[type="submit"]:hover {
     background-color: #444444;
 }
 
-.sign-up .error-message {
+.movie-save-box .error-message {
     color: red;
     font-size: 12px;
     margin-top: 5px;
 }
 
-.sign-up {
+.movie-save-box {
     margin-top: 55px;
 }
 
-/* 프로필 사진 */
 
-#profile-img {
+
+#poster-img {
     display: none;
 }
 
-.profile {
+.movie-img-box {
     margin-bottom: 30px;
     text-align: center;
 }
-.profile label {
-    font-weight: 700;
+.movie-img-box label {
+    font-weight: 900;
     font-size: 1.2em;
     cursor: pointer;
-    color: #e7b038;
+    color: #ff0000;
 }
-.profile .thumbnail-box {
-    width: 300px;
-    height: 200px;
-    border-radius: 50%;
+.movie-img-box .thumbnail-box {
+    width: 200px;
+    height: 300px;
+
     overflow: hidden;
     margin: 20px auto 10px;
     cursor: pointer;
+    opacity: 0.8;
 }
 
-.profile .thumbnail-box img {
-    width: 200px;
-    height: 200px;
+.movie-img-box .thumbnail-box img {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+    border-radius: 10px;
+}
+
+.movie-save-left-box{
+   
+    width: 50%;
+    margin-right: 5px;
+}
+.movie-save-right-box{
+  
+    width: 50%;
+    margin-left: 5px;
+}
+
+.movie-save-left-right-box{
+    display: flex;
 }

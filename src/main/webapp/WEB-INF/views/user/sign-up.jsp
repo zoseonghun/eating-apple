@@ -77,7 +77,7 @@
     <!-- footer -->
     <%@ include file="../include/footer.jsp" %>
     <!-- footer end -->
-</body>
+
 
 
 
@@ -293,17 +293,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     // 프로필 사진 관련 스크립트
     const $profile = document.querySelector('.profile');
     const $fileInput = document.getElementById('profile-img');
@@ -333,5 +322,6 @@
         };
     };
 </script>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.trifling.things.repository;
 
 import com.trifling.things.dto.page.Page;
+import com.trifling.things.dto.response.ScoreResponseDTO;
 import com.trifling.things.entity.Rate;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -40,4 +41,6 @@ public interface RateMapper {
 
     public int deleteLike(@Param("movieNum") int movieNum
             , @Param("userNum") int userNum);
+
+    public ScoreResponseDTO totalMovieScore(int movieNum);
 }

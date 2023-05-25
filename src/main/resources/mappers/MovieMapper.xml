@@ -57,7 +57,7 @@
     </select>
 
     <select id="targetMovieImg" resultType="img">
-        SELECT img_num, img_name, img_url
+        SELECT img_num, img_name, img_url, movie_num
         FROM m_img
         WHERE movie_num = #{movieNum}
     </select>
@@ -81,5 +81,26 @@
             ORDER BY movie_num DESC
         </if>
         LIMIT 0, 10
+    </select>
+
+    <insert id="insertMovieInfo">
+        INSERT INTO m_movie
+        (movie_title, movie_info, movie_runtime, movie_director, movie_genre, movie_age)
+        VALUES
+        (#{movieTitle}, #{movieInfo}, #{movieRuntime}, #{movieDirector}, #{movieGenre}, #{movieAge})
+    </insert>
+
+    <insert id="insertMovieImg">
+        INSERT INTO m_img
+        (movie_num, img_name, img_url)
+        VALUES
+        (#{movieNum}, #{imgName}, #{imgUrl})
+    </insert>
+
+    <select id="maxMovieNum" resultType="int">
+        SELECT AUTO_INCREMENT
+        FROM information_schema.TABLES
+        WHERE TABLE_SCHEMA = 'eatingapple'
+        AND TABLE_NAME = 'm_movie'
     </select>
 </mapper>

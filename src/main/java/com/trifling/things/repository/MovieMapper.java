@@ -4,6 +4,7 @@ import com.trifling.things.dto.response.MovieDetailResponseDTO;
 import com.trifling.things.dto.page.Search;
 import com.trifling.things.entity.Movie;
 import com.trifling.things.entity.MovieImg;
+import com.trifling.things.entity.Rate;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,5 +33,11 @@ public interface MovieMapper {
     public List<Movie> mainTopTenList(String type);
 
     public int checkLike(@Param("movieNum")int movieNum, @Param("userNum")int userNum);
+
+    public int insertMovieInfo(Movie movie);
+
+    public int insertMovieImg(MovieImg img);
+
+    public int maxMovieNum();
 
 }

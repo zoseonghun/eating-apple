@@ -365,7 +365,7 @@
                                     const reviewHTML = `
                                         <div class="review-container" data-rum=\${review.rateNum}>
                                             <p class="r-movieTitle" >영화 제목 : \${review.movieTitle}</p>
-                                            <p class="r-rateReview">평가 내용 : \${review.rateReview}</p>
+                                            <p class="r-rateReview"> \${review.rateReview}</p>
                                             <p class="r-rateScore">영화 평점 : \${review.rateScore}</p>
                                         </div>
                                         `;
@@ -581,8 +581,7 @@
                 });
 
 
-                const rNum = document.querySelector('.review-container').getAttribute('data-rum');
-                console.log("test", rNum);
+                const rNum = document.getElementById('myModal').dataset.rno;
 
                 const URL = '/rates';
 

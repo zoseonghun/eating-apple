@@ -411,7 +411,7 @@
                                     <div class="movie-detail-rate-writer">`;
                     if (profileImage == null) {
                         tag += `<div class="writer-profile-img">
-                                            <img src="/assets/img/no-profile.png">
+                                            <img src="/assets/img/cute.jpg">
                                         </div>`;
                     } else {
                         tag += `<div class="writer-profile-img">

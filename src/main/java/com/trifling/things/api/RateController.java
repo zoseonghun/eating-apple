@@ -109,6 +109,7 @@ public class RateController {
 
     @DeleteMapping("/{rNum}")
     public ResponseEntity<?> rateDelete(@PathVariable("rNum") int rateNum
+
     ) {
         try {
             RateListResponseDTO rateDelete = rateService.rateDelete(rateNum);
@@ -117,7 +118,7 @@ public class RateController {
             return ResponseEntity.internalServerError()
                     .body(e.getMessage());
         }
-
+    }
 
 //        @GetMapping("/total/{mNum}")
 //        public ResponseEntity<?> movieTotalScore(@PathVariable("rNum") int movieNum){

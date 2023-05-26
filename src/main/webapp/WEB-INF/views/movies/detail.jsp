@@ -7,7 +7,7 @@
 
 
 <head>
-    <title>MovieHunter</title>
+    <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/detail.css" type="text/css" media="all" />
@@ -200,6 +200,12 @@
                         <h3>사소한 평가</h3>
                     </div>
                     <div class="rank-num-box">
+                        <!-- <c:if test="${empty detail.score}">
+                            <p class="score-p">0%</p>
+                        </c:if>
+                        <c:if test="${not empty detail.score}">
+                            <p class="score-p">${detail.score}%</p>
+                        </c:if> -->
                         <p class="score-p">${detail.score}%</p>
                     </div>
                     <!-- <div class="like">
@@ -428,16 +434,23 @@
 
             document.getElementById('rate-box').innerHTML = tag;
 
-            console.log("제발요...");
+            // console.log("제발요...");
             fetch(URL + '/total/' + mNum)
                 .then(res => res.json())
-                .then(total => {
+                .then(secret => {
                     
-                    let maxScore = 5 * total.maxCount;
+                    let maxScore = 5 * secret.maxCount;
                     
-                    let percentScore = Math.floor((total.totalScore / maxScore) * 100);
-                    // console.log("맥스" + maxCount + "  퍼센트 " + totalScore);
+                    
+                    let percentScore = Math.floor((secret.totalScore / maxScore) * 100);
+
+                    if (isNaN(percentScore)) {
+                        // console.log('이건 스크립트' + maxScore);    
+                        percentScore = 0;
+                    } 
+                    // console.log("맥스" + secret.maxCount + "  퍼센트 " + secret.totalScore);
                     const $pTag = document.querySelector('.score-p');
+                    // console.log('이건 스크립트' + percentScore);
                     $pTag.innerHTML = percentScore + '%';
                 });
 
@@ -585,6 +598,7 @@
 
 
         (function () {
+
             getRateList();
 
             ratePostButton();

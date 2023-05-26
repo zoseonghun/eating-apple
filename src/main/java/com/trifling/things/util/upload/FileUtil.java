@@ -63,7 +63,7 @@ public class FileUtil {
 
         String substring = fullPath.substring(rootPath.length());
         log.info(substring);
-        return "/local"+substring;
+        return "/local" + substring;
     }
 
     /**

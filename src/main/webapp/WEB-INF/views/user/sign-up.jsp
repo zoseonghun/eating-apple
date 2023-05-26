@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>MovieHunter</title>
+    <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="/assets/css/sign-up.css" type="text/css" media="all"/>
@@ -36,7 +36,7 @@
                             <div class="thumbnail-box">
                                 <img src="/assets/img/image-add.png" alt="프로필 썸네일">
                             </div>
-                            <label for="profile-img">프로필 사진</label>
+                            <label>프로필 사진</label>
                             <input type="file" id="profile-img" name="profileImage" accept="image/*">
                         </div>
                         <div class="form-group">
@@ -298,12 +298,13 @@
     const $fileInput = document.getElementById('profile-img');
 
     // 프로필 추가 영역 클릭 이벤트
-    $profile.onclick = e => {
+    $profile.onclick = e => {        
         $fileInput.click();
     };
 
     // 프로필 사진 선택시 썸네일 이벤트
     $fileInput.onchange = e => {
+        
         // 첨부한 파일의 데이터를 읽어오기
         const fileData = $fileInput.files[0];
         // console.log(fileData);

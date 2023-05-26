@@ -5,15 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>MovieHunter</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="/assets/css/modify.css" type="text/css" media="all"/>
 
-    <style>
+    <title>EATINGAPPLE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
-    </style>
-    <%--    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->--%>
 </head>
 
 <body>

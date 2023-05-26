@@ -5,12 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>MovieHunter</title>
+    <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/assets/css/create-rate-modal2.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/css/create-rate-modal.css" type="text/css" media="all" />
     <style>
+
         .rating {
             display: inline-block;
         }
@@ -71,7 +72,13 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .modal-tot-close-button-box {
+
+            left: 0px;
+            top: 10px;
+        }
     </style>
+
 </head>
 
 
@@ -251,15 +258,19 @@
 
                                 <div class="mydetail-contents">
                                     <div class="mydetail-myreview">
-                                        <div class ="mydetail-message">
+
+                                        <div class="mydetail-message">
+
                                         <br>
                                         상단에 원하는 카테고리를 선택하여 클릭해주세요 <br><br>
 
                                         안녕하세요, EATING <span color=red>APPLE</span>을 이용해주셔서 감사합니다 <br>
                                         여러분의 작은 리뷰 하나가 큰 도움과 행복이 됩니다🤓 <br>
                                         짧지만 소중한 리뷰를 잠깐의 시간을내어 작성해주신다면 감사하겠습니다😀 <br>
+
                                         EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다.
                                     </div>
+
                                         <%-- 리뷰 데이터를 표시할 위치 --%>
                                         <div id="review-finalBox">
                                             <c:if test="${not empty reviews}">
@@ -289,8 +300,10 @@
                                                 <c:forEach items="${interestList}" var="interest">
                                                     <div id="interest-container">
                                                         <div class="interest-box">
+
                                                             <!--  <p class="i-userNum">${interest.userNum}</p> -->
                                                                 <p class="i-movieNum">${interest.movieNum}</p>
+
                                                             <p class="i-movieTitle">${interest.movieTitle}</p>
                                                             <p class="i-imgUrl">${interest.imgUrl}</p>
                                                             <!-- <img src="/assets/img/endgame.jpg" alt="어벤져스"> -->
@@ -341,11 +354,13 @@
                     console.log(user);
 
                     const myReviewContent = document.querySelector('.mydetail-message');
+
                     myReviewContent.innerHTML = "";
                     const myInterestContent = document.getElementById('interest-finalBox');
                     while (myInterestContent.firstChild) {
                         myInterestContent.removeChild(myInterestContent.firstChild);
                     }
+
 
                     fetch('/user/review/' + user)
                         .then(response => {
@@ -396,12 +411,14 @@
                     const user = '${login.susernum}';
                     console.log(user);
 
+
                     const mydetailMessage = document.querySelector('.mydetail-message');
                     mydetailMessage.innerHTML = "";
                     const myReviewContent = document.getElementById('review-finalBox');
                     while (myReviewContent.firstChild) {
                         myReviewContent.removeChild(myReviewContent.firstChild);
                     }
+
 
 
 

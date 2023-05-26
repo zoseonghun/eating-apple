@@ -100,7 +100,7 @@
     <select id="maxMovieNum" resultType="int">
         SELECT AUTO_INCREMENT
         FROM information_schema.TABLES
-        WHERE TABLE_SCHEMA = 'eatingapple'
+        WHERE TABLE_SCHEMA = 'eatingapples'
         AND TABLE_NAME = 'm_movie'
     </select>
 </mapper>

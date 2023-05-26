@@ -18,7 +18,9 @@ public interface InterestMapper {
 
 
     // 찜 목록 1개 삭제
-    boolean deletebyMovieNum(
-            @Param("movie_num") int movieNum,
-            @Param("user_num") int userNum);
+//    boolean deleteByMovieNum(
+//            @Param("movieNum") int movieNum,
+//            @Param("userNum") int userNum);
+
+    int movieLikeCount(int movieNum);
 }

@@ -1,0 +1,301 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-sizing: content-box;
+
+
+}
+
+.modal-contents {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 900px;
+    height: 500px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.modal-top-box {
+
+    height: 130px;
+    display: flex;
+}
+
+.modal-top-rate-icon-box {
+
+    height: 110px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #ffb0b0;
+
+}
+.modal-top-rate-icon-box img{
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-top: 15px;
+
+
+}
+
+.modal-top-rate-input-box {    
+    margin-left: 30px;
+    width: 215px;
+    height: 43px;
+    position: relative;
+    border-radius: 10px;
+
+}
+
+.modal-top-md-box {
+    border: 1px solid #ffffff;
+    height: 50px;
+    width: 150px;
+    margin-top: 50px;
+    margin-left: 337px;
+    display: flex;
+}
+
+.modal-top-md-box a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #161616;
+}
+
+
+
+.modal-top-modify-box,
+.modal-top-delete-box {
+    border: 2px solid #b6b6b6;
+    height: 30px;
+    width: 75px;
+    text-align: center;
+    margin-top: 15px;
+    background-color: #fefefe;
+
+
+    line-height: 34px;
+    border-radius: 5px;
+
+}
+
+.modal-tot-close-button-box {
+    position: relative;
+    left: 0;
+    top: 10px;
+}
+
+
+.modal-middle-box {
+
+    height: 250px;
+}
+
+.modal-middle-rate-content-box {
+
+    height: 250px;
+    width: 855px;
+
+}
+#modal-content{
+    height: 250px;
+    width: 855px;
+    border-radius: 10px;
+    font-size: 18px;
+    resize: none;
+}
+.rate-content{
+    height: 250px;
+    width: 855px;
+    border-radius: 10px;
+}
+
+
+.modal-bottom-box {
+
+    height: 175px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+.modal-bottom-left-box {
+
+    width: 50%;
+    height: 90px;
+}
+.modal-bottom-right-box {
+    width: 50%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-bottom-like-icon-box a {
+    font-size: 30px;
+}
+
+.modal-bottom-movie-title-box {
+
+    height: 50px;
+    margin-top: 10px;
+    width: 500px;
+
+
+}
+.modal-movie-title{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    line-height: 50px;
+}
+.modal-movie-review {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    line-height: 50px;
+}
+.modal-bottom-writer-info-box {
+    height: 60px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 20px;
+
+}
+
+.modal-bottom-writer-profile-box {
+    border-radius: 10px;
+    height: 60px;
+    width: 60px;
+    border: 1px solid #000;
+}
+.modal-bottom-writer-profile-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-bottom-writer-id-score-box {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: fit-content;
+    height: 60px;
+}
+.modal-bottom-writer-id-box, .modal-bottom-writer-score-box{
+
+    height: 50%;
+    font-size: 16px;
+    line-height: 25px;
+    color: #000;
+    text-align: center;
+}
+.modal-bottom-writer-id-box{
+    margin-top: 15px;
+}
+
+.modal-bottom-writer-score-icon-box {
+
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+}
+.modal-bottom-writer-score-icon-box img{
+    width: 60px;
+    height: auto;
+    object-fit: cover;
+}
+
+.modal-bottom-like-box {
+
+    width: 120px;
+    height: 50px;    
+    
+}
+
+.modal-bottom-like-icon-box {
+
+    width: 60px;
+    height: 50px;
+}
+.modal-bottom-like-icon-box img{
+    width: 80px;
+    height: 50;
+    object-fit: cover;
+
+}
+.modal-bottom-like-num-box {
+
+    width: 50px;
+    height: 50px;
+}
+.modal-bottom-like-num-box span{
+    color: #000;
+    font-size: 16px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.modal-bottom-save-button-box{
+    height: 50px;
+    width: 130px;
+
+}
+
+.modal-save-button{
+    height: 50px;
+    width: 130px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+
+
+/* 별스코어 */
+.star-checkbox {
+    display: none;
+}
+
+.star {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url('/assets/img/xstar.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.star-checkbox:checked + .star {
+    background-image: url('/assets/img/star.png');
+}
+
+/* 별스코어 end */

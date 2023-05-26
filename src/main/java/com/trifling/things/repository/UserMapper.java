@@ -1,9 +1,14 @@
 package com.trifling.things.repository;
 
-import com.trifling.things.entity.Interest;
-import com.trifling.things.entity.User;
+import com.trifling.things.dto.request.LoginRequestDTO;
+import com.trifling.things.dto.response.LoginUserResponseDTO;
+import com.trifling.things.dto.response.MyInfoResponseDTO;
+import com.trifling.things.dto.response.ReviewResponseDTO;
+import com.trifling.things.entity.user.Interest;
+import com.trifling.things.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -22,15 +27,23 @@ public interface UserMapper {
     //회원 정보 수정
     boolean modify(User user);
 
-    //아이디, 이메일 중복값 확인 ㅇ
+    //아이디, 이메일 중복값 확인
     int isDuplicate(
             @Param("type") String type,
             @Param("keyword") String keyword);
 
 
     // 영화 찜하기 (조인해야 해요... 모르시면 물어봐주세요)
-    // 유저 아이디로 영화 번호 ㅇ
-    List<Interest> interestList(String userId, int movieNum);
+    // 유저 번호PK로 영화 번호 ㅇ
+    List<Interest> interestList(int userNum);
+// interest int로 dto title. num img_url table2개조인
 
+    //내가 쓴 댓글목록
+    List<ReviewResponseDTO> myReviewList(int userNum);
 
-}
+    List<MyInfoResponseDTO> myInfo(int userNum);
+
+    List<User> adminAuth(String userId);
+
+    }
+

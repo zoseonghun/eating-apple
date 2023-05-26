@@ -16,7 +16,7 @@ public class Movie {
     private String movieRuntime;
     private String movieDirector;
     private String movieGenre;
-    private String movieAge;
+    private int movieAge;
     private int movieScore;
     private String imgUrl;
 

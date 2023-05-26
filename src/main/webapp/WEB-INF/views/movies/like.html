@@ -1,0 +1,201 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>MovieHunter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style copy.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="./like.css" type="text/css" media="all" />
+    <style>
+        .rating {
+            display: inline-block;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            float: right;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .rating label:before {
+            content: '\2605';
+            font-size: 30px;
+        }
+
+        .rating input:checked~label {
+            color: orange;
+        }
+
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 60%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-style {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            color: #000;
+            background-color: #fff;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+        }
+
+        label {
+            margin-right: 10px;
+            color: #ccc;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .back-button {
+            text-align: center;
+        }
+    </style>
+    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+</head>
+
+<body>
+    <!-- START PAGE SOURCE -->
+    <div id="shell">
+        <div id="header">
+            <h1 id="logo"><a href="#">MovieHunter</a></h1>
+            <div id="navigation">
+                <ul>
+                    <li><a class="active" href="#">HOME</a></li>
+                    <li><a href="#">MOVIE</a></li>
+                    <li><a href="#">로그인</a></li>
+                </ul>
+            </div>
+            <div id="sub-navigation">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-top-rate-input-box">
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"></label>
+        </div>
+
+    </div>
+
+
+    <div class="cl">&nbsp;</div>
+    </div>
+    <div id="footer">
+        <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
+        <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
+        <div style="clear:both;"></div>
+    </div>
+    </div>
+    <!— END PAGE SOURCE —>
+
+
+        <div>
+            <form action="/user/signup" name="login" id="signUpForm" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <p><strong>아이디를 입력해주세요.</strong><span id="idChk"></span></p>
+                    <input type="id" name="userId" class="form-style" placeholder="아이디를 입력해주세요." id="signupId"
+                        autocomplete="off">
+                    <i class="input-icon uil uil-user"></i>
+                </div>
+                <div class="form-group mt-2">
+                    <p><strong>비밀번호를 입력해주세요.</strong><span id="pwChk"></span>
+                    </p>
+                    <input type="password" name="userPassword" class="form-style" placeholder="비밀번호를 입력해주세요."
+                        id="signupPassword" autocomplete="off">
+                    <i class="input-icon uil uil-at"></i>
+                </div>
+                <div class="form-group mt-2">
+                    <p><strong>비밀번호를 한번 더 입력해주세요.</strong><span id="pwChk2"></span>
+                    </p>
+                    <input type="password" class="form-style" placeholder="비밀번호를 한번 더 입력해주세요." id="signUpPasswordCheck"
+                        autocomplete="off">
+                    <i class="input-icon uil uil-lock-alt"></i>
+                </div>
+                <div class="form-group mt-2">
+                    <p><strong>이메일을 입력해주세요.</strong><span id="emailChk"></span>
+                    </p>
+                    <input type="email" name="userEmail" class="form-style" placeholder="이메일을 입력해주세요." id="signupEmail"
+                        autocomplete="off">
+                    <i class="input-icon uil uil-lock-alt"></i>
+                </div>
+                <div class="form-group mt-2">
+                    <p><strong>나이를 입력해주세요.</strong><span id="ageChk"></span></p>
+                    <input type="text" name="userAge" class="form-style" placeholder="나이를 입력해주세요" id="signupAge"
+                        autocomplete="off">
+                    <i class="input-icon uil uil-lock-alt"></i>
+                </div>
+                <div class="form-group mt-2">
+                    <p><strong>성별을 입력해주세요.</strong><span id="genderChk"></span>
+                    </p>
+                    <label>
+                        <input type="radio" name="userGender" value="MALE" id="genderMale" checked>
+                        남성
+                    </label>
+                    <label>
+                        <input type="radio" name="userGender" value="FEMALE" id="genderFemale">
+                        여성
+                    </label>
+                </div>
+                <div class="back-button">
+                    <input type="button" value="회원가입" class="btn mt-4" id="loginBtn">
+                </div>
+            </form>
+        </div>
+</body>

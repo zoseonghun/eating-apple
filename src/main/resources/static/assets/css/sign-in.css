@@ -1,0 +1,117 @@
+
+
+#content {
+    border: 1px solid #fff;
+    height: 700px;
+    width:980px;
+}
+/* TEST */
+.container {
+    height: 700px;
+    width: 980px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+}
+
+.sign-in .login-box {
+    width: 400px;
+    height: 400px;
+    background-color: #eee;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sign-in .login-box h2 {
+    margin: 0px;
+    padding: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.sign-in form {
+    padding: 0px 30px;
+}
+
+.sign-in .user-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.sign-in .user-box input {
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 1em;
+    color: #555;
+    border: none;
+    border-bottom: 1px solid #555;
+    outline: none;
+    background: transparent;
+}
+
+.sign-in .user-box label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.sign-in .user-box input:focus ~ label,
+.sign-in .user-box input:valid ~ label {
+    top: -20px;
+    left: 0px;
+    font-size: 0.8em;
+    color: #222;
+}
+
+.sign-in button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.sign-in button[type="submit"]:hover {
+    background-color: #555;
+}
+
+#custom-login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#custom-login-btn img {
+    width: 100%;
+    max-width: 200px;
+}
+
+#custom-login-btn:hover {
+    background-color: #555;
+}

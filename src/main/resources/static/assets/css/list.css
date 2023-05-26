@@ -39,6 +39,15 @@
 
 /* ------------------------------------ */
 
+.form-select{
+    width: 90px;
+    font-size: inherit;
+    line-height: 1.2;
+    padding: 0.3rem 2rem 0.3rem 0.5rem;
+    display: inline;
+
+}
+
 /* 영화 상세 목록 장르 아래 문구 */
 
 #main{
@@ -93,7 +102,7 @@
 
 
 
-.parent {
+.parents {
     margin-top: 10px;
     height: 50px;
     width: 980px;
@@ -101,7 +110,7 @@
     overflow: hidden;
 }
 
-.pagination {
+.paginations {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +121,8 @@
     margin-top: 10px;
 }
 
-.page {
+.page-links {
+    
     height: 30px;
     width: 30px;
     border: 1px solid gray;
@@ -123,19 +133,18 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+.page-a {
+    color: white;
+    text-decoration: none;
+}
 
-.page:hover {
+.page-links:hover {
     background-color: lightgray;
 }
 
-.active {
 
-    color: white;
-    font-weight: bold;
-}
-
-.prev,
-.next {
+.prevs,
+.nexts {
     width: 50px;
     height: 30px;
     border: 1px solid gray;
@@ -147,7 +156,16 @@
     transition: background-color 0.3s ease;
 }
 
-.prev:hover,
-.next:hover {
+.prevs:hover,
+.nexts:hover {
     background-color: lightgray;
+}
+
+
+.size-box {
+    height: 200px;
+}
+
+.title-score {
+    
 }

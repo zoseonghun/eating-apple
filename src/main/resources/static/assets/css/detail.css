@@ -127,14 +127,23 @@
 
     width: 90px;
     height: 90px;
-    margin-top: 33px;
+    margin-top: 25px;
+
+    margin-right: 130px;
 }
 
 .like-num-box {
 
-    width: 90px;
-    height: 90px;
-    margin-top: 33px;
+    width: 120px;
+    height: 120px;
+
+
+
+}
+.like-num-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .rank-num-box p,
@@ -224,8 +233,16 @@
 
     margin-top: 10px;
     display: flex;
+    justify-content: center;    
     flex-wrap: wrap;
     margin-bottom: 10px;
+}
+
+.writer-profile-img img {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    left: -10px;
 }
 
 
@@ -238,9 +255,18 @@
     border-radius: 10px;
     border: 1px solid #000;
     padding-bottom: 0;
+}
 
-
-
+.speech-bubble-none {
+    position: relative;
+    width: 447.5px;
+    min-height: 150px;
+    padding: 20px;
+    background-color: rgb(255, 174, 174);
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding-bottom: 0;
+    margin-left: 20px;
 }
 
 .speech-bubble::before {
@@ -369,4 +395,126 @@
     object-fit: cover;
 }
 
+.detail-rate-modal-button {
+    height: 40px;
+    margin-top: 20px;
+
+}
+
+.rate-box {    
+    margin: 30px 0 auto;
+    position: relative;
+    left: 350px;
+
+}
+
+.modal-open {
+    margin: 30px 0 auto;
+
+}
+
+
+
+
+.detail-rate-modal-button button {
+    background-color: #51ff00;
+    height: 40px;
+    width: 150px;
+    font-weight: 900;
+
+
+
+    color: rgb(56, 112, 109);
+
+    margin-left: 731px;
+    border-radius: 10px;
+}
+
+.movie-detail-ranks-box {
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+}
+.movie-detail-rate-containier{
+    margin-bottom: 20px;
+}
+
+
+.center-rate {
+    position: relative;
+    left: 300px;
+}
+
+.star {
+position: relative;
+font-size: 2rem;
+color: #ddd;
+}
+
+.star input {
+width: 100%;
+height: 100%;
+position: absolute;
+left: 0;
+opacity: 0;
+cursor: pointer;
+}
+
+.star span {
+width: 0;
+position: absolute; 
+left: 0;
+color: red;
+overflow: hidden;
+pointer-events: none;
+}
+
+
+/*추가 css*/
+.header-li {
+    margin-top: 40px;
+}
+
+#search{
+    display: none;
+}
+#sub-navigation {
+    border-bottom: none;
+    font-size: 30px;
+    color: white;
+    padding-bottom: 20px;
+
+}
+
+.none-write {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.rating {
+    display: inline-block;
+    width: 200px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    float: right;
+    cursor: pointer;
+    color: gray;            
+}
+
+.rating label:before {
+    content: '\2605';
+    font-size: 30px;
+}
+
+.rating input:checked~label {
+    color: orange;
+
+}
 

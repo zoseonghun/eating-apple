@@ -3,12 +3,40 @@
 
 
 <div id="header">
-    <h1 id="logo"><a href="#">MovieHunter</a></h1>
+    <!-- 로고 추가 수정 -->
+    <h1 id="logo"><a href="/movies/list"><img src="/assets/img/logo4.png" alt=""></a></h1>
+    <!-- 로고 추가 수정 -->
     <div id="navigation">
         <ul>
-            <li><a class="active" href="/">HOME</a></li>
-            <li><a href="/movies/list">MOVIES</a></li>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">회원가입</a></li>
+            <c:if test="${login == null}">
+
+                <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                <li class="header-li"><a href="/user/login">로그인</a></li>
+                <li class="header-li"><a href="/user/sign-up">회원가입</a></li>
+            </c:if>
+
+
+            <c:if test="${login != null && login.suserid != 'admin'}">
+                <c:if test="${login.sprofileimage != null}">
+                    <li class="header-user-profile-image"><img src="${login.sprofileimage}" alt=""></li>
+                </c:if>
+                <c:if test="${login.sprofileimage == null}">
+                    <li class="header-user-profile-image"><img src="/assets/img/cute.jpg" alt=""></li>
+                </c:if>
+                <li class="header-li header-li-user"><p>${login.suserid}님 환영 합니다!!</p></li>
+                <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
+                <li class="header-li"><a href="/user/mypage">마이페이지</a></li>
+                <li class="header-li"><a href="/user/modify">회원정보수정</a></li>
+            </c:if>
+
+            <c:if test="${login != null && login.suserid == 'admin'}">
+                <li class="header-user-profile-image"><img src="/assets/img/admin.png" alt=""></li>
+                <li class="header-li header-li-user"><p>관리자 계정입니다</p></li>
+                <li class="header-li header-li-home"><a href="/movies/list">HOME</a></li>
+                <li class="header-li"><a href="/user/sign-out">로그아웃</a></li>
+                <li class="header-li"><a href="/user/admin">영화등록</a></li>
+            </c:if>
+
         </ul>
     </div>

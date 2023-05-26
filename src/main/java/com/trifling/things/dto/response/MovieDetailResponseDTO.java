@@ -19,12 +19,13 @@ public class MovieDetailResponseDTO {
     private String runtime;
     private String director;
     private String genre;
-    private String age;
+    private int age;
     private int score;
     private List<MovieImg> movieImgList;
+    private int likeCount;
 
 
-    public MovieDetailResponseDTO(Movie movie, List<MovieImg> movieImgList) {
+    public MovieDetailResponseDTO(Movie movie, List<MovieImg> movieImgList, int like) {
         this.movieNum = movie.getMovieNum();
         this.title = movie.getMovieTitle();
         this.info = movie.getMovieInfo();
@@ -34,6 +35,7 @@ public class MovieDetailResponseDTO {
         this.age = movie.getMovieAge();;
         this.score = movie.getMovieScore();
         this.movieImgList = movieImgList;
+        this.likeCount = like;
     }
 
 

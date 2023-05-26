@@ -10,7 +10,7 @@
         INSERT INTO m_rate
             (user_num, movie_num, rate_review, rate_score, user_id)
         VALUES
-            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore} #{userId})
+            (#{userNum}, #{movieNum}, #{rateReview}, #{rateScore}, #{userId})
     </insert>
 
     <update id="rateModify">
@@ -26,26 +26,38 @@
     </delete>
 
     <select id="rateList" resultType="rate">
-        SELECT rate_num, user_num, movie_num, rate_review
-        , rate_score, rate_date, rate_like, user_id
-        FROM m_rate
+<!--        SELECT rate_num, user_num, movie_num, rate_review-->
+<!--        , rate_score, rate_date, rate_like, user_id-->
+<!--        FROM m_rate-->
+        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review
+        , r.rate_score, r.rate_date, r.rate_like, r.user_id, u.profile_image
+        FROM m_rate r
+        join m_user u
+        on r.user_num = u.user_num
         <if test="type == 'users'">
-            WHERE user_num = #{target}
+            WHERE r.user_num = #{target}
         </if>
         <if test="type == 'movies'">
-            WHERE movie_num = #{target}
+            WHERE r.movie_num = #{target}
         </if>
-        ORDER BY rate_num
+        ORDER BY rate_num DESC
         LIMIT #{page.pageStart}, #{page.amount}
     </select>
 
+<!--    <select id="rateFindOne" resultType="rate">-->
+<!--        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review-->
+<!--            , r.rate_score, r.rate_date, r.rate_like, r.user_id-->
+<!--        FROM m_rate r-->
+<!--        JOIN m_user u ON r.user_num = u.user_num-->
+<!--        JOIN m_movie m ON r.movie_num = m.movie_num-->
+<!--        WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}-->
+<!--    </select>-->
+
     <select id="rateFindOne" resultType="rate">
-        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review
-            , r.rate_score, r.rate_date, r.rate_like
-        FROM m_rate r
-        JOIN m_user u ON r.user_num = u.user_num
-        JOIN m_movie m ON r.movie_num = m.movie_num
-        WHERE u.user_num = #{userNum} AND m.movie_num = #{movieNum}
+        SELECT rate_num, user_num, movie_num, rate_review
+        , rate_score, rate_date, rate_like, user_id
+        FROM m_rate
+        WHERE rate_num = #{rateNum}
     </select>
 
     <select id="countScore" resultType="int">
@@ -54,4 +66,39 @@
         WHERE movie_num = #{movieNum}
     </select>
 
+    <select id="insertBeforeCheck" resultType="int">
+        SELECT COUNT(*)
+        FROM m_rate
+        WHERE movie_num = #{movieNum} AND user_num = #{userNum}
+    </select>
+
+    <insert id="insertLike">
+        INSERT INTO m_interest (movie_num, user_num)
+        VALUE (#{movieNum}, #{userNum})
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE FROM m_interest
+        WHERE movie_num = #{movieNum} AND user_num = #{userNum}
+    </delete>
+
+    <select id="totalMovieScore" resultType="score">
+        SELECT m.movie_score as totalScore, COUNT(r.rate_num) as maxCount
+        FROM m_movie m
+        JOIN m_rate r
+        ON m.movie_num = r.movie_num
+        WHERE m.movie_num = #{movieNum}
+    </select>
+
+    <update id="pointPlus">
+        UPDATE m_user
+        SET user_point = user_point + 100
+        WHERE user_num = #{userNum}
+    </update>
+
+    <update id="pointMinus">
+        UPDATE m_user
+        SET user_point = user_point - 100
+        WHERE user_num = #{userNum}
+    </update>
 </mapper>

@@ -5,23 +5,25 @@
 
 <mapper namespace="com.trifling.things.repository.UserMapper">
 
-    <insert id="save">
+    <insert id="save" parameterType="User">
         INSERT INTO m_user
-        (user_id, user_password, user_email, user_gender, user_age)
+        (user_id, user_password, user_email, user_gender, user_age, profile_image)
         Values
-        (#{userId}, #{password}, #{email} ,#{gender}, #{age})
+        (#{userId}, #{userPassword}, #{userEmail} ,#{userGender}, #{userAge}, #{profileImage} )
+
     </insert>
 
     <select id="findUser" resultType="user">
         select
-        user_id, user_password, user_email, user_gender, user_age
+        user_num, user_id, user_password, user_email, user_gender
+        , user_age, profile_image, user_point, user_grade
         from m_user
         WHERE user_id = #{userId}
     </select>
 
     <update id="modify">
         UPDATE m_user
-        SET user_password= #{userPassword}
+        SET profile_image= #{profileImage}, user_password= #{userPassword}, user_email= #{userEmail}
         WHERE user_id = #{userId}
     </update>
 
@@ -29,12 +31,51 @@
         SELECT COUNT(*)
         FROM m_user
         <if test="type == 'userid'">
-            WHERE userId = #{keyword}
+            WHERE user_id = #{keyword}
         </if>
         <if test="type == 'email'">
-            WHERE userEmail = #{keyword}
+            WHERE user_email = #{keyword}
         </if>
     </select>
 
+    <select id="myReviewList" resultType="review">
+        SELECT r.rate_num, r.user_num, r.movie_num, r.rate_review, r.rate_date, r.rate_score, r.rate_like, m.movie_title
+        FROM m_rate r
+        JOIN m_movie m ON r.movie_num = m.movie_num
+        WHERE r.user_num = #{userNum};
+    </select>
 
+
+    <select id="myInfo" resultType="MyInfoResponseDTO">
+        SELECT mu.user_num, mu.user_id, mu.user_point, mu.user_grade,
+        mm.movie_num, mm.movie_title, mr.rate_review
+        FROM m_user mu
+        JOIN m_rate mr ON mu.user_num = mr.user_num
+        JOIN m_movie mm ON mr.movie_num = mm.movie_num
+        where mu.user_Num = #{userNum}
+    </select>
+
+    <select id="interestList" resultType="Interest">
+        select m.movie_num , m.movie_title , g.img_url, u.user_num
+        from m_user u
+        join m_interest i
+        on u.user_num = i.user_num
+        join m_movie m
+        on i.movie_num = m.movie_num
+        join m_img g
+        on m.movie_num = g.movie_num
+        where u.user_num = #{userNum} and g.img_name = 'poster';
+
+<!--        SELECT m_movie.movie_num, m_movie.movie_title, m_img.img_url, m_user.user_num-->
+<!--        FROM m_movie-->
+<!--        INNER JOIN m_img ON m_movie.movie_num = m_img.movie_num-->
+<!--        INNER JOIN m_interest ON m_movie.movie_num = m_interest.movie_num-->
+<!--        INNER JOIN m_user ON m_user.user_num = m_interest.user_num-->
+<!--        where m_user.user_num = #{userNum}-->
+    </select>
+
+    <select id="adminAuth" resultType="User">
+        select user_id from m_user mu
+        where mu.user_id = 'admin';
+    </select>
 </mapper>

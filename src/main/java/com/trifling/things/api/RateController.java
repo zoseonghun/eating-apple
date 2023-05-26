@@ -37,7 +37,7 @@ public class RateController {
             @PathVariable int pageNo
     ) {
 
-        log.info("/rate/{}/contents/{}/page/{} : GET", type, target, pageNo );
+        log.info("/rate/{}/contents/{}/page/{} : GET", type, target, pageNo);
 
         Page page = new Page();
         page.setPageNo(pageNo);
@@ -72,8 +72,8 @@ public class RateController {
     // 평가 등록 모달 진입 전 평가 남겼는지 확인하는 기능
     @GetMapping("/{movieNum}")
     public ResponseEntity<?> isBeforeRate(
-           HttpServletRequest request
-           , @PathVariable int movieNum) {
+            HttpServletRequest request
+            , @PathVariable int movieNum) {
 
 //        LoginUserResponseDTO l = (LoginUserResponseDTO) request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
 //        log.info("session id {}", l.getSuserid());
@@ -101,7 +101,7 @@ public class RateController {
 
     @DeleteMapping("/out/{mNum}/{num}")
     public ResponseEntity<?> likeOut(@PathVariable("mNum") int movieNum,
-                                    @PathVariable("num") int userNum) {
+                                     @PathVariable("num") int userNum) {
         log.info("{} {}", movieNum, userNum);
         boolean deleteFlag = rateService.deleteLike(movieNum, userNum);
         return ResponseEntity.ok().body(deleteFlag);
@@ -109,11 +109,11 @@ public class RateController {
 
 
     @DeleteMapping("/{rNum}")
-    public ResponseEntity<?> rateDelete(@PathVariable("rNum") int rateNum
+    public ResponseEntity<?> rateDelete(@PathVariable("rNum")  int rateNum
     ) {
         try {
             RateListResponseDTO rateDelete = rateService.rateDelete(rateNum);
-            log.info("삭제좀;;;{}", rateNum);
+//            log.info("삭제좀;;;{}", rateNum);
             return ResponseEntity.ok().body(rateDelete);
         } catch (Exception e) {
             return ResponseEntity.internalServerError()

@@ -316,7 +316,7 @@ margin-right: 5px;
   margin: auto;
   text-align: center;
   margin-top: 20px;
- 
+
   position: relative;
   padding-top: 20px;  
   overflow: hidden;
@@ -332,7 +332,7 @@ margin-right: 5px;
   /* background: palevioletred; */
   justify-content: space-evenly;
 
- 
+
   /* scroll-snap-type: y; */
 
 }
@@ -358,7 +358,7 @@ margin-right: 5px;
     border: 1px solid palevioletred;
     text-align: center;
     margin-bottom: 30px;
-   
+
 }
 
 @supports (position: sticky) or (position: -webkit-sticky) {
@@ -469,13 +469,13 @@ scroll-snap-align: start;
   color: aliceblue;
 }
 
-
-
 .review-container p{
   color: aliceblue;
   width: 80%;
   margin-left: 20px;
 }
+
+
 
 
 

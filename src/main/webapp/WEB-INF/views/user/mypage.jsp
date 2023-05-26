@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>MovieHunter</title>
+    <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
@@ -71,7 +71,13 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .modal-tot-close-button-box {
+
+            left: 0px;
+            top: 10px;
+        }
     </style>
+
 </head>
 
 
@@ -223,7 +229,7 @@
                                     <div class="mypoint">
                                         <div class="mycoupon">
                                             <p>나의 포인트</p>
-                                            <p>${login.suserpoint}점</p>
+                                            <p>${logon.userPoint}점</p>
                                         </div>
 
                                         <div class="myrealpoint">
@@ -256,7 +262,7 @@
 
                                 <div class="mydetail-contents">
                                     <div class="mydetail-myreview">
-                                        <div class ="mydetail-message">
+                                        <div class="mydetail-message">
                                         <br>
                                         상단에 원하는 카테고리를 선택하여 클릭해주세요 <br><br>
 
@@ -268,7 +274,7 @@
                                         <%-- 리뷰 데이터를 표시할 위치 --%>
                                         <div id="review-finalBox">
                                             <c:if test="${not empty reviews}">
-                                                <c:forEach items="${reviews}" var="review">                                                    
+                                                <c:forEach items="${reviews}" var="review">
                                                    <!-- 리뷰 비동기 뿌려주는 곳 -->
                                                 </c:forEach>
                                             </c:if>
@@ -322,6 +328,7 @@
 
 
     <script>
+        // 내가 쓴 리뷰 버튼 클릭
         document.addEventListener('DOMContentLoaded', () => {
             const myReviewButton = document.querySelector('#myreview');
             myReviewButton.onclick = e => {
@@ -441,8 +448,6 @@
         const reviewFinalBox = document.querySelector('#review-finalBox');
         const modalTextarea = document.getElementById('modal-content');
         const modalMovieTitle = document.getElementById('modal-movie-title');
-        
-
         let reviewScoreNum;
         reviewFinalBox.onclick = e => {
             console.log(e.target.closest('.review-container'));
@@ -510,7 +515,7 @@
                 console.log(e.target);
                 e.preventDefault();
 
-                
+
 
 
                 const rNum = document.getElementById('myModal').dataset.rno;

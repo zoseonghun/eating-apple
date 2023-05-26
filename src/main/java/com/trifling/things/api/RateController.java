@@ -82,12 +82,14 @@ public class RateController {
     }
 
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
-    public ResponseEntity<?> rateModify(RateModifyRequestDTO dto) {
-
+    public ResponseEntity<?> rateModify(
+            @RequestBody RateModifyRequestDTO dto) {
+//        log.info("radt{} ", dto);
         rateService.rateModify(dto);
 
-        return null;
+        return ResponseEntity.ok().body("ok");
     }
+
 
     @PostMapping("/in/{mNum}/{num}")
     public ResponseEntity<?> likeIn(@PathVariable("mNum") int movieNum,
@@ -107,16 +109,18 @@ public class RateController {
 
 
     @DeleteMapping("/{rNum}")
-    public ResponseEntity<?> rateDelete(@PathVariable("rNum")  int rateNum
+    public ResponseEntity<?> rateDelete(@PathVariable("rNum") int rateNum
     ) {
         try {
             RateListResponseDTO rateDelete = rateService.rateDelete(rateNum);
+            log.info("삭제좀;;;{}", rateNum);
             return ResponseEntity.ok().body(rateDelete);
         } catch (Exception e) {
             return ResponseEntity.internalServerError()
                     .body(e.getMessage());
         }
     }
+
 
     @GetMapping("/total/{mNum}")
     public ResponseEntity<?> movieTotalScore(@PathVariable int mNum) {

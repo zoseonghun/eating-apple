@@ -65,7 +65,7 @@
               <div class="top-section">
                 <!-- //green1 -->
                 <div class="profile-image">
-                  <p>프로필사진</p>
+                  <p><img src="${logon.profileImage}"></p>
                 </div>
   
                 <!-- //green2 -->
@@ -73,11 +73,11 @@
                   <!-- //yellow1 -->
                   <ul>
                     <li class="user-Id">
-                      <p>반갑습니다 ${login.userId}님</p></li>
+                      <p>반갑습니다 ${logon.userId}님</p></li>
                   </ul>
                   <ul>
                     <li class="user-grade">
-                      <p>고객님은 ${login.userGrade}입니다</p></li>
+                      <p>고객님은 ${logon.userGrade}입니다</p></li>
                   </ul>
                 </div>
   
@@ -89,7 +89,7 @@
                 <div class="user-point">
                   <h1>My Point</h1>
                   <div class="user-point">
-                    <p>${login.userPoint}점 입니다</p>
+                    <p>${logon.userPoint}점 입니다</p>
                   </div>
                   <ul class="how-to-get-point"> 
                     포인트 산정방법

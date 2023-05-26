@@ -5,12 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>EATINGAPPLE</title>
+    <title>MovieHunter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/assets/css/mypage-info.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/assets/css/create-rate-modal-user.css" type="text/css" media="all" />
-     <style>
+    <link rel="stylesheet" href="/assets/css/create-rate-modal2.css" type="text/css" media="all" />
+    <style>
         .rating {
             display: inline-block;
         }
@@ -34,7 +34,7 @@
             color: orange;
         }
 
-        -->.modal {
+        .modal {
             display: none;
             /* 처음에는 숨김 상태로 설정 */
             position: fixed;
@@ -71,13 +71,7 @@
             text-decoration: none;
             cursor: pointer;
         }
-        .modal-tot-close-button-box {
-
-            left: 0px;
-            top: 10px;
-        }
     </style>
-
 </head>
 
 
@@ -170,7 +164,12 @@
                         <div class="mybasic-info">
                             <div class="profile-image">
                                 <!-- <p>프로필사진</p> -->
-                                <img src="${login.sprofileimage}" alt="#">
+                                <c:if test="${logon.profileImage == null}">
+                                    <img src="/assets/img/cute.jpg" alt="#">
+                                </c:if>
+                                <c:if test="${logon.profileImage != null}">
+                                    <img src="${logon.profileImage}" alt="#">
+                                </c:if>
                             </div>
                             <div class="mypage-id">
 
@@ -184,13 +183,13 @@
 
                                 </c:if>
                                 <c:if test="${login.suserage != 0}">
-                                    <p>ID: <br><span>${login.suserid}</span></p>
+                                    <p>ID: <br><span>${logon.userId}</span></p>
 
-                                    <p>EMAIL: <br><span>${login.semail}</span></p>
+                                    <p>EMAIL: <br><span>${logon.userEmail}</span></p>
 
-                                    <p>AGE: <br><span>${login.suserage}</span></p>
+                                    <p>AGE: <br><span>${logon.userAge}</span></p>
 
-                                    <p>GENDER: <br><span>${login.susergender}</span></p>
+                                    <p>GENDER: <br><span>${logon.userGender}</span></p>
                                 </c:if>
                             </div>
                             <div class="usergrade">
@@ -198,12 +197,12 @@
                                 <div class="user-point-grade-box">
                                     <div class="user-point">
                                         <h3>나의 포인트</h3>
-                                        <p>${login.suserpoint}</p>
+                                        <p>${logon.userPoint}</p>
 
                                     </div>
                                     <div class="user-grade">
                                         <h3>나의 등급</h3>
-                                        <p>${login.susergrade}</p>
+                                        <p>${logon.userGrade}</p>
 
                                     </div>
 
@@ -220,13 +219,13 @@
 
 
                             </div>
-                            <!-- 
+                            <!--
                                     <div class="mypoint">
                                         <div class="mycoupon">
                                             <p>나의 포인트</p>
                                             <p>${login.suserpoint}점</p>
                                         </div>
-            
+
                                         <div class="myrealpoint">
                                             <p> 포인트 산정방법</p>
                                             <ul class="how-to-get-point">
@@ -257,32 +256,20 @@
 
                                 <div class="mydetail-contents">
                                     <div class="mydetail-myreview">
-                                        <div class="mydetail-message">
+                                        <div class ="mydetail-message">
                                         <br>
                                         상단에 원하는 카테고리를 선택하여 클릭해주세요 <br><br>
 
                                         안녕하세요, EATING <span color=red>APPLE</span>을 이용해주셔서 감사합니다 <br>
                                         여러분의 작은 리뷰 하나가 큰 도움과 행복이 됩니다🤓 <br>
                                         짧지만 소중한 리뷰를 잠깐의 시간을내어 작성해주신다면 감사하겠습니다😀 <br>
-                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다. 
-                                        </div>
+                                        EATING <span color=red>APPLE</span> 여러분께 항상 쾌적한 서비스를 제공하기 위해 언제나 노력하도록 하겠습니다.
+                                    </div>
                                         <%-- 리뷰 데이터를 표시할 위치 --%>
                                         <div id="review-finalBox">
                                             <c:if test="${not empty reviews}">
-                                                <c:forEach items="${reviews}" var="review">
-                                                    <img src="/assets/img/redapple.png" alt="">
-                                                    <div class="review-container" data-rum="${review.rateNum}">
-                                                        <!-- <img src="/assets/img/redapple.png" alt=""> -->
-                                                        <div class="review-box" id="reviewBox">
-                                                            <p class="r-movieTitle">영화 제목 : ${review.movieTitle}</p>
-                                                            <p><br><br></p>
-                                                            <p class="r-rateReviewA">평가 내용 :</p>
-                                                            <p class="r-rateReview"> ${review.rateReview}</p>
-
-                                                            <p class="r-rateScore">영화 평점 : ${review.rateScore}
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                <c:forEach items="${reviews}" var="review">                                                    
+                                                   <!-- 리뷰 비동기 뿌려주는 곳 -->
                                                 </c:forEach>
                                             </c:if>
                                         </div>
@@ -295,8 +282,8 @@
                                                 <c:forEach items="${interestList}" var="interest">
                                                     <div id="interest-container">
                                                         <div class="interest-box">
-                                                            <!-- <!-- <p class="i-userNum">${interest.userNum}</p> -->
-                                                            <p class="i-movieNum">${interest.movieNum}</p>
+                                                            <!--  <p class="i-userNum">${interest.userNum}</p> -->
+                                                                <p class="i-movieNum">${interest.movieNum}</p>
                                                             <p class="i-movieTitle">${interest.movieTitle}</p>
                                                             <p class="i-imgUrl">${interest.imgUrl}</p>
                                                             <!-- <img src="/assets/img/endgame.jpg" alt="어벤져스"> -->
@@ -335,7 +322,6 @@
 
 
     <script>
-        // 내가 쓴 리뷰 버튼 클릭
         document.addEventListener('DOMContentLoaded', () => {
             const myReviewButton = document.querySelector('#myreview');
             myReviewButton.onclick = e => {
@@ -348,8 +334,11 @@
                     console.log(user);
 
                     const myReviewContent = document.querySelector('.mydetail-message');
-                    myReviewContent.innerHTML ="";
-                    // myReviewContent.style.display = 'none';
+                    myReviewContent.innerHTML = "";
+                    const myInterestContent = document.getElementById('interest-finalBox');
+                    while (myInterestContent.firstChild) {
+                        myInterestContent.removeChild(myInterestContent.firstChild);
+                    }
 
                     fetch('/user/review/' + user)
                         .then(response => {
@@ -367,11 +356,12 @@
                                 data.forEach(review => {
                                     console.log("review : =>" + review.rateNum);
                                     const reviewHTML = `
-                                    <div class="review-container" data-rum=\${review.rateNum}>
-                                    <p class="r-movieTitle" >영화 제목 : \${review.movieTitle}</p>
-                                    <p class="r-rateReview">평가 내용 : \${review.rateReview}</p>
-                                    <p class="r-rateScore">영화 평점 : \${review.rateScore}</p>       
-                  `;
+                                        <div class="review-container" data-rum=\${review.rateNum}>
+                                            <p class="r-movieTitle" >영화 제목 : \${review.movieTitle}</p>
+                                            <p class="r-rateReview">평가 내용 : \${review.rateReview}</p>
+                                            <p class="r-rateScore">영화 평점 : \${review.rateScore}</p>
+                                        </div>
+                                        `;
                                     reviewContainer.innerHTML += reviewHTML;
                                 });
                             } else {
@@ -400,8 +390,14 @@
                     const user = '${login.susernum}';
                     console.log(user);
 
-                    const myReviewContent = document.querySelector('.mydetail-message');
-                    myReviewContent.innerHTML ="";
+                    const mydetailMessage = document.querySelector('.mydetail-message');
+                    mydetailMessage.innerHTML = "";
+                    const myReviewContent = document.getElementById('review-finalBox');
+                    while (myReviewContent.firstChild) {
+                        myReviewContent.removeChild(myReviewContent.firstChild);
+                    }
+
+
 
                     fetch(`/user/interest/` + user)
                         .then(response => {
@@ -418,10 +414,9 @@
                                 data.forEach(interest => {
                                     const interestSet = document.createElement('div');
                                     interestSet.classList.add('interest-container');
-                                    interestSet.innerHTML = ` 
-                            <a href="/movies/detail?mno=\${interest.movieNum}"> 
+                                    interestSet.innerHTML = `
+                            <a href="/movies/detail?mno=\${interest.movieNum}">
                             <p class="i-movieTitle">\${interest.movieTitle}</p>
-                            <img class=i-imgUrl src="\${interest.imgUrl}">  
                            </a>
                         `;
                                     interestContainer.appendChild(interestSet);
@@ -446,6 +441,8 @@
         const reviewFinalBox = document.querySelector('#review-finalBox');
         const modalTextarea = document.getElementById('modal-content');
         const modalMovieTitle = document.getElementById('modal-movie-title');
+        
+
         let reviewScoreNum;
         reviewFinalBox.onclick = e => {
             console.log(e.target.closest('.review-container'));
@@ -456,7 +453,10 @@
             const reviewScore = target.querySelector('.r-rateScore').textContent;
             const lastTwoChars = reviewScore.slice(8);
             reviewScoreNum = +lastTwoChars.trim();
+            const $thisModal = document.getElementById('myModal');
+            console.log('rno:', e.target.closest('.review-container').dataset.rum);
 
+            $thisModal.dataset.rno =  e.target.closest('.review-container').dataset.rum;
             // console.log(title);
             // console.log(reviewText);
 
@@ -478,6 +478,9 @@
                     break;
                 case 4:
                     document.getElementById("star4").checked = true;
+                    break;
+                case 5:
+                    document.getElementById("star5").checked = true;
                     break;
                 default:
                     console.log("잘못됨")
@@ -507,9 +510,13 @@
                 console.log(e.target);
                 e.preventDefault();
 
-                const rNum = document.querySelector('.review-container').getAttribute('data-rum');
-                console.log("test", rNum);
+                
 
+
+                const rNum = document.getElementById('myModal').dataset.rno;
+
+                // console.log("test", rNum);
+                // console.log('스크립트 rnum' + rNum);
                 const URL = '/rates/' + rNum;
                 if (e.target.matches('#modal-delete')) {
                     console.log('삭제버튼 클릭');
@@ -530,7 +537,8 @@
                     }).then(res => {
                         if (res.status === 200) {
                             alert('정상적으로 삭제되었습니다.');
-                            return res.text();
+                            window.location.reload();
+
                         } else {
                             alert('다시 시도해주세요');
                         }
@@ -545,7 +553,7 @@
 
             }
         }
-        //수정 버튼 클릭시 변경 이벤트 
+        //수정 버튼 클릭시 변경 이벤트
         function modifyButton() {
             const $modBtn = document.getElementById('modal-modify');
             console.log("modBtn", $modBtn);
@@ -598,6 +606,7 @@
                     }).then(res => {
                         if (res.status === 200) {
                             alert('댓글이 정상 수정되었습니다!');
+                            window.location.reload();
 
                         } else {
                             alert('댓글 수정에 실패했습니다.');

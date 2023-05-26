@@ -43,7 +43,7 @@
       <div id="search">
         <form action="/movies/list" method="get" accept-charset="utf-8">
 
-          <select class="form-select" name="type" id="search-type">
+          <select class="form-selects" name="type" id="search-type2">
             <option value="title">제목</option>
             <option value="director">감독</option>
           </select>

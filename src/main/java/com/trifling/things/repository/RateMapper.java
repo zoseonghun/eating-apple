@@ -43,4 +43,7 @@ public interface RateMapper {
             , @Param("userNum") int userNum);
 
     public ScoreResponseDTO totalMovieScore(int movieNum);
+
+    public void pointPlus(int userNum);
+    public void pointMinus(int userNum);
 }

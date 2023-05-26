@@ -8,7 +8,8 @@
 
     <title>EATINGAPPLE</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/modify.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
 </head>
 
@@ -27,8 +28,7 @@
             <div id="container modify">
                 <h2>회원 정보 수정</h2>
                 <form action="/user/modify" method="POST" id="modifyForm" enctype="multipart/form-data">
-                    <%--                <input type="hidden" name="userNum" value="">--%>
-
+                    
                         <div class="profile">
                             <div class="thumbnail-box">
                                 <img src="${login.sprofileimage != null ? login.sprofileimage : '/assets/img/image-add.png'}"

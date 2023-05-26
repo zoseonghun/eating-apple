@@ -80,7 +80,7 @@ public class UserService {
     public LoginResult authenticate(LoginRequestDTO dto) {
 
         User foundUser = userMapper.findUser(dto.getUserId());
-        log.info("dto:{}",foundUser.getUserPassword());
+//        log.info("dto:{}",foundUser.getUserPassword());
 
 //        log.info("입력 비밀번호 {} : ", dto.getUserPassword());
 //        log.info("데이터베이스 비밀번호 {} : ", foundUser.getUserPassword());
@@ -121,7 +121,7 @@ public List<ReviewResponseDTO> myReviewList(int userNum){
     }
 
 
-    public void maintainLoginState(HttpSession session, String userId) {
+    public User maintainLoginState(HttpSession session, String userId) {
 
         // 로그인 성공하면 세션에 로그인한 회원의 정보들을 저장
         User user = findUser(userId);
@@ -139,6 +139,8 @@ public List<ReviewResponseDTO> myReviewList(int userNum){
         log.info("dto:{}",dto);
         // 세션에 유저 정보 저장
         session.setAttribute(LoginUtil.LOGIN_KEY, dto);
+
+        return user;
     }
 
     //회원정보 조회

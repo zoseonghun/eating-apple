@@ -52,7 +52,7 @@ public class RateService {
 
         LoginUserResponseDTO user = (LoginUserResponseDTO)session.getAttribute(LoginUtil.LOGIN_KEY);
         rate.setUserId(user.getSuserid());
-
+        rateMapper.pointPlus(dto.getUserNum());
         boolean flag = rateMapper.rateWrite(rate);
         movieService.movieScoreRenew(dto.getMovieNum());
         return getRateList("movie", dto.getMovieNum(), new Page(1,10));
@@ -79,9 +79,11 @@ public class RateService {
     @Transactional
     public RateListResponseDTO rateDelete(int rateNum) {
 
-        int movieNum = rateMapper.rateFindOne(rateNum).getMovieNum();
-        rateMapper.rateDelete(rateNum);
-
+        Rate rate = rateMapper.rateFindOne(rateNum);
+        int movieNum = rate.getMovieNum();
+        boolean flag = rateMapper.rateDelete(rateNum);
+//        log.info("삭제 서비스 {} ",rateNum);
+//        rateMapper.pointMinus(rate.getUserNum());
         return getRateList("movie", movieNum, new Page(1,10));
     }
 

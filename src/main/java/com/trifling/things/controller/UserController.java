@@ -139,7 +139,8 @@ public class UserController {
         // 로그인 성공시
         if (result == SUCCESS) {
             // 서버에서 세션에 로그인 정보를 저장
-            userService.maintainLoginState(request.getSession(), dto.getUserId());
+            User user = userService.maintainLoginState(request.getSession(), dto.getUserId());
+
 
             return "redirect:/movies/list";
         }
@@ -233,8 +234,11 @@ public class UserController {
 
     //    마이페이지 --로그인 연동시
     @GetMapping("/mypage")
-    public String getMyPage() {
-
+    public String getMyPage(Model model, HttpServletRequest request) {
+        LoginUserResponseDTO login = (LoginUserResponseDTO) request.getSession().getAttribute("login");
+        User user = userService.findUser(login.getSuserid());
+        log.info("여기 몇번 오냐{}", user.getUserPoint());
+        model.addAttribute("logon", user);
         return "user/mypage";
     }
 

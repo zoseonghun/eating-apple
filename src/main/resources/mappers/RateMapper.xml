@@ -89,4 +89,16 @@
         ON m.movie_num = r.movie_num
         WHERE m.movie_num = #{movieNum}
     </select>
+
+    <update id="pointPlus">
+        UPDATE m_user
+        SET user_point = user_point + 100
+        WHERE user_num = #{userNum}
+    </update>
+
+    <update id="pointMinus">
+        UPDATE m_user
+        SET user_point = user_point - 100
+        WHERE user_num = #{userNum}
+    </update>
 </mapper>

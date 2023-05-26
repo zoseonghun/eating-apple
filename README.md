@@ -1,6 +1,6 @@
 
 ## 사소한 사과 웹사이트
-![EATING APPLE Logo](/src/resources/static/assets/img/logo4.png)
+![EATING APPLE Logo](src/resources/static/assets/img/logo4.png)
 
 ## 👥 팀원 및 업무 분담
 
